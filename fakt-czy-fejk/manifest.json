@@ -1,0 +1,26 @@
+{
+  "slug": "fakt-czy-fejk",
+  "nazwa": {
+    "pl": "Fakt czy fejk o przyrodzie",
+    "en": "Fact or fake about nature"
+  },
+  "opis": {
+    "pl": "Zespoły sprawdzają zdania o Kampinosie i o Grecji oraz podpisy pod zdjęciami, głosując jednym telefonem. Odsłona ze źródłem, ranking i ciekawostka po angielsku.",
+    "en": "Teams check sentences about Kampinos and Greece and photo captions, voting with one phone. Reveal with source, ranking and a fun fact in English."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

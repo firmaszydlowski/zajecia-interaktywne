@@ -1,0 +1,23 @@
+{
+  "slug": "kalkulator-eko",
+  "nazwa": {
+    "pl": "Kalkulator eko: Polska i Grecja",
+    "en": "Eco calculator: Poland and Greece"
+  },
+  "opis": {
+    "pl": "Uczniowie odpowiadają na telefonach, jak jest u nich w domu, i zgadują, jak jest w Grecji. Potem na telewizorze porównują to z prawdziwymi danymi i rozmawiają o plusach, minusach i przyszłości.",
+    "en": "Students answer on their phones how it is in their homes and guess how it is in Greece. Then on the TV they compare this with real data and talk about pros, cons and the future."
+  },
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-ctccd4.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "baza": "korzeń zestawu zajęć do kodu QR (tv.html i tablet); QR: <baza>/kalkulator-eko/index.html?k=…",
+    "dropbox": "link do wysyłki pliku z wynikami (tablet)",
+    "jez": "język sesji pl albo en (tablet ustawia go dla TV i telefonów; na TV i telefonie język startowy)"
+  }
+}

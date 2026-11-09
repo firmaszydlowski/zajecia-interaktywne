@@ -1,0 +1,26 @@
+{
+  "slug": "problem-tu-i-tam",
+  "nazwa": {
+    "pl": "Problem tu i tam",
+    "en": "A problem here and there"
+  },
+  "opis": {
+    "pl": "Uczniowie oceniają 6 problemów przyrody w Grecji i w Polsce, widzą mapę różnic i w zespołach piszą pytania do podcastu.",
+    "en": "Students rate 6 nature problems in Greece and in Poland, see a map of differences and write podcast questions in teams."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

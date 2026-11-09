@@ -1,0 +1,3427 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Konsola zajęć</title>
+<style>
+/* Kopia 1:1 z generator-debat/apka/styl.css (Wygląd A „Tablica wyników”, stan 09.11.2026). Zmiany wyglądu nanosić tam i kopiować tu. */
+/* Wygląd A „Tablica wyników” (makiety/kierunek-A-v2.html): tokeny i elementy wspólne wszystkich stron.
+   Tokeny i typografia 1:1 z makiety. Strony: <body class="k1"> (jasna) albo <body class="k1 k1-ciemny">.
+   Kontrast WCAG AA sprawdzony dla par tokenów (najniższa para szary/ciem2: 4,9:1). */
+:root {
+  --tlo: #F2F0EB; --biel: #FFFFFF; --ink: #16181D; --mute: #4F5560; --linia: #D6D2C8; --ciem: #16181D; --ciem2: #22262E; --ciem3: #2E333D;
+  --jasny: #C9CED8; --szary: #8B93A1; --tak: #1D5FD6; --nie: #C2410C; --tak-j: #7AAEFF; --nie-j: #FF9B54; --zolty: #FFC94D; --uwaga: #8A3A0A; --uwaga-t: #FDEBD9;
+  --kond: "Avenir Next Condensed", "DIN Condensed", "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  --tekst: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+h1, h2, h3, h4, p, dl, dd, figure, blockquote { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+[hidden] { display: none !important; }
+button { cursor: pointer; touch-action: manipulation; }
+button:disabled { cursor: default; }
+:focus-visible { outline: 3px solid var(--zolty); outline-offset: 2px; }
+.k1 :focus-visible { outline-color: var(--tak); }
+.k1-ciemny :focus-visible { outline-color: var(--zolty); }
+
+.k1 { font: 16px/1.45 var(--tekst); color: var(--ink); background: var(--tlo); }
+:where(.k1) button, :where(.k1) input, :where(.k1) select { font: inherit; }
+.k1-ciemny { background: var(--ciem); color: #fff; }
+.ik { width: 1em; height: 1em; flex: none; vertical-align: -.14em; }
+.kbd { display: inline-block; min-width: 1.9em; padding: 0 .4em; border: 1px solid currentColor; border-bottom-width: 3px; border-radius: 4px; font-size: .85em; text-align: center; line-height: 1.5; }
+.num { font-variant-numeric: tabular-nums; }
+.qr { display: block; shape-rendering: crispEdges; }
+.qr svg { display: block; width: 100%; height: auto; }
+
+/* przełączniki: język i widok urządzenia */
+.k1 .jez, .k1 .urz { display: inline-flex; border: 1px solid currentColor; }
+.k1 .jez button, .k1 .urz button { background: none; border: 0; color: inherit; font-weight: 600; padding: 0 14px; min-height: 44px; white-space: nowrap; }
+.k1 .jez button[aria-pressed="true"], .k1 .urz button[aria-pressed="true"] { background: #fff; color: var(--ciem); }
+
+/* przyciski */
+.k1-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border: 1px solid var(--ink); background: var(--biel); color: var(--ink); font-weight: 600; white-space: nowrap; text-decoration: none; }
+.k1-btn.pelny { background: var(--ciem); color: #fff; }
+.k1-btn:disabled { border-color: var(--linia); color: var(--mute); background: transparent; font-weight: 400; }
+.k1-ciemny .k1-btn { background: transparent; color: #fff; border-color: #fff; }
+.k1-ciemny .k1-btn.pelny { background: #fff; color: var(--ciem); }
+.k1-ciemny .k1-btn:disabled { border-color: var(--ciem3); color: var(--szary); }
+.k1-btn-gl { display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 24px; border: 0; background: var(--zolty); color: var(--ciem); font: 700 22px/1 var(--kond); }
+.k1-btn-gl:disabled { opacity: .6; }
+.k1-akcje { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* drobne teksty */
+.k1-meta { font-size: 14px; color: var(--mute); }
+.k1-ciemny .k1-meta { color: var(--jasny); }
+.k1-ang { display: block; color: var(--mute); font-size: 15px; }
+.k1-ciemny .k1-ang { color: var(--jasny); }
+.k1-hint { font-size: 14px; color: var(--jasny); }
+.k1 a { color: var(--tak); }
+.k1-ciemny a { color: var(--tak-j); }
+.k1-powiedz { font-size: 13px; font-weight: 700; color: var(--mute); display: block; }
+.k1-ciemny .k1-powiedz { color: var(--jasny); }
+.k1-tylko { display: flex; gap: 8px; align-items: center; padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 700; font-size: 15px; }
+.k1-tylko .ik { width: 20px; height: 20px; }
+.komunikat { padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 600; font-size: 15px; }
+.komunikat-sesji { padding: 48px 24px; font: 700 28px/1.2 var(--kond); text-align: center; }
+
+/* stan łącza */
+.k1-lacze { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--jasny); white-space: nowrap; }
+.k1-lacze::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--nie-j); }
+.k1-lacze.czesc::before { background: var(--zolty); }
+.k1-lacze.ok::before { background: #4ADE80; }
+
+/* TAK i NIE: kolor plus kształt (kółko i kwadrat), żeby nie polegać na samym kolorze */
+.strona-tak { color: var(--tak); }
+.strona-nie { color: var(--nie); }
+.k1-ciemny .strona-tak { color: var(--tak-j); }
+.k1-ciemny .strona-nie { color: var(--nie-j); }
+
+/* tryb testowy */
+.baner-testu { background: var(--zolty); color: var(--ciem); font-weight: 700; text-align: center; padding: 8px 16px; letter-spacing: .02em; }
+
+/* Konsola zajęć: układ ze strony startowej generatora debat (styl_start.css, kierunek A), tylko tokeny z styl_k1.css.
+   Laptop: lista zajęć i kolumna ustawień obok. Tablet pionowo i węższe: kolumny jedna pod drugą. */
+.k1-ukryty { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.k1-pasek :focus-visible, .k1-hero :focus-visible, .k1-ghero :focus-visible { outline-color: var(--zolty); }
+[tabindex="-1"]:focus { outline: none; }
+
+/* pasek */
+.k1-pasek { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 24px; min-height: 64px; padding: 10px 32px; background: var(--ciem); color: #fff; }
+.k1-logo { font: 700 26px/1 var(--kond); }
+.k1-proj { color: var(--jasny); font-size: 15px; margin-right: auto; }
+.zi-telefony { font-size: 15px; color: var(--jasny); }
+.zi-telefony b { color: #fff; font-weight: 600; word-break: break-all; }
+
+/* przyciski jako linki: bez koloru i podkreślenia linku z styl_k1.css */
+.k1 a.k1-btn, .k1 a.k1-btn-gl { color: var(--ciem); text-decoration: none; }
+.k1 a.k1-btn.pelny { color: #fff; }
+
+/* hero */
+.k1-hero { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; padding: 32px; background: var(--ciem2); color: #fff; }
+.k1-hero h1 { font: 700 46px/1.02 var(--kond); }
+.k1-hero p { color: var(--jasny); margin-top: 12px; font-size: 17px; max-width: 520px; }
+.k1-kroki { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-self: center; }
+.k1-kroki li { border-top: 4px solid #fff; padding-top: 12px; }
+.k1-kroki b { font: 700 56px/1 var(--kond); display: block; }
+.k1-kroki h2 { font-size: 18px; margin-top: 8px; }
+.k1-kroki p { font-size: 15px; color: var(--jasny); margin-top: 4px; }
+
+/* układ: lista zajęć i kolumna ustawień */
+.zi-uklad { display: grid; grid-template-columns: 1fr 360px; gap: 24px; padding: 24px 32px; align-items: start; }
+.zi-kolumna { display: grid; gap: 24px; }
+.zi-naglowek { font: 700 28px/1.1 var(--kond); margin-bottom: 12px; }
+.k1-pusto { padding: 16px; background: var(--biel); }
+.k1-wiersz { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; padding: 16px; background: var(--biel); border-left: 6px solid var(--linia); }
+.k1-wiersz + .k1-wiersz { margin-top: 8px; }
+.k1-wiersz.wybr { border-left-color: var(--zolty); }
+.k1-wiersz h3 { font: 700 26px/1.1 var(--kond); }
+.k1-wiersz .k1-meta { margin-top: 4px; max-width: 640px; }
+.k1-uwaga { display: flex; gap: 8px; align-items: baseline; margin-top: 6px; font-size: 14px; color: var(--uwaga); }
+.k1-wiersz .k1-akcje { justify-content: flex-end; }
+
+/* panele po prawej */
+.k1-kosz { background: var(--biel); padding: 16px; border-top: 6px solid var(--ciem); display: grid; gap: 12px; }
+.k1-kosz h2 { font: 700 22px/1.1 var(--kond); }
+.k1-ust { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 8px; }
+.k1-ust legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; font: 700 22px/1.1 var(--kond); }
+.k1-zazn { display: grid; grid-template-columns: 44px 1fr; align-items: start; }
+.k1-zazn input[type="radio"] { width: 22px; height: 22px; margin: 11px; }
+.k1-zazn label { padding-top: 10px; font-weight: 600; }
+.k1-zazn .k1-meta { display: block; font-weight: 400; overflow-wrap: anywhere; }
+.k1-zazn .k1-pole { grid-column: 2; margin-top: 6px; }
+.k1-etyk { display: block; font-weight: 600; font-size: 15px; }
+.k1-pole { width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--mute); background: var(--biel); color: var(--ink); }
+.k1-pole[aria-invalid="true"] { border: 2px solid var(--uwaga); }
+.zi-ostatnie li { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--linia); }
+.zi-ostatnie b { font: 700 24px/1 var(--kond); letter-spacing: .04em; }
+.zi-ostatnie .k1-meta { grid-column: 1; }
+.zi-ostatnie .k1-btn { grid-row: 1 / span 2; grid-column: 2; }
+.zi-proba { display: inline-block; margin-left: 8px; padding: 2px 6px; background: var(--zolty); color: var(--ciem); font: 700 13px/1.2 var(--tekst); letter-spacing: 0; vertical-align: 3px; }
+
+/* sesja: nagłówek, tryb, trzy karty */
+.k1-ghero { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; padding: 28px 32px; background: var(--ciem2); color: #fff; }
+.k1-ghero h1 { font: 700 46px/1.02 var(--kond); }
+.zi-kodsesji { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin-top: 16px; }
+.zi-kodsesji span { color: var(--jasny); font-size: 15px; }
+.zi-kodsesji b { font: 700 64px/1 var(--kond); color: var(--zolty); letter-spacing: .06em; }
+.zi-tryb legend { font: 700 20px/1.1 var(--kond); color: #fff; }
+.zi-tryb .k1-seg { display: grid; gap: 4px; }
+.zi-tryb button { display: grid; gap: 2px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--ciem3); background: transparent; color: #fff; text-align: left; }
+.zi-tryb button[aria-pressed="true"] { background: #fff; color: var(--ciem); border-color: #fff; font-weight: 600; }
+.zi-tryb small { font-size: 14px; color: var(--jasny); font-weight: 400; }
+.zi-tryb button[aria-pressed="true"] small { color: var(--mute); }
+.k1-ghero .k1-akcje { margin-top: 12px; }
+.zi-jezyk-zajec { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--jasny); font-size: 15px; }
+.k1-pasek .jez { flex: none; }
+.zi-jez { margin-left: 8px; font: 600 14px/1 var(--tekst); color: var(--mute); }
+.zi-komunikat { margin: 24px 32px 0; }
+.k1-linki { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 24px; padding: 24px 32px; }
+.k1-link { background: var(--biel); border-top: 6px solid var(--ciem); padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.k1-link h2 { font: 700 30px/1 var(--kond); }
+.k1-adres { display: block; font-family: inherit; padding: 10px 12px; background: var(--tlo); border: 1px solid var(--linia); font-size: 15px; font-weight: 600; word-break: break-all; }
+.k1-link .k1-btn-gl { justify-content: center; }
+.k1-link > .k1-btn { align-self: flex-start; }
+.k1-potw:empty { display: none; }
+.zi-qr { width: min(100%, 280px); border: 1px solid var(--linia); }
+.zi-qr-maly { width: min(100%, 180px); border: 1px solid var(--linia); }
+.zi-pod { font-size: 15px; font-weight: 600; margin-top: 4px; }
+.k1-gstopka { padding: 0 32px 32px; font-size: 15px; color: var(--mute); }
+.k1-gstopka code { font: 600 15px/1.45 var(--tekst); }
+
+/* QR na cały ekran do pokazania klasie */
+.zi-pelny { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 24px; border: 0; background: var(--ciem); color: #fff; }
+.zi-pelny[open] { display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 16px; }
+.zi-pelny::backdrop { background: var(--ciem); }
+.zi-pelny h2 { font: 700 40px/1.05 var(--kond); text-align: center; }
+.zi-pelny .qr { height: 100%; aspect-ratio: 1; max-width: 100%; min-height: 0; }
+.zi-pelny .qr svg { height: 100%; width: auto; max-width: 100%; }
+.zi-pelny p { font-size: 20px; color: var(--jasny); text-align: center; }
+.zi-pelny p b { font: 700 48px/1 var(--kond); color: var(--zolty); letter-spacing: .06em; margin-left: 8px; }
+
+@media (max-width: 1199px) {
+  .k1-linki { grid-template-columns: 1fr 1fr; }
+  .k1-linki > :nth-child(2) { grid-row: span 2; }
+}
+@media (max-width: 999px) {
+  .k1-hero, .k1-ghero { grid-template-columns: 1fr; gap: 24px; }
+  .zi-uklad { grid-template-columns: 1fr; }
+  .zi-kolumna { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+@media (max-width: 799px) {
+  .k1-linki { grid-template-columns: 1fr; }
+  .k1-linki > :nth-child(2) { grid-row: auto; }
+  .k1-wiersz { grid-template-columns: 1fr; }
+  .k1-wiersz .k1-akcje { justify-content: flex-start; }
+  .zi-kolumna { grid-template-columns: 1fr; }
+}
+@media (max-width: 599px) {
+  .k1-pasek { padding: 10px 16px; gap: 4px 16px; }
+  .k1-hero, .k1-ghero { padding: 24px 16px; }
+  .k1-hero h1, .k1-ghero h1 { font-size: 36px; }
+  .k1-kroki { grid-template-columns: 1fr; }
+  .k1-kroki b { font-size: 40px; }
+  .zi-uklad, .k1-linki { padding: 16px; gap: 16px; }
+  .zi-komunikat { margin: 16px 16px 0; }
+  .k1-gstopka { padding: 0 16px 24px; }
+  .k1-btn { white-space: normal; text-align: left; }
+}
+.zi-zamknij { justify-content: center; margin-top: 12px; }
+
+</style>
+</head>
+<body class="k1">
+<header class="k1-pasek" id="pasek"></header>
+<main id="konsola"></main>
+<dialog class="zi-pelny k1-ciemny" id="pelny-qr" aria-labelledby="pelny-qr-tytul"></dialog>
+<p class="k1-ukryty" id="ogloszenie" role="status" aria-live="polite"></p>
+<script>
+const ZAJECIA = [{"slug": "5w-swiadkowie", "nazwa": {"pl": "5W w praktyce: świadkowie zdarzenia", "en": "5W in practice: witnesses of an event"}, "opis": {"pl": "Uczniowie są świadkami przygotowanej scenki i piszą zeznania, potem rozbierają na 5W prawdziwy news i clickbait, a na koniec piszą własny news z checklistą 5W.", "en": "Students witness a staged scene and write statements, then take apart a real news story and a clickbait headline with the 5Ws, and finally write their own news with a 5W checklist."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "co-mowi-plik", "nazwa": {"pl": "Co mówi plik zdjęcia", "en": "What a photo file tells"}, "opis": {"pl": "Uczniowie widzą, co zdradza plik zdjęcia: miejsce, datę i aparat, sprawdzają swoje zdjęcia z wyjazdu i uczą się wyłączać lokalizację przed wrzuceniem.", "en": "Students see what a photo file gives away: the place, the date and the camera. They check their own trip photos and learn to turn off location before posting."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "cztery-ruchy", "nazwa": {"pl": "Cztery ruchy w 4 minuty", "en": "Four moves in 4 minutes"}, "opis": {"pl": "Zespoły w 4 minuty ustalają metodą SIFT, czy wpis z sieci jest prawdziwy, i podają, gdzie to sprawdziły. Wpisy są prawdziwe, sprawdzone przez fact-checkerów.", "en": "In 4 minutes, teams use the SIFT method to decide if an online post is true, and say where they checked. The posts are real and were checked by fact-checkers."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "czy-moge-wrzucic", "nazwa": {"pl": "Czy mogę to wrzucić?", "en": "Can I post this?"}, "opis": {"pl": "Uczniowie głosują nad sytuacjami z publikowania w sieci: MOGĘ, NIE MOGĘ albo MOGĘ, JEŚLI… Po każdej odsłonie przepis i jak zrobić to legalnie, na koniec wyścig po wolną licencję i ściąga.", "en": "Students vote on situations from publishing online: I CAN, I CAN'T or I CAN, IF… After each reveal: the rule and how to do it legally. At the end: a race to find a free licence, and a cheat sheet."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "fabryka-clickbaitu", "nazwa": {"pl": "Fabryka clickbaitu", "en": "Clickbait factory"}, "opis": {"pl": "Zespoły piszą do prawdziwego, nudnego newsa dwa nagłówki: uczciwy i clickbait. Sala ocenia, który kusi, a po którym czuje się oszukana.", "en": "Teams write two headlines for a real, boring news story: an honest one and a clickbait one. The class rates which one tempts them and which one makes them feel cheated."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "fakt-czy-fejk", "nazwa": {"pl": "Fakt czy fejk o przyrodzie", "en": "Fact or fake about nature"}, "opis": {"pl": "Zespoły sprawdzają zdania o Kampinosie i o Grecji oraz podpisy pod zdjęciami, głosując jednym telefonem. Odsłona ze źródłem, ranking i ciekawostka po angielsku.", "en": "Teams check sentences about Kampinos and Greece and photo captions, voting with one phone. Reveal with source, ranking and a fun fact in English."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "fotoreportaz", "nazwa": {"pl": "Fotoreportaż", "en": "Photo story"}, "opis": {"pl": "Zespoły losują tematy, robią zdjęcia i wybierają serduszkami najlepsze zdjęcia innych zespołów. Podpisy z telefonów, pokaz na TV i zapis fotoreportażu do pliku.", "en": "Teams draw topics, take photos and use hearts to pick the best photos of other teams. Captions from phones, a show on the TV and the photo story saved to a file."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "kalkulator-eko", "nazwa": {"pl": "Kalkulator eko: Polska i Grecja", "en": "Eco calculator: Poland and Greece"}, "opis": {"pl": "Uczniowie odpowiadają na telefonach, jak jest u nich w domu, i zgadują, jak jest w Grecji. Potem na telewizorze porównują to z prawdziwymi danymi i rozmawiają o plusach, minusach i przyszłości.", "en": "Students answer on their phones how it is in their homes and guess how it is in Greece. Then on the TV they compare this with real data and talk about pros, cons and the future."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-ctccd4.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": true, "manifest": true, "braki": []}, {"slug": "kto-za-tym-stoi", "nazwa": {"pl": "Kto za tym stoi?", "en": "Who is behind it?"}, "opis": {"pl": "Zespoły sprawdzają, kto prowadzi stronę o ekologii, kto za nią płaci i czy ma adres i podpisanych autorów. Sala głosuje, czy stronie ufa.", "en": "Teams check who runs a website about ecology, who pays for it and whether it has an address and named authors. The class votes on whether to trust it."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "liczby-mowia", "nazwa": {"pl": "Liczby mówią", "en": "Numbers talk"}, "opis": {"pl": "Uczniowie liczą ślad węglowy wyjazdu, poznają 3 zasady pisania o liczbach i w zespołach piszą krótki artykuł z jedną liczbą w tytule.", "en": "Students count the carbon footprint of the trip, learn 3 rules for writing about numbers and write a short team article with one number in the title."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "problem-tu-i-tam", "nazwa": {"pl": "Problem tu i tam", "en": "A problem here and there"}, "opis": {"pl": "Uczniowie oceniają 6 problemów przyrody w Grecji i w Polsce, widzą mapę różnic i w zespołach piszą pytania do podcastu.", "en": "Students rate 6 nature problems in Greece and in Poland, see a map of differences and write podcast questions in teams."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "quiz-ai", "nazwa": {"pl": "Zdjęcie: prawdziwe czy AI?", "en": "Photo: real or AI?"}, "opis": {"pl": "Uczniowie głosują telefonem, który z dwóch obrazów zrobiła sztuczna inteligencja, a po odsłonie poznają oznaki obrazu z AI i źródło prawdziwego zdjęcia. Na koniec piszą artykuł o tym, jak nie dać się nabrać.", "en": "Students vote on their phones which of two images was made by artificial intelligence. After the reveal they learn the signs of an AI image and the source of the real photo, and then write an article about how not to be fooled."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-q7m2xk.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": true, "manifest": true, "braki": []}, {"slug": "redakcja-pod-presja", "nazwa": {"pl": "Redakcja pod presją", "en": "Newsroom under pressure"}, "opis": {"pl": "Redakcje po 6 osób dostają depesze o ekologii i w 3 minuty decydują: publikujemy, sprawdzamy albo odrzucamy. Punkty za trafne decyzje, na koniec artykuł o sprawdzonej depeszy.", "en": "Newsrooms of 6 people get news wires about ecology and have 3 minutes to decide: publish, check or reject. Points for good decisions, and at the end an article about a checked wire."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "slad-weglowy", "nazwa": {"pl": "Mój ślad węglowy z wyjazdu", "en": "My carbon footprint from the trip"}, "opis": {"pl": "Każdy liczy na telefonie ślad węglowy swojego pobytu i widzi, co da najwięcej. Średnia grupy idzie na ekran, bez imion.", "en": "Everyone counts the carbon footprint of their stay on a phone and sees what helps most. The group average goes on the screen, no names."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "wyscig-po-oryginal", "nazwa": {"pl": "Wyścig po oryginał", "en": "Race to the original"}, "opis": {"pl": "Zespoły szukają obrazem, skąd naprawdę są zdjęcia z fałszywymi podpisami, i wpisują miejsce, datę i link do oryginału. Ranking na czas i odsłona z autorem i licencją.", "en": "Teams use image search to find where photos with fake captions really come from, and type the place, the date and a link to the original. A timed ranking and a reveal with the author and licence."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "zielona-obietnica", "nazwa": {"pl": "Moja zielona obietnica", "en": "My green promise"}, "opis": {"pl": "Uczniowie liczą swój ślad z wyjazdu, wybierają jedną obietnicę na rok z liczbą, co ona daje, i głosują na 3 wspólne obietnice.", "en": "Students count their trip footprint, choose one promise for a year with a number that shows what it gives, and vote for 3 shared promises."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "znajdz-przerobke", "nazwa": {"pl": "Znajdź przeróbkę", "en": "Find the edit"}, "opis": {"pl": "Uczniowie stukają w telefonie w miejsce przeróbki na zdjęciach z Grecji. Mapa stuknięć sali, odsłona z czerwoną ramką i oryginałem obok.", "en": "Students tap on their phones where a photo from Greece was edited. A map of the class taps, then a reveal with a red frame and the original next to it."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}];
+/*! qrcode-generator 1.4.4 (npm), plik qrcode.js bez zmian.
+ * Źródło: https://registry.npmjs.org/qrcode-generator/-/qrcode-generator-1.4.4.tgz
+ * sha256 paczki: ab6ed47d378877441deae95972e07b2716c26545a735a23aa6b9d442b33026ed
+ *
+ * MIT License
+ *
+ * Copyright (c) 2009 Kazuhiko Arase
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
+ */
+//---------------------------------------------------------------------
+//
+// QR Code Generator for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//  http://www.opensource.org/licenses/mit-license.php
+//
+// The word 'QR Code' is registered trademark of
+// DENSO WAVE INCORPORATED
+//  http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+
+var qrcode = function() {
+
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+
+      for (var r = -1; r <= 7; r += 1) {
+
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+
+        for (var c = -1; c <= 7; c += 1) {
+
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+
+      var minLostPoint = 0;
+      var pattern = 0;
+
+      for (var i = 0; i < 8; i += 1) {
+
+        makeImpl(true, i);
+
+        var lostPoint = QRUtil.getLostPoint(_this);
+
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+
+      for (var i = 0; i < pos.length; i += 1) {
+
+        for (var j = 0; j < pos.length; j += 1) {
+
+          var row = pos[i];
+          var col = pos[j];
+
+          if (_modules[row][col] != null) {
+            continue;
+          }
+
+          for (var r = -2; r <= 2; r += 1) {
+
+            for (var c = -2; c <= 2; c += 1) {
+
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+
+        if (col == 6) col -= 1;
+
+        while (true) {
+
+          for (var c = 0; c < 2; c += 1) {
+
+            if (_modules[row][col - c] == null) {
+
+              var dark = false;
+
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+
+              var mask = maskFunc(row, col - c);
+
+              if (mask) {
+                dark = !dark;
+              }
+
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+
+          row += inc;
+
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+
+      var offset = 0;
+
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+
+        dcdata[r] = new Array(dcCount);
+
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+
+      var data = new Array(totalCodeCount);
+      var index = 0;
+
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+
+      var buffer = qrBitBuffer();
+
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+
+      // padding
+      while (true) {
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+
+      mode = mode || 'Byte';
+
+      var newData = null;
+
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+
+        _typeNumber = typeNumber;
+      }
+
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.createTableTag = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var qrHtml = '';
+
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+
+        qrHtml += '<tr>';
+
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+
+        qrHtml += '</tr>';
+      }
+
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+
+      return qrHtml;
+    };
+
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+
+      return qrSvg;
+    };
+
+    _this.createDataURL = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+
+    _this.createImgTag = function(cellSize, margin, alt) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+
+      return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r1, r2, p;
+
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+
+        ascii += '\n';
+      }
+
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r, p;
+
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(row * cellSize, col * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+
+    // create conversion map.
+
+    var unicodeMap = function() {
+
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+
+      return unicodeMap;
+    }();
+
+    var unknownChar = '?'.charCodeAt(0);
+
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+
+  var QRUtil = function() {
+
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+
+    var _this = {};
+
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+
+    _this.getMaskFunction = function(maskPattern) {
+
+      switch (maskPattern) {
+
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+
+      if (1 <= type && type < 10) {
+
+        // 1 - 9
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 27) {
+
+        // 10 - 26
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 41) {
+
+        // 27 - 40
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else {
+        throw 'type:' + type;
+      }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+
+      var moduleCount = qrcode.getModuleCount();
+
+      var lostPoint = 0;
+
+      // LEVEL1
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+
+          for (var r = -1; r <= 1; r += 1) {
+
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+
+            for (var c = -1; c <= 1; c += 1) {
+
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+
+              if (r == 0 && c == 0) {
+                continue;
+              }
+
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+
+      // LEVEL2
+
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+
+      // LEVEL3
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      // LEVEL4
+
+      var darkCount = 0;
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+
+  var QRMath = function() {
+
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+
+    var _this = {};
+
+    _this.glog = function(n) {
+
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+
+      return LOG_TABLE[n];
+    };
+
+    _this.gexp = function(n) {
+
+      while (n < 0) {
+        n += 255;
+      }
+
+      while (n >= 256) {
+        n -= 255;
+      }
+
+      return EXP_TABLE[n];
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+
+  function qrPolynomial(num, shift) {
+
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+
+    var _this = {};
+
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+
+    _this.getLength = function() {
+      return _num.length;
+    };
+
+    _this.multiply = function(e) {
+
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+
+      return qrPolynomial(num, 0);
+    };
+
+    _this.mod = function(e) {
+
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+
+  var QRRSBlock = function() {
+
+    var RS_BLOCK_TABLE = [
+
+      // L
+      // M
+      // Q
+      // H
+
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+
+      var length = rsBlock.length / 3;
+
+      var list = [];
+
+      for (var i = 0; i < length; i += 1) {
+
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+
+      return list;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+
+  var qrBitBuffer = function() {
+
+    var _buffer = [];
+    var _length = 0;
+
+    var _this = {};
+
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+
+    _this.putBit = function(bit) {
+
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+
+      _length += 1;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+
+  var qrNumber = function(data) {
+
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _data;
+
+      var i = 0;
+
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+
+  var qrAlphaNum = function(data) {
+
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var s = _data;
+
+      var i = 0;
+
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+
+    var getCode = function(c) {
+
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+
+  var qr8BitByte = function(data) {
+
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+
+  var qrKanji = function(data) {
+
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+
+    var _bytes = stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _bytes;
+
+      var i = 0;
+
+      while (i + 1 < data.length) {
+
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+
+        buffer.put(c, 13);
+
+        i += 2;
+      }
+
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+
+    return _this;
+  };
+
+  //=====================================================================
+  // GIF Support etc.
+  //
+
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+
+  var byteArrayOutputStream = function() {
+
+    var _bytes = [];
+
+    var _this = {};
+
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+
+  var base64EncodeOutputStream = function() {
+
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+
+    var _this = {};
+
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+
+    _this.writeByte = function(n) {
+
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+
+    _this.flush = function() {
+
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+
+    _this.toString = function() {
+      return _base64;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+
+  var base64DecodeInputStream = function(str) {
+
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+
+    var _this = {};
+
+    _this.read = function() {
+
+      while (_buflen < 8) {
+
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+
+        var c = _str.charAt(_pos);
+        _pos += 1;
+
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+
+  var gifImage = function(width, height) {
+
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+
+    var _this = {};
+
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+
+    _this.write = function(out) {
+
+      //---------------------------------
+      // GIF Signature
+
+      out.writeString('GIF87a');
+
+      //---------------------------------
+      // Screen Descriptor
+
+      out.writeShort(_width);
+      out.writeShort(_height);
+
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Global Color Map
+
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+
+      //---------------------------------
+      // Image Descriptor
+
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Local Color Map
+
+      //---------------------------------
+      // Raster Data
+
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+
+      out.writeByte(lzwMinCodeSize);
+
+      var offset = 0;
+
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+
+    var bitOutputStream = function(out) {
+
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+
+      var _this = {};
+
+      _this.write = function(data, length) {
+
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+
+      return _this;
+    };
+
+    var getLZWRaster = function(lzwMinCodeSize) {
+
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+
+      // Setup LZWTable
+      var table = lzwTable();
+
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+
+      // clear code
+      bitOut.write(clearCode, bitLength);
+
+      var dataIndex = 0;
+
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+
+      while (dataIndex < _data.length) {
+
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+
+        if (table.contains(s + c) ) {
+
+          s = s + c;
+
+        } else {
+
+          bitOut.write(table.indexOf(s), bitLength);
+
+          if (table.size() < 0xfff) {
+
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+
+            table.add(s + c);
+          }
+
+          s = c;
+        }
+      }
+
+      bitOut.write(table.indexOf(s), bitLength);
+
+      // end code
+      bitOut.write(endCode, bitLength);
+
+      bitOut.flush();
+
+      return byteOut.toByteArray();
+    };
+
+    var lzwTable = function() {
+
+      var _map = {};
+      var _size = 0;
+
+      var _this = {};
+
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+
+      _this.size = function() {
+        return _size;
+      };
+
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+
+      return _this;
+    };
+
+    return _this;
+  };
+
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+
+    var b = byteArrayOutputStream();
+    gif.write(b);
+
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+
+    return 'data:image/gif;base64,' + base64;
+  };
+
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+
+  return qrcode;
+}();
+
+// multibyte support
+!function() {
+
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+
+}();
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+      define([], factory);
+  } else if (typeof exports === 'object') {
+      module.exports = factory();
+  }
+}(function () {
+    return qrcode;
+}));
+
+/* Kod QR jako SVG z biblioteki qrcode-generator. viewBox obejmuje kod i margines 4 moduły (strefa ciszy),
+   więc SVG skaluje się do pojemnika bez ucinania. W Krościenku zły viewBox ucinał kod. */
+const MARGINES_QR = 4;
+
+function svgQr(tekst, poziom = "M") {
+  if (!/^[\x20-\x7e]+$/.test(tekst)) throw new RangeError("Kod QR tylko dla adresu ASCII");
+  const qr = qrcode(0, poziom);
+  qr.addData(tekst);
+  qr.make();
+  const moduly = qr.getModuleCount();
+  const bok = moduly + 2 * MARGINES_QR;
+  const kwadraty = [];
+  for (let wiersz = 0; wiersz < moduly; wiersz++) {
+    for (let kolumna = 0; kolumna < moduly; kolumna++) {
+      if (qr.isDark(wiersz, kolumna)) kwadraty.push(`M${kolumna + MARGINES_QR} ${wiersz + MARGINES_QR}h1v1h-1z`);
+    }
+  }
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${bok} ${bok}" shape-rendering="crispEdges" role="img" aria-label="QR">`
+    + `<rect width="${bok}" height="${bok}" fill="#fff"/><path fill="#000" d="${kwadraty.join("")}"/></svg>`;
+}
+
+if (typeof module !== "undefined") module.exports = { MARGINES_QR, svgQr };
+
+/* Kopia z generator-debat/apka/ikony.js plus serce (galeria). Ikony z makiety kierunku A. TAK = kółko z ptaszkiem, NIE = kwadrat z krzyżykiem: strona rozpoznawalna bez koloru. */
+const IKONY = {
+  tak: '<circle cx="12" cy="12" r="10.2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M7.2 12.4l3.3 3.3 6.4-6.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
+  nie: '<rect x="2.2" y="2.2" width="19.6" height="19.6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 8l8 8M16 8l-8 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>',
+  uwaga: '<path d="M12 3l10 18H2z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10v5M12 17.6v.4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+  kosc: '<rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><circle cx="16" cy="16" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="16" cy="8" r="1.6" fill="currentColor"/><circle cx="8" cy="16" r="1.6" fill="currentColor"/>',
+  pauza: '<path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>',
+  start: '<path d="M7 4.5v15l12-7.5z" fill="currentColor"/>',
+  dalej: '<path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
+  wstecz: '<path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
+  plus: '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>',
+  x: '<path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>',
+  serce: '<path d="M12 20.5s-8-4.9-8-11A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 8 2.7c0 6.1-8 11-8 11z" fill="currentColor"/>',
+  ok: '<path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>',
+};
+
+/* Element <svg> ze stałego zestawu (bez danych od użytkownika), dekoracyjny: opis niesie tekst obok. */
+function ikona(nazwa, klasa = "ik") {
+  if (!IKONY[nazwa]) throw new RangeError(`Nie ma ikony ${nazwa}`);
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("class", klasa);
+  svg.setAttribute("aria-hidden", "true");
+  svg.innerHTML = IKONY[nazwa];
+  return svg;
+}
+
+/* Przebieg zajęć bez DOM i sieci: kod sesji, fazy kroków, przejścia, timer. Testy: test_logika.js.
+   Pozycja na zajęciach to para (krok, faza). Fazy wynikają z typu kroku i jego pól (README.md). */
+const ALFABET_KODU = "acdefhjkmnprtuvwxy3479";
+const DLUGOSC_KODU = 6;
+const WZOR_KODU = /^[acdefhjkmnprtuvwxy3479]{6}$/;
+const OSTRZEZENIE_MS = 30000;
+const MIN_CZAS_Z_OSTRZEZENIEM_MS = 60000;
+
+const FAZY_ZBIERANIA = ["glosowanie", "zbieranie"];
+
+/* Typy kroków z osobnych plików (np. typ_macierz.js) dopisują się tu: { fazy(krok), tv(k), uczen(u), prowadzacy(p, krok, lista), symulacja(krok, los), plik(krok, lista, zajecia) }. */
+const TYPY_DODATKOWE = {};
+
+/* Kod sesji: 6 znaków bez liter i cyfr łatwych do pomylenia (0/O, 1/l/i, 5/s, 8/B). */
+function nowyKod(losuj = Math.random) {
+  let kod = "";
+  for (let i = 0; i < DLUGOSC_KODU; i++) kod += ALFABET_KODU[Math.floor(losuj() * ALFABET_KODU.length)];
+  return kod;
+}
+
+function poprawnyKod(tekst) {
+  const kod = String(tekst || "").trim().toLowerCase().replace(/[\s-]/g, "");
+  return WZOR_KODU.test(kod) ? kod : null;
+}
+
+/* Adres bazowy z ?baza=: tylko http(s), bez końcowego ukośnika. */
+function poprawnaBaza(tekst) {
+  if (!tekst || !/^https?:\/\/[^\s"'<>]+$/i.test(tekst)) return null;
+  return tekst.replace(/\/+$/, "");
+}
+
+/* Parametry adresu: ?k=<kod>, ?test (lokalnie, w kartach jednej przeglądarki) albo ?test=siec (przez serwery),
+   ?baza=<url> (nadpisuje ADRES_UCZNIOW w kodzie QR), ?jez=pl|en (język domyślny). */
+function parametryAdresu(search) {
+  const p = new URLSearchParams(search || "");
+  const test = p.has("test") ? (p.get("test") === "siec" ? "siec" : "lokalnie") : null;
+  const jez = ["pl", "en"].includes(p.get("jez")) ? p.get("jez") : null;
+  return { kod: poprawnyKod(p.get("k")), test, baza: poprawnaBaza(p.get("baza")), jez };
+}
+
+/* Zapytanie do linków między widokami. Język tylko angielski (polski jest domyślny); baza tylko między TV i tabletem. */
+function zapytanieAdresu(kod, test, baza = null, jez = null) {
+  const czesci = [];
+  if (kod) czesci.push(`k=${kod}`);
+  if (test === "siec") czesci.push("test=siec");
+  else if (test) czesci.push("test");
+  if (jez === "en") czesci.push("jez=en");
+  if (baza) czesci.push(`baza=${encodeURIComponent(baza)}`);
+  return czesci.length ? `?${czesci.join("&")}` : "";
+}
+
+/* Adres dla telefonów (kod QR): <baza>/<slug>/index.html?k=…, a bez bazy index.html obok bieżącej strony. */
+function adresUczniow({ baza, slug, kod, test, biezacy, jez = null }) {
+  const zapytanie = zapytanieAdresu(kod, test, null, jez);
+  if (baza) return `${baza}/${slug}/index.html${zapytanie}`;
+  return new URL(`index.html${zapytanie}`, biezacy).href;
+}
+
+function prefiksKanalu(kod, test) {
+  if (!WZOR_KODU.test(kod || "")) throw new RangeError(`Zły kod sesji: ${kod}`);
+  return `${test ? "zi-test" : "zi"}/${kod}`;
+}
+
+function fazyKroku(krok) {
+  switch (krok.typ) {
+    case "glos": {
+      const fazy = ["glosowanie", "wyniki"];
+      if (Number.isInteger(krok.poprawna) || krok.odslona) fazy.push("odslona");
+      if (krok.dodatek) fazy.push("dodatek");
+      return fazy;
+    }
+    case "suwaki": case "galeria": return ["zbieranie", "wyniki"];
+    case "tekst": return ["zbieranie", "sciana"];
+    case "stukniecie": return krok.cel ? ["zbieranie", "wyniki", "odslona"] : ["zbieranie", "wyniki"];
+    default: return TYPY_DODATKOWE[krok.typ] ? TYPY_DODATKOWE[krok.typ].fazy(krok) : ["pokaz"];
+  }
+}
+
+const czyZbieranie = (faza) => FAZY_ZBIERANIA.includes(faza);
+
+/* Timer kroku na wejściu: krok z polem czas startuje sam w fazie zbierania; typ timer czeka na Start. */
+function timerWejscia(krok, teraz) {
+  if (!krok.czas) return null;
+  const czasMs = krok.czas * 1000;
+  const startuje = krok.typ !== "timer" && czyZbieranie(fazyKroku(krok)[0]);
+  return { czasMs, koniec: startuje ? teraz + czasMs : null, zostaloMs: czasMs };
+}
+
+function nowyStan(teraz, zajecia, jez = "pl") {
+  return wejdzWKrok({ v: teraz, krok: 0, faza: "", timer: null, ukryte: {}, pokazane: {}, oceny: {}, qr: false, jez }, zajecia, 0, teraz);
+}
+
+function wejdzWKrok(stan, zajecia, indeks, teraz) {
+  const krok = zajecia.kroki[indeks];
+  return { ...stan, v: nowaWersja(stan, teraz), krok: indeks, faza: fazyKroku(krok)[0], timer: timerWejscia(krok, teraz) };
+}
+
+/* Wersja rośnie zawsze, także gdy zegar urządzenia się cofnie. */
+const nowaWersja = (stan, teraz) => Math.max(teraz, (stan.v || 0) + 1);
+
+function zmien(stan, teraz, zmiany) {
+  return { ...stan, ...zmiany, v: nowaWersja(stan, teraz) };
+}
+
+/* Dalej: kolejna faza kroku, a po ostatniej pierwszy etap następnego kroku. Na ostatniej pozycji bez zmian. */
+function dalej(stan, zajecia, teraz) {
+  const fazy = fazyKroku(zajecia.kroki[stan.krok]);
+  const i = fazy.indexOf(stan.faza);
+  if (i >= 0 && i < fazy.length - 1) {
+    const timer = czyZbieranie(fazy[i + 1]) ? stan.timer : zatrzymajTimer(stan.timer, teraz);
+    return zmien(stan, teraz, { faza: fazy[i + 1], timer });
+  }
+  if (stan.krok >= zajecia.kroki.length - 1) return stan;
+  return wejdzWKrok(stan, zajecia, stan.krok + 1, teraz);
+}
+
+/* Wstecz: poprzednia faza; z pierwszej fazy do ostatniej fazy poprzedniego kroku. */
+function wstecz(stan, zajecia, teraz) {
+  const fazy = fazyKroku(zajecia.kroki[stan.krok]);
+  const i = fazy.indexOf(stan.faza);
+  if (i > 0) return zmien(stan, teraz, { faza: fazy[i - 1] });
+  if (stan.krok === 0) return stan;
+  const poprzedni = wejdzWKrok(stan, zajecia, stan.krok - 1, teraz);
+  const fazyPoprzedniego = fazyKroku(zajecia.kroki[stan.krok - 1]);
+  return zmien(poprzedni, teraz, { faza: fazyPoprzedniego[fazyPoprzedniego.length - 1], timer: zatrzymajTimer(poprzedni.timer, teraz) });
+}
+
+/* Co zrobi Dalej (tablet podpisuje przycisk): następna faza, następny krok albo koniec. */
+function celDalej(stan, zajecia) {
+  const fazy = fazyKroku(zajecia.kroki[stan.krok]);
+  const i = fazy.indexOf(stan.faza);
+  if (i >= 0 && i < fazy.length - 1) return { rodzaj: "faza", faza: fazy[i + 1] };
+  return { rodzaj: stan.krok >= zajecia.kroki.length - 1 ? "koniec" : "krok", faza: null };
+}
+
+/* Timer: koniec (epoka ms) gdy działa, zostaloMs gdy stoi. */
+function zostaloMs(timer, teraz) {
+  if (!timer) return null;
+  if (timer.koniec === null) return timer.zostaloMs;
+  return Math.max(0, timer.koniec - teraz);
+}
+
+function uruchomTimer(timer, teraz) {
+  if (!timer || timer.koniec !== null) return timer;
+  return { ...timer, koniec: teraz + timer.zostaloMs };
+}
+
+function zatrzymajTimer(timer, teraz) {
+  if (!timer || timer.koniec === null) return timer;
+  return { ...timer, koniec: null, zostaloMs: zostaloMs(timer, teraz) };
+}
+
+function dodajCzas(timer, ms, teraz) {
+  if (!timer) return { czasMs: ms, koniec: teraz + ms, zostaloMs: ms };
+  if (timer.koniec === null) return { ...timer, zostaloMs: timer.zostaloMs + ms };
+  return { ...timer, koniec: Math.max(timer.koniec, teraz) + ms };
+}
+
+function resetujTimer(timer) {
+  return timer ? { ...timer, koniec: null, zostaloMs: timer.czasMs } : timer;
+}
+
+/* Dźwięk między dwoma odczytami zegara: „ostrzezenie” przy 30 s (dla timerów od minuty wzwyż), „koniec” przy zerze. */
+function zdarzenieTimera(poprzednioMs, terazMs, czasMs) {
+  if (poprzednioMs === null || terazMs === null || terazMs >= poprzednioMs) return null;
+  if (poprzednioMs > 0 && terazMs === 0) return "koniec";
+  if (czasMs >= MIN_CZAS_Z_OSTRZEZENIEM_MS && poprzednioMs > OSTRZEZENIE_MS && terazMs <= OSTRZEZENIE_MS) return "ostrzezenie";
+  return null;
+}
+
+function formatCzasu(ms) {
+  const s = Math.ceil(Math.max(0, ms) / 1000);
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+}
+
+/* Nowszy z dwóch stanów sesji; null przegrywa. */
+function wybierzNowszy(obecny, nowy) {
+  if (!nowy || typeof nowy.v !== "number") return obecny;
+  if (!obecny || nowy.v > obecny.v) return nowy;
+  return obecny;
+}
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    nowyKod, poprawnyKod, poprawnaBaza, parametryAdresu, zapytanieAdresu, adresUczniow, prefiksKanalu, fazyKroku, czyZbieranie, timerWejscia,
+    nowyStan, wejdzWKrok, zmien, dalej, wstecz, celDalej, zostaloMs, uruchomTimer, zatrzymajTimer, dodajCzas, resetujTimer,
+    zdarzenieTimera, formatCzasu, wybierzNowszy, TYPY_DODATKOWE,
+  };
+}
+
+/* Konsola bez DOM: kod sesji, adres bazowy, adresy trzech widoków, ustawienia i ostatnie sesje.
+   Kod sesji i zapytanie adresu biorę z silnika zajęć (../silnik/logika.js), żeby konsola budowała dokładnie
+   te adresy, które apki czytają. Testy: test_konsola_logika.js. */
+const SILNIK = typeof module !== "undefined" && module.exports
+  ? require("../silnik/logika.js")
+  : { nowyKod, poprawnyKod, poprawnaBaza, zapytanieAdresu };
+
+const LIMIT_OSTATNICH = 10;
+const WZOR_SLUGA = /^[a-z0-9][a-z0-9-]*$/;
+const TRYBY_TESTU = [null, "siec", "lokalnie"];
+const ZRODLA_BAZY = ["lan", "pages"];
+const JEZYKI_ZAJEC = ["pl", "en"];
+const DOMYSLNE_USTAWIENIA = { zrodlo: null, pages: "", dropbox: "" };
+
+/* Hosty sieci lokalnej: telefony w tej samej sieci Wi-Fi mogą je otworzyć. */
+function hostSieciLokalnej(host) {
+  if (/\.local$/i.test(host)) return true;
+  const m = /^(\d+)\.(\d+)\.\d+\.\d+$/.exec(host);
+  if (!m) return false;
+  const [a, b] = [Number(m[1]), Number(m[2])];
+  return a === 10 || (a === 192 && b === 168) || (a === 172 && b >= 16 && b <= 31);
+}
+
+/* Konsola leży w wyniki/konsola-xxxxxxxx/, apki w wyniki/<slug>/: korzeń wyników to katalog wyżej. */
+function korzenWynikow(href) {
+  return new URL("../", href).href;
+}
+
+const bezUkosnika = (adres) => adres.replace(/\/+$/, "");
+const hostTegoKomputera = (host) => ["localhost", "127.0.0.1", "[::1]"].includes(host);
+
+/* Adres Maca w Wi-Fi: z ?lan= (ustawia Konsola.command) albo z adresu strony, gdy konsolę otwarto z sieci lokalnej. */
+function wykryjLan(href) {
+  const url = new URL(href);
+  const zParametru = SILNIK.poprawnaBaza(url.searchParams.get("lan"));
+  if (zParametru) return zParametru;
+  if (/^https?:$/.test(url.protocol) && hostSieciLokalnej(url.hostname)) return bezUkosnika(korzenWynikow(href));
+  return null;
+}
+
+/* Konsola otwarta z internetu (GitHub Pages): uczniowie dostają ten sam adres, pod którym stoi konsola. */
+function wykryjPubliczny(href) {
+  const url = new URL(href);
+  if (url.protocol !== "https:" || hostTegoKomputera(url.hostname) || hostSieciLokalnej(url.hostname)) return null;
+  return bezUkosnika(korzenWynikow(href));
+}
+
+/* Prośba o pliki w Dropboxie albo link do folderu: tylko https na dropbox.com. */
+function poprawnyDropbox(tekst) {
+  const t = String(tekst || "").trim();
+  return /^https:\/\/(www\.)?dropbox\.com\/[^\s"'<>]+$/i.test(t) ? t : null;
+}
+
+/* Ustawienia z localStorage: nieznane pola i złe wartości wracają do domyślnych. zrodlo null = wybór automatyczny. */
+function normalizujUstawienia(dane) {
+  const u = dane && typeof dane === "object" ? dane : {};
+  return {
+    zrodlo: ZRODLA_BAZY.includes(u.zrodlo) ? u.zrodlo : null,
+    pages: typeof u.pages === "string" ? u.pages.trim() : "",
+    dropbox: typeof u.dropbox === "string" ? u.dropbox.trim() : "",
+  };
+}
+
+/* Adres bazowy dla telefonów. Bez wyboru Pawła: adres internetowy konsoli, potem Wi-Fi, potem pole GitHub Pages.
+   Puste pole GitHub Pages zastępuje adres, pod którym stoi konsola. brak: „lan” albo „pages”, gdy adresu nie ma. */
+/* Domyślny adres zestawu na GitHub Pages: używany, gdy konsola stoi lokalnie i pole jest puste,
+   żeby QR nigdy nie prowadził do pliku na dysku. */
+const ADRES_PAGES_DOMYSLNY = "https://firmaszydlowski.github.io/zajecia-interaktywne";
+
+function wybierzBaze(ustawienia, { lan, publiczny }) {
+  const zrodlo = ustawienia.zrodlo || (publiczny ? "pages" : lan ? "lan" : "pages");
+  if (zrodlo === "lan") return lan ? { zrodlo, baza: lan, brak: null } : { zrodlo, baza: null, brak: "lan" };
+  const pages = SILNIK.poprawnaBaza(ustawienia.pages) || publiczny || ADRES_PAGES_DOMYSLNY;
+  return pages ? { zrodlo, baza: pages, brak: null } : { zrodlo, baza: null, brak: "pages" };
+}
+
+/* Zapytanie silnika (k, test, baza) plus język zajęć i Dropbox. */
+function zapytanieWidoku({ kod, test, jez, baza = null, dropbox = null }) {
+  const dodatki = [`jez=${jez}`];
+  if (dropbox) dodatki.push(`dropbox=${encodeURIComponent(dropbox)}`);
+  const zapytanie = SILNIK.zapytanieAdresu(kod, test, baza);
+  return `${zapytanie}${zapytanie ? "&" : "?"}${dodatki.join("&")}`;
+}
+
+/* Nazwa albo opis z manifestu: napis albo {pl, en}. Brakujący język zastępuje drugi. */
+function tekstWJezyku(wartosc, jezyk) {
+  if (typeof wartosc === "string") return wartosc;
+  if (!wartosc || typeof wartosc !== "object") return "";
+  const drugi = jezyk === "pl" ? "en" : "pl";
+  return wartosc[jezyk] || wartosc[drugi] || "";
+}
+
+/* Trzy adresy jednej sesji. TV i tablet otwierane z konsoli (względem korzenia wyników), uczniowie i tablet z innego
+   urządzenia przez adres bazowy. Język zajęć idzie do wszystkich trzech widoków, Dropbox tylko do apek,
+   które go przyjmują. Brak pliku = null. */
+function adresySesji({ zajecia, kod, test, jez, baza, dropbox, korzen }) {
+  if (!SILNIK.poprawnyKod(kod)) throw new RangeError(`Zły kod sesji: ${kod}`);
+  if (!TRYBY_TESTU.includes(test)) throw new RangeError(`Zły tryb: ${test}`);
+  if (!JEZYKI_ZAJEC.includes(jez)) throw new RangeError(`Zły język: ${jez}`);
+  const { slug } = zajecia;
+  const obok = (plik, zapytanie) => (plik ? new URL(`${slug}/${plik}${zapytanie}`, korzen).href : null);
+  const zBazy = (plik, zapytanie) => (plik && baza ? `${baza}/${slug}/${plik}${zapytanie}` : obok(plik, zapytanie));
+  const dlaProwadzacego = zapytanieWidoku({ kod, test, jez, baza, dropbox: zajecia.dropbox ? dropbox : null });
+  return {
+    uczen: zBazy(zajecia.uczen, zapytanieWidoku({ kod, test, jez })),
+    tv: obok(zajecia.tv, zapytanieWidoku({ kod, test, jez, baza })),
+    prowadzacy: obok(zajecia.prowadzacy, dlaProwadzacego),
+    prowadzacyZdalnie: zBazy(zajecia.prowadzacy, dlaProwadzacego),
+  };
+}
+
+/* Ostatnie sesje: najnowsza na górze, bez powtórek tej samej pary zajęcia + kod. Wpis: {slug, kod, test, jez}. */
+function dodajDoOstatnich(lista, wpis, limit = LIMIT_OSTATNICH) {
+  const reszta = lista.filter((w) => !(w.slug === wpis.slug && w.kod === wpis.kod));
+  return [wpis, ...reszta].slice(0, limit);
+}
+
+function normalizujOstatnie(dane) {
+  if (!Array.isArray(dane)) return [];
+  return dane
+    .filter((w) => w && WZOR_SLUGA.test(w.slug || "") && SILNIK.poprawnyKod(w.kod) === w.kod)
+    .map((w) => ({ slug: w.slug, kod: w.kod, test: TRYBY_TESTU.includes(w.test) ? w.test : null, jez: JEZYKI_ZAJEC.includes(w.jez) ? w.jez : "pl" }))
+    .slice(0, LIMIT_OSTATNICH);
+}
+
+/* JSON z pamięci przeglądarki: uszkodzony albo pusty daje null. */
+function czytajJson(tekst) {
+  if (!tekst) return null;
+  try {
+    return JSON.parse(tekst);
+  } catch (blad) {
+    console.warn("Uszkodzone dane w pamięci przeglądarki", blad);
+    return null;
+  }
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    LIMIT_OSTATNICH, ADRES_PAGES_DOMYSLNY, nowyKod: SILNIK.nowyKod, poprawnyKod: SILNIK.poprawnyKod, hostSieciLokalnej, korzenWynikow, wykryjLan, wykryjPubliczny, poprawnyDropbox,
+    JEZYKI_ZAJEC, normalizujUstawienia, wybierzBaze, tekstWJezyku, adresySesji, dodajDoOstatnich, normalizujOstatnie, czytajJson,
+  };
+}
+
+/* Teksty konsoli PL i EN (jak slownik_*.js w generatorze debat). Wartość: napis albo funkcja dla tekstów z danymi.
+   Test kompletności: test_slownik_konsoli.js. */
+const SLOWNIK_KONSOLI = {
+  pl: {
+    tytulStrony: "Konsola zajęć", logo: "Zajęcia interaktywne", projekt: "Konsola prowadzącego", jezyk: "Język konsoli",
+    telefony: "Telefony: ", telefonyBrak: "Telefony: brak adresu, zobacz ustawienia",
+    wstepH1: "Uruchom zajęcia", wstepOpis: "Każda sesja ma własny kod. Telefony, TV i tablet z tym samym kodem widzą te same zajęcia.",
+    kroki: [["Nowa sesja", "Przy zajęciach kliknij Nowa sesja. Dostajesz kod dla tej grupy."],
+      ["TV i tablet", "Otwórz oba ekrany. Mają ten sam kod sesji."], ["Uczniowie", "Skanują kod QR z TV albo z tej konsoli."]],
+    zajecia: "Zajęcia", podglad: "Podgląd ekranów", instrukcja: "Instrukcja", nowaSesja: "Nowa sesja", brakPliku: "Brak pliku w folderze zajęć",
+    bezManifestu: "Brak manifest.json: nazwa wzięta z ekranu TV.", brakPlikow: (lista) => `Brak plików: ${lista}.`,
+    widoki: { uczen: "uczeń", tv: "TV", prowadzacy: "prowadzący" },
+    pusto: "W folderze wyniki nie ma jeszcze zajęć. Po zbudowaniu apki odśwież konsolę (polecenie w stopce).",
+    adresTelefonow: "Adres dla telefonów", wifi: "Wi-Fi tego komputera", wifiBrak: "Nie wykryto. Uruchom na Macu Konsola.command.",
+    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Puste pole: adres tej konsoli, ${adres}`,
+    pagesOpis: "Adres folderu z zajęciami, zaczyna się od https://",
+    hotel: "Wi-Fi w hotelu albo w szkole bywa izolowane: telefony nie widzą laptopa. Wtedy wybierz adres internetowy (GitHub Pages).",
+    dropbox: "Dropbox na pliki z wynikami",
+    dropboxCzesc: (nazwy) => `Link trafia do tabletu prowadzącego w: ${nazwy}. Pozostałe apki mają link wpisany na stałe.`,
+    dropboxNikt: "Żadna apka nie czyta jeszcze tego ustawienia: każda ma link do Dropboxa wpisany na stałe. Konsola zapamięta link i przekaże go apkom, gdy zaczną go przyjmować.",
+    ostatnie: "Ostatnie sesje", ostatniePusto: "Tu pojawią się sesje otwarte na tym urządzeniu.", proba: "próba",
+    otworz: "Otwórz", wyczysc: "Wyczyść listę",
+    stopka1: "Nowe zajęcia w folderze wyniki: na Macu uruchom ponownie Konsola.command albo polecenie ", stopka2: ", potem odśwież tę stronę.",
+    kodSesji: "Kod sesji", nowyKod: "Nowy kod", zamknij: "Zamknij sesję", tryb: "Tryb", jezykZajec: "Język zajęć",
+    tryby: [["Zajęcia", "Prawdziwa grupa uczniów."], ["Próba z telefonami", "Osobny kanał: próba nie miesza się z zajęciami."],
+      ["Próba w kartach", "TV, tablet i uczeń w kartach tej przeglądarki."]],
+    banerProby: (tryb) => `TRYB PRÓBNY: ${tryb}`,
+    brakBazyLan: "Telefony nie otworzą tego adresu: konsola nie zna adresu Maca w Wi-Fi. Uruchom Konsola.command albo w ustawieniach wybierz adres internetowy.",
+    brakBazyPages: "Telefony nie otworzą tego adresu: brak adresu internetowego. Wpisz go w ustawieniach (zaczyna się od https://).",
+    tv: "Telewizor", tvOpis: "Otwiera się w osobnym oknie. Przeciągnij je na ekran TV i włącz pełny ekran: Ctrl+Cmd+F.",
+    otworzTv: "Otwórz TV", tvBrak: "W folderze zajęć brak pliku TV.",
+    uczniowie: "Uczniowie", uczniowieOpis: "Telefony skanują kod QR. Ten sam kod pokazuje TV.", uczniowieBrak: "W folderze zajęć brak strony ucznia.",
+    qrUczniow: (nazwa, kod) => `Kod QR dla uczniów: ${nazwa}, sesja ${kod}`, pokazQr: "Pokaż QR na cały ekran",
+    tablet: "Tablet prowadzącego", tylkoTy: "Tylko dla prowadzącego. Nie pokazuj tego adresu uczniom.",
+    otworzTablet: "Otwórz tablet prowadzącego", osobnyTablet: "Na osobnym tablecie otwórz ten adres:",
+    qrTabletu: "Kod QR dla tabletu prowadzącego", pokazQrTabletu: "Pokaż QR dla tabletu", schowajQr: "Schowaj QR",
+    dropboxNaStale: "Ta apka ma link do Dropboxa wpisany na stałe i nie bierze go z ustawień konsoli.",
+    zeskanuj: "Zeskanuj kod telefonem", zamknijOkno: "Zamknij",
+    kopiuj: "Kopiuj adres", skopiowano: "Skopiowano.", zaznaczono: "Adres zaznaczony: skopiuj Cmd+C.",
+    bezQr: "Tego adresu nie da się zamienić na kod QR. Skopiuj go i wyślij uczniom.",
+    ogloszenieSesja: (kod) => `Nowa sesja, kod ${kod}`, ogloszenieKod: (kod) => `Nowy kod sesji ${kod}`,
+  },
+  en: {
+    tytulStrony: "Session console", logo: "Interactive classes", projekt: "Teacher console", jezyk: "Console language",
+    telefony: "Phones: ", telefonyBrak: "Phones: no address, see settings",
+    wstepH1: "Start a class", wstepOpis: "Every session has its own code. Phones, TV and tablet with the same code see the same class.",
+    kroki: [["New session", "Next to a class, click New session. You get a code for this group."],
+      ["TV and tablet", "Open both screens. They share the session code."], ["Students", "They scan the QR code from the TV or from this console."]],
+    zajecia: "Classes", podglad: "Screen preview", instrukcja: "Guide", nowaSesja: "New session", brakPliku: "File missing in the class folder",
+    bezManifestu: "No manifest.json: name taken from the TV screen.", brakPlikow: (lista) => `Missing files: ${lista}.`,
+    widoki: { uczen: "student", tv: "TV", prowadzacy: "teacher" },
+    pusto: "There are no classes in the wyniki folder yet. After building an app, refresh the console (command in the footer).",
+    adresTelefonow: "Address for phones", wifi: "This computer's Wi-Fi", wifiBrak: "Not detected. Run Konsola.command on the Mac.",
+    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Empty field: this console's address, ${adres}`,
+    pagesOpis: "Address of the classes folder, starts with https://",
+    hotel: "Hotel or school Wi-Fi is often isolated: phones cannot see the laptop. Then choose the internet address (GitHub Pages).",
+    dropbox: "Dropbox for result files",
+    dropboxCzesc: (nazwy) => `The link goes to the teacher tablet in: ${nazwy}. Other apps have the link built in.`,
+    dropboxNikt: "No app reads this setting yet: each has its Dropbox link built in. The console keeps the link and will pass it on once apps accept it.",
+    ostatnie: "Recent sessions", ostatniePusto: "Sessions opened on this device will appear here.", proba: "test",
+    otworz: "Open", wyczysc: "Clear list",
+    stopka1: "New classes in the wyniki folder: run Konsola.command again on the Mac or the command ", stopka2: ", then refresh this page.",
+    kodSesji: "Session code", nowyKod: "New code", zamknij: "Close session", tryb: "Mode", jezykZajec: "Class language",
+    tryby: [["Class", "A real group of students."], ["Test with phones", "Separate channel: the test does not mix with classes."],
+      ["Test in tabs", "TV, tablet and student in tabs of this browser."]],
+    banerProby: (tryb) => `TEST MODE: ${tryb}`,
+    brakBazyLan: "Phones cannot open this address: the console does not know the Mac's Wi-Fi address. Run Konsola.command or choose the internet address in settings.",
+    brakBazyPages: "Phones cannot open this address: no internet address. Enter it in settings (starts with https://).",
+    tv: "TV", tvOpis: "Opens in a separate window. Drag it to the TV screen and go full screen: Ctrl+Cmd+F.",
+    otworzTv: "Open TV", tvBrak: "The class folder has no TV file.",
+    uczniowie: "Students", uczniowieOpis: "Phones scan the QR code. The TV shows the same code.", uczniowieBrak: "The class folder has no student page.",
+    qrUczniow: (nazwa, kod) => `QR code for students: ${nazwa}, session ${kod}`, pokazQr: "Show QR full screen",
+    tablet: "Teacher tablet", tylkoTy: "Teacher only. Do not show this address to students.",
+    otworzTablet: "Open teacher tablet", osobnyTablet: "On a separate tablet, open this address:",
+    qrTabletu: "QR code for the teacher tablet", pokazQrTabletu: "Show QR for tablet", schowajQr: "Hide QR",
+    dropboxNaStale: "This app has its Dropbox link built in and does not take it from the console settings.",
+    zeskanuj: "Scan the code with your phone", zamknijOkno: "Close",
+    kopiuj: "Copy address", skopiowano: "Copied.", zaznaczono: "Address selected: copy with Cmd+C.",
+    bezQr: "This address cannot be turned into a QR code. Copy it and send it to students.",
+    ogloszenieSesja: (kod) => `New session, code ${kod}`, ogloszenieKod: (kod) => `New session code ${kod}`,
+  },
+};
+
+if (typeof module !== "undefined" && module.exports) module.exports = { SLOWNIK_KONSOLI };
+
+/* Konsola: drobne elementy DOM (węzły, przyciski, adres z kopiowaniem, kod QR) i pamięć przeglądarki. */
+const KLUCZ_USTAWIEN = "zi-konsola/ustawienia";
+const KLUCZ_OSTATNICH = "zi-konsola/ostatnie";
+
+function el(tag, wlasciwosci = {}, ...dzieci) {
+  const wezel = Object.assign(document.createElement(tag), wlasciwosci);
+  wezel.append(...dzieci.filter((d) => d !== null && d !== undefined && d !== false));
+  return wezel;
+}
+
+function przycisk(tekst, klasa, naKlik, id = "") {
+  const b = el("button", { type: "button", className: klasa, textContent: tekst });
+  if (id) b.id = id;
+  b.addEventListener("click", naKlik);
+  return b;
+}
+
+/* Link do strony w nowej karcie. Gdy adresu nie ma, nieaktywny przycisk z powodem w podpowiedzi. */
+function linkNowaKarta(tekst, adres, klasa = "k1-btn") {
+  if (!adres) return el("button", { type: "button", className: klasa, textContent: tekst, disabled: true, title: t("brakPliku") });
+  return el("a", { className: klasa, href: adres, target: "_blank", rel: "noopener", textContent: tekst });
+}
+
+/* Pamięć przeglądarki bywa wyłączona (tryb prywatny, file:// w niektórych przeglądarkach): wtedy konsola działa bez niej. */
+function czytajPamiec(klucz) {
+  try {
+    return czytajJson(localStorage.getItem(klucz));
+  } catch (blad) {
+    console.warn("Pamięć przeglądarki niedostępna", blad);
+    return null;
+  }
+}
+
+function zapiszPamiec(klucz, wartosc) {
+  try {
+    localStorage.setItem(klucz, JSON.stringify(wartosc));
+  } catch (blad) {
+    console.warn("Nie zapisano w pamięci przeglądarki", blad);
+  }
+}
+
+function ogloszenie(tekst) {
+  document.getElementById("ogloszenie").textContent = tekst;
+}
+
+function zaznaczTekst(wezel) {
+  const zakres = document.createRange();
+  zakres.selectNodeContents(wezel);
+  const zaznaczenie = window.getSelection();
+  zaznaczenie.removeAllRanges();
+  zaznaczenie.addRange(zakres);
+}
+
+/* Adres w ramce z przyciskiem Kopiuj. Bez schowka (file://, stary Safari) adres zostaje zaznaczony. */
+function adresDoSkopiowania(adres) {
+  const pole = el("code", { className: "k1-adres", textContent: adres });
+  const potwierdzenie = el("p", { className: "k1-meta k1-potw", role: "status" });
+  const awaryjnie = (blad) => {
+    console.warn("Schowek niedostępny", blad);
+    zaznaczTekst(pole);
+    potwierdzenie.textContent = t("zaznaczono");
+  };
+  const kopiuj = przycisk(t("kopiuj"), "k1-btn", () => {
+    potwierdzenie.textContent = "";
+    if (!navigator.clipboard) { awaryjnie(new Error("Brak navigator.clipboard")); return; }
+    navigator.clipboard.writeText(adres).then(() => { potwierdzenie.textContent = t("skopiowano"); }).catch(awaryjnie);
+  });
+  return [pole, el("div", { className: "k1-akcje" }, kopiuj), potwierdzenie];
+}
+
+/* Kod QR (SVG z silnika). Adres spoza ASCII nie da się zakodować: wtedy komunikat zamiast kodu. */
+function obrazQr(adres, opis, klasa) {
+  const obraz = el("div", { className: `qr ${klasa}` });
+  try {
+    obraz.innerHTML = svgQr(adres);
+    obraz.querySelector("svg").setAttribute("aria-label", opis);
+  } catch (blad) {
+    console.warn("Nie da się zrobić kodu QR", blad);
+    return el("p", { className: "komunikat", textContent: t("bezQr") });
+  }
+  return obraz;
+}
+
+/* Język interfejsu konsoli PL/EN (wzór: generator-debat/apka/jezyk.js). Wybór pamięta przeglądarka. */
+const KLUCZ_JEZYKA = "zi-konsola/jezyk";
+const JEZYKI_KONSOLI = ["pl", "en"];
+
+let JEZYK = (() => {
+  const zapisany = czytajPamiec(KLUCZ_JEZYKA);
+  return JEZYKI_KONSOLI.includes(zapisany) ? zapisany : "pl";
+})();
+
+function ustawJezyk(jezyk) {
+  if (!JEZYKI_KONSOLI.includes(jezyk)) throw new RangeError(`Nieznany język: ${jezyk}`);
+  JEZYK = jezyk;
+  zapiszPamiec(KLUCZ_JEZYKA, jezyk);
+  document.documentElement.lang = jezyk;
+  document.title = t("tytulStrony");
+}
+
+function t(klucz, ...argumenty) {
+  const wartosc = SLOWNIK_KONSOLI[JEZYK][klucz];
+  if (wartosc === undefined) throw new RangeError(`Brak tekstu „${klucz}” (${JEZYK})`);
+  return typeof wartosc === "function" ? wartosc(...argumenty) : wartosc;
+}
+
+/* Nazwa albo opis zajęć w języku konsoli. */
+const poJezyku = (wartosc) => tekstWJezyku(wartosc, JEZYK);
+
+/* Przełącznik PL/EN (klasa .jez z styl_k1.css). Używany w pasku i w wyborze języka zajęć. */
+function przelacznikPlEn({ etykieta, wybrany, naWybor, idPrefiks }) {
+  const grupa = el("div", { className: "jez", role: "group" });
+  grupa.setAttribute("aria-label", etykieta);
+  for (const jezyk of JEZYKI_KONSOLI) {
+    const b = el("button", { type: "button", id: `${idPrefiks}-${jezyk}`, textContent: jezyk.toUpperCase() });
+    b.setAttribute("aria-pressed", String(wybrany === jezyk));
+    b.addEventListener("click", () => naWybor(jezyk, b.id));
+    grupa.append(b);
+  }
+  return grupa;
+}
+
+document.documentElement.lang = JEZYK;
+
+/* Konsola: ekran otwartej sesji (kod, tryb, język zajęć, karty TV, uczniów i tabletu) oraz kod QR na cały ekran. */
+const TESTY_SESJI = [null, "siec", "lokalnie"];
+
+/* Okno TV: osobne okno, żeby przeciągnąć je na ekran telewizora. Gdy przeglądarka blokuje okna, link otwiera kartę. */
+function przyciskTv(adres, kod) {
+  const link = linkNowaKarta(t("otworzTv"), adres, "k1-btn-gl");
+  if (!adres) return link;
+  link.addEventListener("click", (zdarzenie) => {
+    const okno = window.open(adres, `tv-${kod}`, "popup,width=1280,height=720");
+    if (!okno) return;
+    okno.opener = null;
+    zdarzenie.preventDefault();
+  });
+  return link;
+}
+
+function wyborTrybu(sesja, zmienTryb) {
+  const przyciski = t("tryby").map(([nazwa, opis], i) => {
+    const b = el("button", { type: "button", id: `tryb-${i}` }, el("span", { textContent: nazwa }), el("small", { textContent: opis }));
+    b.setAttribute("aria-pressed", String(TESTY_SESJI[i] === sesja.test));
+    b.addEventListener("click", () => zmienTryb(TESTY_SESJI[i], b.id));
+    return b;
+  });
+  return el("fieldset", { className: "k1-ust zi-tryb" }, el("legend", { textContent: t("tryb") }), el("div", { className: "k1-seg" }, ...przyciski));
+}
+
+function naglowekSesji(sesja, zajecia, akcje) {
+  const kod = el("p", { className: "zi-kodsesji" }, el("span", { textContent: t("kodSesji") }), el("b", { className: "num", textContent: sesja.kod }));
+  const jezyk = el("div", { className: "zi-jezyk-zajec" }, el("span", { textContent: t("jezykZajec") }),
+    przelacznikPlEn({ etykieta: t("jezykZajec"), wybrany: sesja.jez, naWybor: akcje.zmienJezyk, idPrefiks: "jez-zajec" }));
+  return el("header", { className: "k1-ghero" },
+    el("div", {}, el("h1", { id: "sesja-h1", tabIndex: -1, textContent: poJezyku(zajecia.nazwa) }), kod, jezyk,
+      el("div", { className: "k1-akcje" },
+        przycisk(t("nowyKod"), "k1-btn", akcje.nowyKod, "nowy-kod"),
+        przycisk(t("zamknij"), "k1-btn", akcje.zamknij, "zamknij-sesje"))),
+    wyborTrybu(sesja, akcje.zmienTryb));
+}
+
+function kartaTv(adresy, sesja) {
+  return el("section", { className: "k1-link" },
+    el("h2", { textContent: t("tv") }), el("p", { className: "k1-meta", textContent: t("tvOpis") }),
+    przyciskTv(adresy.tv, sesja.kod),
+    adresy.tv ? el("code", { className: "k1-adres", textContent: adresy.tv }) : el("p", { className: "komunikat", textContent: t("tvBrak") }));
+}
+
+function kartaUczniow(adresy, zajecia, sesja, pokazQr) {
+  if (!adresy.uczen) {
+    return el("section", { className: "k1-link" }, el("h2", { textContent: t("uczniowie") }), el("p", { className: "komunikat", textContent: t("uczniowieBrak") }));
+  }
+  return el("section", { className: "k1-link" },
+    el("h2", { textContent: t("uczniowie") }), el("p", { className: "k1-meta", textContent: t("uczniowieOpis") }),
+    obrazQr(adresy.uczen, t("qrUczniow", poJezyku(zajecia.nazwa), sesja.kod), "zi-qr"),
+    przycisk(t("pokazQr"), "k1-btn-gl", pokazQr, "pokaz-qr"),
+    ...adresDoSkopiowania(adresy.uczen));
+}
+
+function kartaTabletu(adresy, zajecia, ustawienia) {
+  const naDropbox = ustawienia.dropbox && !zajecia.dropbox ? el("p", { className: "k1-meta", textContent: t("dropboxNaStale") }) : null;
+  const qrTabletu = adresy.prowadzacyZdalnie ? obrazQr(adresy.prowadzacyZdalnie, t("qrTabletu"), "zi-qr-maly") : null;
+  if (qrTabletu) qrTabletu.hidden = true;
+  const pokaz = qrTabletu ? przycisk(t("pokazQrTabletu"), "k1-btn", (z) => {
+    qrTabletu.hidden = !qrTabletu.hidden;
+    z.currentTarget.textContent = qrTabletu.hidden ? t("pokazQrTabletu") : t("schowajQr");
+  }) : null;
+  return el("section", { className: "k1-link" },
+    el("h2", { textContent: t("tablet") }),
+    el("p", { className: "k1-tylko" }, ikona("uwaga"), t("tylkoTy")),
+    linkNowaKarta(t("otworzTablet"), adresy.prowadzacy, "k1-btn-gl"),
+    adresy.prowadzacyZdalnie ? el("p", { className: "zi-pod", textContent: t("osobnyTablet") }) : null,
+    ...(adresy.prowadzacyZdalnie ? adresDoSkopiowania(adresy.prowadzacyZdalnie) : []),
+    pokaz, qrTabletu, naDropbox);
+}
+
+function ekranSesji({ sesja, zajecia, adresy, baza, ustawienia, akcje }) {
+  const brak = { lan: "brakBazyLan", pages: "brakBazyPages" }[baza.brak];
+  return [
+    sesja.test ? el("p", { className: "baner-testu", textContent: t("banerProby", t("tryby")[TESTY_SESJI.indexOf(sesja.test)][0]) }) : null,
+    naglowekSesji(sesja, zajecia, akcje),
+    brak ? el("p", { className: "komunikat zi-komunikat", role: "alert", textContent: t(brak) }) : null,
+    el("div", { className: "k1-linki" },
+      kartaTv(adresy, sesja), kartaUczniow(adresy, zajecia, sesja, akcje.pokazQr), kartaTabletu(adresy, zajecia, ustawienia)),
+  ];
+}
+
+/* Kod QR na cały ekran laptopa, gdy TV jeszcze nie działa. Esc albo przycisk zamyka. */
+function pokazPelnyQr(adres, zajecia, kod) {
+  const okno = document.getElementById("pelny-qr");
+  okno.replaceChildren(
+    el("div", {}, el("h2", { id: "pelny-qr-tytul", textContent: poJezyku(zajecia.nazwa) }), el("p", { textContent: t("zeskanuj") })),
+    obrazQr(adres, t("qrUczniow", poJezyku(zajecia.nazwa), kod), ""),
+    el("div", {}, el("p", {}, t("kodSesji"), el("b", { className: "num", textContent: kod })),
+      el("div", { className: "k1-akcje zi-zamknij" }, przycisk(t("zamknijOkno"), "k1-btn", () => okno.close()))));
+  okno.showModal();
+}
+
+/* Konsola: pasek, wstęp, lista zajęć, ustawienia adresu i Dropboxa, ostatnie sesje, stopka. */
+const PODPOWIEDZ_PAGES = "https://firmaszydlowski.github.io/zajecia-interaktywne/";
+
+function pasek(baza, zmienJezykKonsoli) {
+  const telefony = baza.baza
+    ? el("span", { className: "zi-telefony" }, t("telefony"), el("b", { textContent: baza.baza }))
+    : el("span", { className: "zi-telefony", textContent: t("telefonyBrak") });
+  return [el("b", { className: "k1-logo", textContent: t("logo") }), el("span", { className: "k1-proj", textContent: t("projekt") }), telefony,
+    przelacznikPlEn({ etykieta: t("jezyk"), wybrany: JEZYK, naWybor: zmienJezykKonsoli, idPrefiks: "jez-konsoli" })];
+}
+
+function wstep() {
+  return el("header", { className: "k1-hero" },
+    el("div", {}, el("h1", { id: "start-h1", tabIndex: -1, textContent: t("wstepH1") }), el("p", { textContent: t("wstepOpis") })),
+    el("ol", { className: "k1-kroki" }, ...t("kroki").map(([tytul, opis], i) =>
+      el("li", {}, el("b", { className: "num", textContent: String(i + 1) }), el("h2", { textContent: tytul }), el("p", { textContent: opis })))));
+}
+
+function wierszZajec(zajecia, korzen, wybrany, nowaSesja) {
+  const adres = (plik) => (plik ? new URL(`${zajecia.slug}/${plik}`, korzen).href : null);
+  const uwagi = [];
+  if (!zajecia.manifest) uwagi.push(t("bezManifestu"));
+  if (zajecia.braki.length) uwagi.push(t("brakPlikow", zajecia.braki.map((p) => t("widoki")[p]).join(", ")));
+  const opis = poJezyku(zajecia.opis);
+  return el("li", { className: `k1-wiersz${wybrany ? " wybr" : ""}` },
+    el("div", {}, el("h3", { textContent: poJezyku(zajecia.nazwa) }),
+      opis ? el("p", { className: "k1-meta", textContent: opis }) : null,
+      uwagi.length ? el("p", { className: "k1-uwaga" }, ikona("uwaga"), uwagi.join(" ")) : null),
+    el("div", { className: "k1-akcje" },
+      linkNowaKarta(t("podglad"), adres(zajecia.podglad)),
+      linkNowaKarta(t("instrukcja"), adres(zajecia.instrukcja)),
+      przycisk(t("nowaSesja"), "k1-btn pelny", () => nowaSesja(zajecia.slug), `nowa-${zajecia.slug}`)));
+}
+
+function listaZajec(wszystkie, korzen, aktywnySlug, nowaSesja) {
+  const tresc = wszystkie.length
+    ? el("ul", {}, ...wszystkie.map((z) => wierszZajec(z, korzen, z.slug === aktywnySlug, nowaSesja)))
+    : el("p", { className: "k1-pusto", textContent: t("pusto") });
+  return el("section", {}, el("h2", { className: "zi-naglowek", textContent: t("zajecia") }), tresc);
+}
+
+function opcjaBazy({ wartosc, etykieta, opis, zaznaczona, poZmianie, dodatek = null }) {
+  const id = `baza-${wartosc}`;
+  const radio = el("input", { type: "radio", name: "baza", id, value: wartosc, checked: zaznaczona });
+  radio.addEventListener("change", () => poZmianie(wartosc, id));
+  return el("div", { className: "k1-zazn" }, radio,
+    el("label", { htmlFor: id }, etykieta, el("span", { className: "k1-meta", textContent: opis })), dodatek);
+}
+
+/* Pole tekstowe zapisuje przy każdym znaku, a stronę przerysowuje dopiero po wyjściu z pola. */
+function poleUstawienia({ id, wartosc, podpowiedz, sprawdz, zapisz, przerysuj }) {
+  const pole = el("input", { type: "url", id, className: "k1-pole", value: wartosc, placeholder: podpowiedz, autocomplete: "off", spellcheck: false });
+  const oznacz = () => pole.setAttribute("aria-invalid", String(Boolean(pole.value.trim()) && !sprawdz(pole.value)));
+  oznacz();
+  pole.addEventListener("input", () => { oznacz(); zapisz(pole.value); });
+  pole.addEventListener("change", () => przerysuj(id));
+  return pole;
+}
+
+function panelUstawien({ ustawienia, baza, lan, publiczny, wszystkie, zmienUstawienia }) {
+  const zmienZrodlo = (zrodlo, fokus) => zmienUstawienia({ zrodlo }, fokus, true);
+  const przerysuj = (fokus) => zmienUstawienia({}, fokus, true);
+  const polePages = poleUstawienia({
+    id: "pole-pages", wartosc: ustawienia.pages, podpowiedz: publiczny ? `${publiczny}/` : PODPOWIEDZ_PAGES, sprawdz: (x) => Boolean(poprawnaBaza(x.trim())),
+    zapisz: (pages) => zmienUstawienia({ pages }, null, false), przerysuj,
+  });
+  const poleDropbox = poleUstawienia({
+    id: "pole-dropbox", wartosc: ustawienia.dropbox, podpowiedz: "https://www.dropbox.com/request/…", sprawdz: (x) => Boolean(poprawnyDropbox(x)),
+    zapisz: (dropbox) => zmienUstawienia({ dropbox }, null, false), przerysuj,
+  });
+  const przyjmuja = wszystkie.filter((z) => z.dropbox).map((z) => poJezyku(z.nazwa));
+  return el("section", { className: "k1-kosz" },
+    el("fieldset", { className: "k1-ust" }, el("legend", { textContent: t("adresTelefonow") }),
+      opcjaBazy({ wartosc: "lan", etykieta: t("wifi"), zaznaczona: baza.zrodlo === "lan", poZmianie: zmienZrodlo, opis: lan || t("wifiBrak") }),
+      opcjaBazy({ wartosc: "pages", etykieta: t("pages"), zaznaczona: baza.zrodlo === "pages", poZmianie: zmienZrodlo,
+        opis: publiczny ? t("pagesPusty", publiczny) : t("pagesOpis"), dodatek: polePages })),
+    el("p", { className: "komunikat", textContent: t("hotel") }),
+    el("label", { className: "k1-etyk", htmlFor: "pole-dropbox", textContent: t("dropbox") }), poleDropbox,
+    el("p", { className: "k1-meta", textContent: przyjmuja.length ? t("dropboxCzesc", przyjmuja.join(", ")) : t("dropboxNikt") }));
+}
+
+function panelOstatnich(ostatnie, wszystkie, otworz, wyczysc) {
+  const znane = ostatnie.filter((w) => wszystkie.some((z) => z.slug === w.slug));
+  const tresc = znane.length
+    ? el("ul", { className: "zi-ostatnie" }, ...znane.map((w, i) => el("li", {},
+      el("span", {}, el("b", { className: "num", textContent: w.kod }), el("span", { className: "zi-jez", textContent: w.jez.toUpperCase() }),
+        w.test ? el("span", { className: "zi-proba", textContent: t("proba") }) : null),
+      el("span", { className: "k1-meta", textContent: poJezyku(wszystkie.find((z) => z.slug === w.slug).nazwa) }),
+      przycisk(t("otworz"), "k1-btn", () => otworz(w), `ostatnia-${i}`))))
+    : el("p", { className: "k1-meta", textContent: t("ostatniePusto") });
+  return el("section", { className: "k1-kosz" }, el("h2", { textContent: t("ostatnie") }), tresc,
+    znane.length ? el("div", { className: "k1-akcje" }, przycisk(t("wyczysc"), "k1-btn", wyczysc, "wyczysc-ostatnie")) : null);
+}
+
+function stopka() {
+  return el("footer", { className: "k1-gstopka" }, t("stopka1"), el("code", { textContent: "python3 _backoffice/konsola/zbuduj.py" }), t("stopka2"));
+}
+
+/* Konsola zajęć: stan strony, akcje i rysowanie. ZAJECIA wstawia zbuduj.py z manifestów w wyniki/. */
+const KORZEN = korzenWynikow(location.href);
+const LAN = wykryjLan(location.href);
+const PUBLICZNY = wykryjPubliczny(location.href);
+
+const stanKonsoli = {
+  ustawienia: normalizujUstawienia(czytajPamiec(KLUCZ_USTAWIEN)),
+  ostatnie: normalizujOstatnie(czytajPamiec(KLUCZ_OSTATNICH)),
+  sesja: null,
+};
+
+const zajeciaPoSlugu = (slug) => ZAJECIA.find((z) => z.slug === slug) || null;
+
+function otworzSesje(sesja, fokus = "sesja-h1") {
+  stanKonsoli.sesja = sesja;
+  stanKonsoli.ostatnie = dodajDoOstatnich(stanKonsoli.ostatnie, sesja);
+  zapiszPamiec(KLUCZ_OSTATNICH, stanKonsoli.ostatnie);
+  rysuj(fokus);
+  if (fokus === "sesja-h1") window.scrollTo(0, 0);
+}
+
+const akcjeKonsoli = {
+  nowaSesja: (slug) => {
+    otworzSesje({ slug, kod: nowyKod(), test: null, jez: JEZYK });
+    ogloszenie(t("ogloszenieSesja", stanKonsoli.sesja.kod));
+  },
+  nowyKod: () => {
+    otworzSesje({ ...stanKonsoli.sesja, kod: nowyKod() }, "nowy-kod");
+    ogloszenie(t("ogloszenieKod", stanKonsoli.sesja.kod));
+  },
+  zmienTryb: (test, fokus) => otworzSesje({ ...stanKonsoli.sesja, test }, fokus),
+  /* Język zajęć: domyślnie język konsoli w chwili otwarcia sesji, potem zmiana tylko dla tej sesji. */
+  zmienJezyk: (jez, fokus) => otworzSesje({ ...stanKonsoli.sesja, jez }, fokus),
+  zmienJezykKonsoli: (jezyk, fokus) => {
+    ustawJezyk(jezyk);
+    rysuj(fokus);
+  },
+  zamknij: () => {
+    const slug = stanKonsoli.sesja.slug;
+    stanKonsoli.sesja = null;
+    rysuj(`nowa-${slug}`);
+  },
+  otworzOstatnia: (wpis) => otworzSesje({ ...wpis }),
+  wyczyscOstatnie: () => {
+    stanKonsoli.ostatnie = [];
+    zapiszPamiec(KLUCZ_OSTATNICH, []);
+    rysuj(stanKonsoli.sesja ? "sesja-h1" : "start-h1");
+  },
+  /* Zapis ustawień; przerysowanie tylko gdy trzeba, żeby nie zabrać fokusu z pola w trakcie pisania. */
+  zmienUstawienia: (zmiany, fokus, przerysuj) => {
+    stanKonsoli.ustawienia = normalizujUstawienia({ ...stanKonsoli.ustawienia, ...zmiany });
+    zapiszPamiec(KLUCZ_USTAWIEN, stanKonsoli.ustawienia);
+    if (przerysuj) rysuj(fokus);
+  },
+};
+
+function bazaTeraz() {
+  return wybierzBaze(stanKonsoli.ustawienia, { lan: LAN, publiczny: PUBLICZNY });
+}
+
+function widokSesji(baza) {
+  const { sesja, ustawienia } = stanKonsoli;
+  const zajecia = zajeciaPoSlugu(sesja.slug);
+  const dropbox = poprawnyDropbox(ustawienia.dropbox);
+  const adresy = adresySesji({ zajecia, kod: sesja.kod, test: sesja.test, jez: sesja.jez, baza: baza.baza, dropbox, korzen: KORZEN });
+  const akcje = {
+    nowyKod: akcjeKonsoli.nowyKod, zamknij: akcjeKonsoli.zamknij, zmienTryb: akcjeKonsoli.zmienTryb, zmienJezyk: akcjeKonsoli.zmienJezyk,
+    pokazQr: () => pokazPelnyQr(adresy.uczen, zajecia, sesja.kod),
+  };
+  return ekranSesji({ sesja, zajecia, adresy, baza, ustawienia, akcje });
+}
+
+function rysuj(fokus = null) {
+  const baza = bazaTeraz();
+  if (stanKonsoli.sesja && !zajeciaPoSlugu(stanKonsoli.sesja.slug)) stanKonsoli.sesja = null;
+  document.getElementById("pasek").replaceChildren(...pasek(baza, akcjeKonsoli.zmienJezykKonsoli));
+  const gora = stanKonsoli.sesja ? widokSesji(baza) : [wstep()];
+  const kolumna = el("div", { className: "zi-kolumna" },
+    panelUstawien({ ustawienia: stanKonsoli.ustawienia, baza, lan: LAN, publiczny: PUBLICZNY, wszystkie: ZAJECIA, zmienUstawienia: akcjeKonsoli.zmienUstawienia }),
+    panelOstatnich(stanKonsoli.ostatnie, ZAJECIA, akcjeKonsoli.otworzOstatnia, akcjeKonsoli.wyczyscOstatnie));
+  document.getElementById("konsola").replaceChildren(...gora.filter(Boolean),
+    el("div", { className: "zi-uklad" }, listaZajec(ZAJECIA, KORZEN, stanKonsoli.sesja && stanKonsoli.sesja.slug, akcjeKonsoli.nowaSesja), kolumna),
+    stopka());
+  const cel = fokus && document.getElementById(fokus);
+  if (cel) cel.focus();
+}
+
+document.title = t("tytulStrony");
+rysuj();
+
+</script>
+</body>
+</html>

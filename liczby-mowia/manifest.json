@@ -1,0 +1,26 @@
+{
+  "slug": "liczby-mowia",
+  "nazwa": {
+    "pl": "Liczby mówią",
+    "en": "Numbers talk"
+  },
+  "opis": {
+    "pl": "Uczniowie liczą ślad węglowy wyjazdu, poznają 3 zasady pisania o liczbach i w zespołach piszą krótki artykuł z jedną liczbą w tytule.",
+    "en": "Students count the carbon footprint of the trip, learn 3 rules for writing about numbers and write a short team article with one number in the title."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

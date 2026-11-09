@@ -1,0 +1,26 @@
+{
+  "slug": "znajdz-przerobke",
+  "nazwa": {
+    "pl": "Znajdź przeróbkę",
+    "en": "Find the edit"
+  },
+  "opis": {
+    "pl": "Uczniowie stukają w telefonie w miejsce przeróbki na zdjęciach z Grecji. Mapa stuknięć sali, odsłona z czerwoną ramką i oryginałem obok.",
+    "en": "Students tap on their phones where a photo from Greece was edited. A map of the class taps, then a reveal with a red frame and the original next to it."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

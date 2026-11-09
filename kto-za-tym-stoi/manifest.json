@@ -1,0 +1,26 @@
+{
+  "slug": "kto-za-tym-stoi",
+  "nazwa": {
+    "pl": "Kto za tym stoi?",
+    "en": "Who is behind it?"
+  },
+  "opis": {
+    "pl": "Zespoły sprawdzają, kto prowadzi stronę o ekologii, kto za nią płaci i czy ma adres i podpisanych autorów. Sala głosuje, czy stronie ufa.",
+    "en": "Teams check who runs a website about ecology, who pays for it and whether it has an address and named authors. The class votes on whether to trust it."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

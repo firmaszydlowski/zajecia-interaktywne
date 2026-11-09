@@ -1,0 +1,26 @@
+{
+  "slug": "co-mowi-plik",
+  "nazwa": {
+    "pl": "Co mówi plik zdjęcia",
+    "en": "What a photo file tells"
+  },
+  "opis": {
+    "pl": "Uczniowie widzą, co zdradza plik zdjęcia: miejsce, datę i aparat, sprawdzają swoje zdjęcia z wyjazdu i uczą się wyłączać lokalizację przed wrzuceniem.",
+    "en": "Students see what a photo file gives away: the place, the date and the camera. They check their own trip photos and learn to turn off location before posting."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

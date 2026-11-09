@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Kalkulator eko: Polska i Grecja, instrukcja dla prowadzącego</title>
+<style>
+/* Wygląd A „Tablica wyników” (generator-debat/makiety/kierunek-A-v2.html, generator-debat/apka/styl.css): tokeny 1:1.
+   Strony: <body class="k1"> (telefon, tablet: jasne) albo <body class="k1 k1-ciemny"> (telewizor).
+   Polska ma kolor --nie (pomarańczowy), Grecja --tak (niebieski); zawsze z podpisem kraju, nie samym kolorem. */
+:root {
+  --tlo: #F2F0EB; --biel: #FFFFFF; --ink: #16181D; --mute: #4F5560; --linia: #D6D2C8; --ciem: #16181D; --ciem2: #22262E; --ciem3: #2E333D;
+  --jasny: #C9CED8; --szary: #8B93A1; --tak: #1D5FD6; --nie: #C2410C; --tak-j: #7AAEFF; --nie-j: #FF9B54; --zolty: #FFC94D; --uwaga: #8A3A0A; --uwaga-t: #FDEBD9;
+  --kond: "Avenir Next Condensed", "DIN Condensed", "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  --tekst: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+h1, h2, h3, h4, p, dl, dd, figure, blockquote { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+[hidden] { display: none !important; }
+button { cursor: pointer; touch-action: manipulation; }
+button:disabled { cursor: default; }
+:focus-visible { outline: 3px solid var(--tak); outline-offset: 2px; }
+.k1-ciemny :focus-visible, .k1-pasek :focus-visible { outline-color: var(--zolty); }
+
+.k1 { font: 16px/1.45 var(--tekst); color: var(--ink); background: var(--tlo); }
+:where(.k1) button, :where(.k1) input, :where(.k1) select, :where(.k1) textarea { font: inherit; }
+.k1-ciemny { background: var(--ciem); color: #fff; }
+.k1 a { color: var(--tak); }
+.k1-ciemny a, .k1-pasek a { color: var(--tak-j); }
+.qr { display: block; background: #fff; shape-rendering: crispEdges; }
+.qr svg { display: block; width: 100%; height: auto; }
+
+/* pasek górny: ciemny jak na stronie startowej generatora */
+.k1-pasek { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; min-height: 56px;
+  padding: max(8px, env(safe-area-inset-top)) 16px 8px; background: var(--ciem); color: #fff; }
+.k1-logo { font: 700 22px/1 var(--kond); }
+.k1-pasek .k1-meta { color: var(--jasny); }
+
+/* przełącznik języka PL/EN 1:1 z generatora debat */
+.k1 .jez { display: inline-flex; border: 1px solid currentColor; }
+.k1 .jez button { background: none; border: 0; color: inherit; font-weight: 600; padding: 0 14px; min-height: 44px; white-space: nowrap; }
+.k1 .jez button[aria-pressed="true"] { background: #fff; color: var(--ciem); }
+.k1-lacze[hidden] + #jezyk { margin-left: auto; }
+
+/* przyciski */
+.k1-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 14px; border: 1px solid var(--ink);
+  background: var(--biel); color: var(--ink); font-weight: 600; text-decoration: none; }
+.k1 a.k1-btn { color: var(--ink); }
+.k1-btn.pelny, .k1 a.k1-btn.pelny { background: var(--ciem); color: #fff; }
+.k1-btn.ostrozny { border-color: var(--uwaga); color: var(--uwaga); }
+.k1-btn:disabled { border-color: var(--linia); color: var(--mute); background: transparent; font-weight: 400; }
+.k1-btn-gl { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 24px; border: 0;
+  background: var(--zolty); color: var(--ciem); font: 700 22px/1 var(--kond); text-decoration: none; }
+.k1-btn-gl:disabled { opacity: .6; }
+.k1-akcje { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* drobne teksty i karty */
+.k1-meta { font-size: 14px; color: var(--mute); }
+.k1-etyk { display: block; font-weight: 600; font-size: 15px; }
+.k1-pole { width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--mute); background: var(--biel); color: var(--ink); }
+.karta { background: var(--biel); border-top: 6px solid var(--ciem); padding: 16px; display: grid; gap: 10px; align-content: start; }
+.karta h2 { font: 700 26px/1.08 var(--kond); }
+.karta h3 { font: 700 20px/1.1 var(--kond); margin-top: 6px; }
+.komunikat { padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 600; font-size: 15px; }
+.komunikat.ok { background: var(--tlo); color: var(--ink); border-left: 6px solid var(--ciem); }
+.cyfry { font-family: var(--kond); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+
+/* stan łącza */
+.k1-lacze { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--jasny); white-space: nowrap; margin-left: auto; }
+.k1-lacze::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--nie-j); }
+.k1-lacze.czesc::before { background: var(--zolty); }
+.k1-lacze.ok::before { background: #4ADE80; }
+
+/* tryb testowy i dane przykładowe */
+.baner-testu { background: var(--zolty); color: var(--ciem); font-weight: 700; text-align: center; padding: 8px 16px; letter-spacing: .02em; }
+.baner-przykladu { background: var(--uwaga); color: #fff; font-weight: 700; text-align: center; padding: 8px 16px; }
+
+/* telefon i tablet: ciemne 1:1 jak u.html i p.html generatora (pasek i panele --ciem2 na tle --ciem) */
+.k1-ciemny .k1-pasek { background: var(--ciem2); }
+.k1-ciemny .karta { background: var(--ciem2); border-top-color: var(--ciem3); }
+.k1-ciemny .k1-meta { color: var(--jasny); }
+.k1-ciemny .k1-btn, .k1-ciemny a.k1-btn { background: transparent; color: #fff; border-color: #fff; }
+.k1-ciemny .k1-btn.pelny, .k1-ciemny a.k1-btn.pelny { background: #fff; color: var(--ciem); }
+.k1-ciemny .k1-btn.ostrozny { border-color: var(--nie-j); color: var(--nie-j); }
+.k1-ciemny .k1-btn:disabled { border-color: var(--ciem3); color: var(--szary); }
+.k1-ciemny .k1-pole { background: var(--ciem); color: #fff; border-color: var(--jasny); }
+.k1-ciemny .komunikat.ok { background: var(--ciem3); color: #fff; border-left-color: #fff; }
+
+/* wpisanie kodu sesji, gdy adres go nie ma */
+.k1-kodek { max-width: 560px; margin: 48px auto; padding: 24px; background: var(--biel); border-top: 6px solid var(--ciem); display: grid; gap: 12px; }
+.k1-kodek h1 { font: 700 34px/1.05 var(--kond); }
+.k1-kodek { min-width: 0; }
+.k1-kodek input { width: 100%; min-width: 0; min-height: 56px; padding: 0 14px; border: 2px solid var(--ink); font: 700 32px/1 var(--kond); letter-spacing: .08em; }
+.k1-ciemny .k1-kodek { background: var(--ciem2); border-top-color: var(--ciem3); }
+.k1-ciemny .k1-kodek input { background: var(--ciem2); color: #fff; border-color: #fff; }
+
+/* Instrukcja i podgląd: wygląd A w wersji jasnej, jak strona startowa generatora debat. */
+.d-glowa { background: var(--ciem); color: #fff; padding: 28px 32px; }
+.d-glowa h1 { font: 700 46px/1.02 var(--kond); }
+.d-glowa p { color: var(--jasny); margin-top: 10px; font-size: 17px; max-width: 760px; }
+.d-glowa a { color: var(--tak-j); }
+.d-tresc { max-width: 1180px; margin: 0 auto; padding: 24px 32px 48px; display: grid; gap: 24px; }
+.d-sekcja { background: var(--biel); border-top: 6px solid var(--ciem); padding: 20px 24px; display: grid; gap: 12px; }
+.d-sekcja h2 { font: 700 30px/1.05 var(--kond); }
+.d-sekcja h3 { font: 700 22px/1.1 var(--kond); margin-top: 6px; }
+.d-sekcja p, .d-sekcja li { font-size: 17px; line-height: 1.5; max-width: 820px; }
+.d-kroki { counter-reset: k; display: grid; gap: 10px; }
+.d-kroki > li { counter-increment: k; display: grid; grid-template-columns: 44px 1fr; gap: 8px; }
+.d-kroki > li::before { content: counter(k); font: 700 30px/1 var(--kond); }
+.d-lista { display: grid; gap: 6px; }
+.d-lista li { padding-left: 14px; border-left: 3px solid var(--linia); }
+.d-mow { border-left: 6px solid var(--zolty); background: var(--tlo); padding: 10px 14px; }
+.d-mow b { display: block; font: 700 20px/1.1 var(--kond); margin-bottom: 4px; }
+code { font: 600 15px/1.4 ui-monospace, Menlo, monospace; background: var(--tlo); padding: 1px 5px; overflow-wrap: anywhere; }
+
+/* podgląd: zrzuty ekranów w ramkach urządzeń */
+.d-ekrany { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.d-ekrany figure { display: grid; gap: 8px; }
+.d-ekrany figure.tv { flex: 1 1 100%; max-width: 960px; }
+.d-ekrany figure.tab { width: 512px; }
+.d-ekrany figure.tel { width: 220px; }
+.d-ramka { background: var(--ciem); padding: 8px; }
+.d-ramka img { display: block; width: 100%; height: auto; }
+figcaption { font-size: 15px; line-height: 1.4; color: var(--mute); max-width: 960px; }
+figcaption b { color: var(--ink); }
+.d-uwaga { padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 600; }
+.d-spis { display: flex; flex-wrap: wrap; gap: 6px; }
+.d-spis a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border: 1px solid var(--ink); background: var(--biel); color: var(--ink); font-weight: 600; text-decoration: none; }
+@media (max-width: 599px) { .d-glowa, .d-tresc { padding-left: 16px; padding-right: 16px; } .d-glowa h1 { font-size: 36px; } }
+
+/* przełącznik PL/EN dokumentów: w rogu, na ciemnym nagłówku */
+.d-jez { position: absolute; top: 20px; right: 24px; z-index: 2; color: #fff; }
+.d-glowa { position: relative; padding-right: 160px; }
+
+/* pytania do klasy w instrukcji */
+.d-pytania { counter-reset: p; display: grid; gap: 10px; }
+.d-pytania > li { counter-increment: p; display: grid; grid-template-columns: 36px 1fr; }
+.d-pytania > li::before { content: counter(p) "."; font: 700 20px/1.3 var(--kond); grid-row: span 2; }
+.d-pytania ul { display: grid; gap: 2px; margin-top: 2px; }
+.d-pytania ul li { padding-left: 14px; border-left: 3px solid var(--zolty); }
+
+</style>
+</head>
+<body class="k1">
+<div class="d-jez jez" role="group" aria-label="Język / Language"></div>
+<div lang="pl" data-wersja="pl">
+<header class="d-glowa">
+  <h1>Kalkulator eko: Polska i Grecja</h1>
+  <p>Instrukcja dla prowadzącego. Uczniowie na telefonach odpowiadają, jak jest u nich w domu, i zgadują, jak jest w Grecji. Potem na telewizorze porównujecie to z prawdziwymi danymi.</p>
+</header>
+<main class="d-tresc">
+  <section class="d-sekcja">
+    <h2>Co jest potrzebne</h2>
+    <ul class="d-lista">
+      <li>Telewizor podłączony do komputera z przeglądarką (najlepiej przez HDMI).</li>
+      <li>Tablet albo laptop prowadzącego.</li>
+      <li>Telefony uczniów z internetem. Pseudonim jest dobrowolny i widzi go tylko prowadzący.</li>
+    </ul>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Uruchomienie</h2>
+    <ol class="d-kroki">
+      <li><p><b>Tablet.</b> Otwórz stronę prowadzącego <code>prowadzacy-ctccd4.html</code> i wybierz „Nowa sesja”. Tablet losuje kod sesji, widać go na górze ekranu. Jeśli kod nadała konsola zajęć, strona otwiera się od razu z tym kodem.</p></li>
+      <li><p><b>Telewizor.</b> Na tablecie w zakładce „Sesja” jest adres ekranu TV z kodem sesji i przycisk „Otwórz ekran TV”. Otwórz ten adres na komputerze przy telewizorze i kliknij w ekran: włączy się pełny ekran i dźwięki timera. Gdy w adresie nie ma kodu, telewizor poprosi o kod z tabletu.</p></li>
+      <li><p><b>Język.</b> W zakładce „Sesja” wybierz język sesji: PL albo EN (albo dopisz do adresu tabletu <code>&amp;jez=en</code>). Telewizor i telefony przejmą go same. Każde urządzenie ma też własny przełącznik PL/EN: tablet w górnym pasku, telefon w pasku, telewizor w prawym dolnym rogu (przed pełnym ekranem).</p></li>
+      <li><p><b>Kod QR.</b> Telewizor pokazuje kod QR, adres strony i kod sesji. Uczniowie skanują kod QR. Kto nie może, wpisuje adres, a strona poprosi o kod sesji.</p></li>
+      <li><p><b>Inny adres stron.</b> Gdy strony są otwierane z innego miejsca niż opublikowane (np. z komputera w sieci Wi-Fi szkoły), dopisz na końcu adresu TV i tabletu parametr <code>baza</code> z adresem głównego folderu zajęć, np. <code>&amp;baza=http://192.168.1.10:8000</code>. Kod QR poprowadzi wtedy tam. Strona TV otwarta z pliku bez tego parametru pokaże zamiast kodu QR prośbę o ustawienie adresu w konsoli.</p></li>
+    </ol>
+    <p class="d-uwaga">Próba przed zajęciami: dopisz do adresu tabletu <code>?test</code>. Próba ma osobny kanał i żółty pasek „TRYB TESTOWY” na każdym ekranie, więc nie miesza się z zajęciami.</p>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Przebieg</h2>
+    <ol class="d-kroki">
+      <li><p><b>Zbieranie odpowiedzi.</b> Uczniowie przechodzą na telefonach przez wszystkie kategorie. Na tablecie możesz wyłączyć kategorie, których nie robicie. Telewizor pokazuje, ile telefonów jest podłączonych i ile osób skończyło. Timer na tablecie jest do wyboru.</p></li>
+      <li><p><b>Kategorie po kolei.</b> Przycisk „Dalej” na tablecie przechodzi przez trzy ekrany każdej kategorii: Wyniki, Plusy i minusy, Co to zmienia w twoim życiu. Gdy kategoria pojawi się na telewizorze, telefony nie mogą już zmienić w niej odpowiedzi, a uczeń widzi swoje odpowiedzi obok prawdziwych liczb.</p></li>
+      <li><p><b>Podsumowanie.</b> Telewizor pokazuje kategorie, w których grupa najbardziej pomyliła się co do Grecji. W zakładce „Wyniki” zapisz plik z wynikami. Jeśli w zakładce „Sesja” jest link do wysyłki, przycisk „Wyślij plik” otworzy go.</p></li>
+    </ol>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Co mówić przy odsłonach</h2>
+    <p>Na tablecie, nad przyciskami „Wstecz” i „Dalej”, zawsze jest tekst do powiedzenia na ekran, który widać na telewizorze.</p>
+    <p class="d-mow"><b>Wyniki</b>Po lewej to, jak jest u was. Po prawej to, co zgadywaliście o Grecji. Na żółto prawdziwe liczby. Kto był najbliżej? Co was zaskoczyło?</p>
+    <p class="d-mow"><b>Plusy i minusy</b>Przeczytaj zdanie o różnicy. Potem: który plus albo minus was zaskoczył? Skąd może się brać ta różnica?</p>
+    <p class="d-mow"><b>Co to zmienia w twoim życiu</b>To najważniejszy ekran. Przeczytaj skutki po kolei i przy każdym zapytaj, czy to widzą u siebie: w rachunkach, w powietrzu, w drodze do szkoły. Na koniec „Ty możesz” i pytania do klasy z tabletu (lista niżej).</p>
+    <p class="d-mow"><b>Podsumowanie</b>Gdzie najbardziej się pomyliliśmy? Dlaczego tak myśleliśmy?</p>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Pytania do rozmowy przy kategoriach</h2>
+    <p>Te same pytania są na tablecie przy ekranie „Co to zmienia w twoim życiu”.</p>
+    <ol class="d-pytania"><li><b>Prąd: ile z węgla</b><ul><li>Do czego używasz prądu najwięcej w ciągu dnia?</li><li>Który zawód przy nowej energii wydaje ci się ciekawy?</li></ul></li><li><b>Ogrzewanie domu zimą</b><ul><li>Czy w zimie czujesz smog na swojej ulicy? Skąd się bierze?</li></ul></li><li><b>Ciepła woda: ile ze słońca</b><ul><li>Ile trwa twój prysznic? Ile wody i energii można by oszczędzić?</li></ul></li><li><b>Czy stać nas na ciepło w domu</b><ul><li>Kogo w waszej okolicy może nie stać na ciepło zimą?</li></ul></li><li><b>Cena prądu dla rodziny</b><ul><li>Które sprzęty w twoim domu zużywają najwięcej prądu?</li><li>Co twoja rodzina mogłaby kupić za pieniądze zaoszczędzone na prądzie?</li></ul></li><li><b>Samochody w rodzinie</b><ul><li>Jak dojeżdżasz do szkoły i ile to trwa? Czy da się inaczej?</li></ul></li><li><b>Ile śmieci wyrzucamy</b><ul><li>Co najczęściej wyrzucasz w ciągu dnia? Czego dałoby się uniknąć?</li></ul></li><li><b>Recykling i segregacja</b><ul><li>Czy w twoim domu łatwo segregować? Co by pomogło?</li></ul></li><li><b>Wyrzucone jedzenie</b><ul><li>Co ostatnio wyrzuciliście w domu i dlaczego?</li></ul></li><li><b>Mięso na talerzu</b><ul><li>Ile razy w tygodniu jesz wędlinę albo mięso? Co mogłoby je zastąpić?</li></ul></li><li><b>Owoce i warzywa każdego dnia</b><ul><li>Ile porcji zjadłeś wczoraj? Co najłatwiej dodać do śniadania?</li></ul></li><li><b>Ile wody zabieramy naturze</b><ul><li>Jak chronisz się w upał? Co mogłoby pomóc w szkole?</li></ul></li><li><b>Autem, autobusem czy pociągiem</b><ul><li>Gdzie można u was dojechać autobusem albo pociągiem, a gdzie tylko autem?</li></ul></li><li><b>Kiedy wyprowadzka od rodziców</b><ul><li>Co trzeba mieć, żeby się wyprowadzić? Ile to może kosztować?</li></ul></li><li><b>Praca dla młodych</b><ul><li>Jaki zawód chcesz wykonywać? Czy będzie potrzebny za 10 lat?</li></ul></li></ol>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Gdy coś nie działa</h2>
+    <ul class="d-lista">
+      <li>Kropka przy stanie łącza: zielona to oba serwery, żółta jeden, czerwona brak sieci. Wystarczy jeden serwer.</li>
+      <li>Telefon stracił sieć: odpowiedzi zostają na telefonie i wyślą się po powrocie sieci.</li>
+      <li>Telewizor nie gra dźwięku: kliknij w ekran TV albo przycisk „Dźwięk” w prawym dolnym rogu. Na tablecie „Test dźwięku” sprawdza dźwięk na TV.</li>
+      <li>Ktoś się spóźnił, a kategorie są już odsłonięte: na ekranie zbierania na tablecie wybierz „Otwórz ponownie odpowiedzi we wszystkich kategoriach”.</li>
+      <li>Nowe zajęcia albo nowa grupa: w zakładce „Sesja” wybierz „Nowa sesja”. Nowy kod oznacza, że telewizor i telefony trzeba otworzyć od nowa.</li>
+    </ul>
+  </section>
+</main>
+</div>
+<div lang="en" data-wersja="en" hidden>
+<header class="d-glowa">
+  <h1>Eco calculator: Poland and Greece</h1>
+  <p>Teacher's guide. Students answer on their phones how it is in their homes and guess how it is in Greece. Then on the TV you compare this with real data.</p>
+</header>
+<main class="d-tresc">
+  <section class="d-sekcja">
+    <h2>What you need</h2>
+    <ul class="d-lista">
+      <li>A TV connected to a computer with a web browser (best with HDMI).</li>
+      <li>The teacher's tablet or laptop.</li>
+      <li>Students' phones with internet. A nickname is optional and only the teacher can see it.</li>
+    </ul>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Getting started</h2>
+    <ol class="d-kroki">
+      <li><p><b>Tablet.</b> Open the teacher page <code>prowadzacy-ctccd4.html</code> and choose “New session”. The tablet makes a session code, you can see it at the top of the screen. If the class console gave the code, the page opens with this code straight away.</p></li>
+      <li><p><b>TV.</b> In the “Session” tab on the tablet there is the TV address with the session code and an “Open TV screen” button. Open this address on the computer next to the TV and click the screen: this turns on full screen and timer sounds. If the address has no code, the TV asks for the code from the tablet.</p></li>
+      <li><p><b>Language.</b> In the “Session” tab choose the session language: PL or EN (or add <code>&amp;jez=en</code> to the tablet address). The TV and phones take it automatically. Every device also has its own PL/EN switch: the tablet in the top bar, the phone in the bar, the TV in the bottom right corner (before full screen).</p></li>
+      <li><p><b>QR code.</b> The TV shows a QR code, the page address and the session code. Students scan the QR code. If someone cannot, they type the address and the page asks for the session code.</p></li>
+      <li><p><b>A different address.</b> If the pages are opened from a different place than the published one (for example from a computer in the school Wi-Fi), add the <code>baza</code> parameter with the address of the main class folder to the end of the TV and tablet address, for example <code>&amp;baza=http://192.168.1.10:8000</code>. The QR code will then lead there. A TV page opened from a file without this parameter shows a request to set the address in the console instead of the QR code.</p></li>
+    </ol>
+    <p class="d-uwaga">Test before class: add <code>?test</code> to the tablet address. The test has its own channel and a yellow “TEST MODE” bar on every screen, so it does not mix with the class.</p>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>How the class goes</h2>
+    <ol class="d-kroki">
+      <li><p><b>Collecting answers.</b> Students go through all categories on their phones. On the tablet you can switch off categories you do not want to do. The TV shows how many phones are connected and how many students have finished. The timer on the tablet is optional.</p></li>
+      <li><p><b>Categories one by one.</b> The “Next” button on the tablet goes through three screens for each category: Results, Pros and cons, What it changes in your life. When a category appears on the TV, phones can no longer change answers in it, and each student sees their answers next to the real numbers.</p></li>
+      <li><p><b>Summary.</b> The TV shows the categories where the group was most wrong about Greece. In the “Results” tab save the results file. If there is a link in the “Session” tab, the “Send file” button opens it.</p></li>
+    </ol>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>What to say on each screen</h2>
+    <p>On the tablet, above the “Back” and “Next” buttons, there is always a text to say for the screen that is on the TV.</p>
+    <p class="d-mow"><b>Results</b>On the left is how it is in your homes. On the right is what you guessed about Greece. In yellow, the real figures. Who was closest? What surprised you?</p>
+    <p class="d-mow"><b>Pros and cons</b>Read the sentence about the difference. Then: which plus or minus surprised you? Where can this difference come from?</p>
+    <p class="d-mow"><b>What it changes in your life</b>This is the most important screen. Read the effects one by one and ask each time if they see it in their own lives: in bills, in the air, on the way to school. End with “You can” and the class questions from the tablet (list below).</p>
+    <p class="d-mow"><b>Summary</b>Where were we most wrong? Why did we think so?</p>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>Questions for the class, by category</h2>
+    <p>The same questions are on the tablet next to the “What it changes in your life” screen.</p>
+    <ol class="d-pytania"><li><b>Electricity: how much from coal</b><ul><li>What do you use electricity for most during the day?</li><li>Which job in new energy sounds interesting to you?</li></ul></li><li><b>Heating the home in winter</b><ul><li>Do you notice smog on your street in winter? Where does it come from?</li></ul></li><li><b>Hot water: how much from the sun</b><ul><li>How long is your shower? How much water and energy could you save?</li></ul></li><li><b>Can we afford a warm home</b><ul><li>Who in your area might not afford a warm home in winter?</li></ul></li><li><b>Electricity price for a family</b><ul><li>Which devices in your home use the most electricity?</li><li>What could your family buy with money saved on electricity?</li></ul></li><li><b>Cars in the family</b><ul><li>How do you get to school and how long does it take? Is there another way?</li></ul></li><li><b>How much rubbish we throw away</b><ul><li>What do you throw away most often in a day? What could you avoid?</li></ul></li><li><b>Recycling and sorting</b><ul><li>Is it easy to sort waste in your home? What would help?</li></ul></li><li><b>Food we throw away</b><ul><li>What food did your family throw away recently, and why?</li></ul></li><li><b>Meat on the plate</b><ul><li>How many times a week do you eat ham or meat? What could replace it?</li></ul></li><li><b>Fruit and vegetables every day</b><ul><li>How many portions did you eat yesterday? What is easiest to add to breakfast?</li></ul></li><li><b>How much water we take from nature</b><ul><li>How do you stay safe in a heatwave? What could help at school?</li></ul></li><li><b>By car, bus or train</b><ul><li>Where can you go by bus or train, and where only by car?</li></ul></li><li><b>When to move out from parents</b><ul><li>What do you need to move out? How much could it cost?</li></ul></li><li><b>Jobs for young people</b><ul><li>What job do you want? Will it be needed in 10 years?</li></ul></li></ol>
+  </section>
+
+  <section class="d-sekcja">
+    <h2>If something does not work</h2>
+    <ul class="d-lista">
+      <li>The connection dot: green means both servers, yellow one, red no network. One server is enough.</li>
+      <li>A phone lost the network: answers stay on the phone and are sent when the network is back.</li>
+      <li>The TV makes no sound: click the TV screen or the “Sound” button in the bottom right corner. On the tablet, “Sound test” checks the sound on the TV.</li>
+      <li>Someone came late and categories are already shown: on the collecting screen on the tablet choose “Reopen answers in all categories”.</li>
+      <li>A new class or a new group: in the “Session” tab choose “New session”. A new code means that the TV and phones must be opened again.</li>
+    </ul>
+  </section>
+</main>
+</div>
+<script>
+/* Przełącznik PL/EN na stronach dokumentów (podgląd, instrukcja): pokazuje jedną z wersji [data-wersja]. Wybór pamięta przeglądarka. */
+(function () {
+  const KLUCZ = "kalkulator-eko-dok-jezyk";
+  const grupa = document.querySelector(".d-jez");
+  function pokaz(jezyk) {
+    for (const wersja of document.querySelectorAll("[data-wersja]")) wersja.hidden = wersja.dataset.wersja !== jezyk;
+    for (const przycisk of grupa.querySelectorAll("button")) przycisk.setAttribute("aria-pressed", String(przycisk.dataset.jez === jezyk));
+    document.documentElement.lang = jezyk;
+    document.title = document.querySelector(`[data-wersja="${jezyk}"] h1`).textContent;
+    try {
+      localStorage.setItem(KLUCZ, jezyk);
+    } catch (blad) {
+      console.warn("Brak pamięci przeglądarki", blad);
+    }
+  }
+  for (const jezyk of ["pl", "en"]) {
+    const przycisk = document.createElement("button");
+    Object.assign(przycisk, { type: "button", textContent: jezyk.toUpperCase() });
+    przycisk.dataset.jez = jezyk;
+    przycisk.addEventListener("click", () => pokaz(jezyk));
+    grupa.append(przycisk);
+  }
+  let zapisany = null;
+  try {
+    zapisany = localStorage.getItem(KLUCZ);
+  } catch (blad) {
+    console.warn("Brak pamięci przeglądarki", blad);
+  }
+  const wybor = [new URLSearchParams(location.search).get("jez"), zapisany].find((j) => j === "pl" || j === "en");
+  pokaz(wybor || "pl");
+}());
+
+</script>
+</body>
+</html>

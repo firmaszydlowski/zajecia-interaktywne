@@ -1,0 +1,26 @@
+{
+  "slug": "czy-moge-wrzucic",
+  "nazwa": {
+    "pl": "Czy mogę to wrzucić?",
+    "en": "Can I post this?"
+  },
+  "opis": {
+    "pl": "Uczniowie głosują nad sytuacjami z publikowania w sieci: MOGĘ, NIE MOGĘ albo MOGĘ, JEŚLI… Po każdej odsłonie przepis i jak zrobić to legalnie, na koniec wyścig po wolną licencję i ściąga.",
+    "en": "Students vote on situations from publishing online: I CAN, I CAN'T or I CAN, IF… After each reveal: the rule and how to do it legally. At the end: a race to find a free licence, and a cheat sheet."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

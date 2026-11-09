@@ -1,0 +1,26 @@
+{
+  "slug": "5w-swiadkowie",
+  "nazwa": {
+    "pl": "5W w praktyce: świadkowie zdarzenia",
+    "en": "5W in practice: witnesses of an event"
+  },
+  "opis": {
+    "pl": "Uczniowie są świadkami przygotowanej scenki i piszą zeznania, potem rozbierają na 5W prawdziwy news i clickbait, a na koniec piszą własny news z checklistą 5W.",
+    "en": "Students witness a staged scene and write statements, then take apart a real news story and a clickbait headline with the 5Ws, and finally write their own news with a 5W checklist."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

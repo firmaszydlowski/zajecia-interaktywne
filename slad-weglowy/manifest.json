@@ -1,0 +1,26 @@
+{
+  "slug": "slad-weglowy",
+  "nazwa": {
+    "pl": "Mój ślad węglowy z wyjazdu",
+    "en": "My carbon footprint from the trip"
+  },
+  "opis": {
+    "pl": "Każdy liczy na telefonie ślad węglowy swojego pobytu i widzi, co da najwięcej. Średnia grupy idzie na ekran, bez imion.",
+    "en": "Everyone counts the carbon footprint of their stay on a phone and sees what helps most. The group average goes on the screen, no names."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

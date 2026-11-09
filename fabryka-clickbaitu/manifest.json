@@ -1,0 +1,26 @@
+{
+  "slug": "fabryka-clickbaitu",
+  "nazwa": {
+    "pl": "Fabryka clickbaitu",
+    "en": "Clickbait factory"
+  },
+  "opis": {
+    "pl": "Zespoły piszą do prawdziwego, nudnego newsa dwa nagłówki: uczciwy i clickbait. Sala ocenia, który kusi, a po którym czuje się oszukana.",
+    "en": "Teams write two headlines for a real, boring news story: an honest one and a clickbait one. The class rates which one tempts them and which one makes them feel cheated."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

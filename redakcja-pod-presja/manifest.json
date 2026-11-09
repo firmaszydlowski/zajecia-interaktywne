@@ -1,0 +1,26 @@
+{
+  "slug": "redakcja-pod-presja",
+  "nazwa": {
+    "pl": "Redakcja pod presją",
+    "en": "Newsroom under pressure"
+  },
+  "opis": {
+    "pl": "Redakcje po 6 osób dostają depesze o ekologii i w 3 minuty decydują: publikujemy, sprawdzamy albo odrzucamy. Punkty za trafne decyzje, na koniec artykuł o sprawdzonej depeszy.",
+    "en": "Newsrooms of 6 people get news wires about ecology and have 3 minutes to decide: publish, check or reject. Points for good decisions, and at the end an article about a checked wire."
+  },
+  "jez": [
+    "pl",
+    "en"
+  ],
+  "uczen": "index.html",
+  "tv": "tv.html",
+  "prowadzacy": "prowadzacy-tablet.html",
+  "podglad": "podglad.html",
+  "instrukcja": "instrukcja.html",
+  "parametry": {
+    "k": "kod sesji",
+    "test": "tryb próbny",
+    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+  }
+}

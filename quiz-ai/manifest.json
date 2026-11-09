@@ -1,0 +1,23 @@
+{
+ "slug": "quiz-ai",
+ "nazwa": {
+  "pl": "Zdjęcie: prawdziwe czy AI?",
+  "en": "Photo: real or AI?"
+ },
+ "opis": {
+  "pl": "Uczniowie głosują telefonem, który z dwóch obrazów zrobiła sztuczna inteligencja, a po odsłonie poznają oznaki obrazu z AI i źródło prawdziwego zdjęcia. Na koniec piszą artykuł o tym, jak nie dać się nabrać.",
+  "en": "Students vote on their phones which of two images was made by artificial intelligence. After the reveal they learn the signs of an AI image and the source of the real photo, and then write an article about how not to be fooled."
+ },
+ "uczen": "index.html",
+ "tv": "tv.html",
+ "prowadzacy": "prowadzacy-q7m2xk.html",
+ "podglad": "podglad.html",
+ "instrukcja": "instrukcja.html",
+ "parametry": {
+  "k": "kod sesji",
+  "test": "tryb próbny",
+  "baza": "korzeń zestawu zajęć; kod QR: <baza>/quiz-ai/index.html?k=… (tv.html i tablet)",
+  "dropbox": "link do wysyłki wyników (tablet)",
+  "jez": "język sesji pl albo en (tablet ustawia sesję; telewizor i telefon: domyślny przed stanem sesji)"
+ }
+}
