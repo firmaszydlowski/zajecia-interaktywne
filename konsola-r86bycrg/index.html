@@ -158,6 +158,12 @@ button:disabled { cursor: default; }
 .k1-ghero .k1-akcje { margin-top: 12px; }
 .zi-jezyk-zajec { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--jasny); font-size: 15px; }
 .k1-pasek .jez { flex: none; }
+/* liczba zespołów: rząd przycisków 2…10 jak przełącznik języka */
+.zi-zespoly { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 16px; color: var(--jasny); font-size: 15px; }
+.zi-zespoly-wybor { display: inline-flex; flex-wrap: wrap; border: 1px solid #fff; }
+.zi-zespoly-wybor button { min-width: 44px; min-height: 44px; padding: 0 8px; border: 0; background: none; color: #fff; font: 700 20px/1 var(--kond); }
+.zi-zespoly-wybor button[aria-pressed="true"] { background: #fff; color: var(--ciem); }
+.zi-zespoly small { flex-basis: 100%; font-size: 14px; color: var(--jasny); }
 .zi-jez { margin-left: 8px; font: 600 14px/1 var(--tekst); color: var(--mute); }
 .zi-komunikat { margin: 24px 32px 0; }
 .k1-linki { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 24px; padding: 24px 32px; }
@@ -220,7 +226,8 @@ button:disabled { cursor: default; }
 <dialog class="zi-pelny k1-ciemny" id="pelny-qr" aria-labelledby="pelny-qr-tytul"></dialog>
 <p class="k1-ukryty" id="ogloszenie" role="status" aria-live="polite"></p>
 <script>
-const ZAJECIA = [{"slug": "5w-swiadkowie", "nazwa": {"pl": "5W w praktyce: świadkowie zdarzenia", "en": "5W in practice: witnesses of an event"}, "opis": {"pl": "Uczniowie są świadkami przygotowanej scenki i piszą zeznania, potem rozbierają na 5W prawdziwy news i clickbait, a na koniec piszą własny news z checklistą 5W.", "en": "Students witness a staged scene and write statements, then take apart a real news story and a clickbait headline with the 5Ws, and finally write their own news with a 5W checklist."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "co-mowi-plik", "nazwa": {"pl": "Co mówi plik zdjęcia", "en": "What a photo file tells"}, "opis": {"pl": "Uczniowie widzą, co zdradza plik zdjęcia: miejsce, datę i aparat. Sprawdzają swoje zdjęcia z wyjazdu i uczą się wyłączać lokalizację przed wrzuceniem.", "en": "Students see what a photo file gives away: the place, the date and the camera. They check their own trip photos and learn to turn off location before posting."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "cztery-ruchy", "nazwa": {"pl": "Cztery ruchy w 4 minuty", "en": "Four moves in 4 minutes"}, "opis": {"pl": "Zespoły w 4 minuty ustalają metodą SIFT, czy wpis z sieci jest prawdziwy, i podają, gdzie to sprawdziły. Wpisy istniały naprawdę, sprawdzili je fact-checkerzy.", "en": "In 4 minutes, teams use the SIFT method to decide if an online post is true, and say where they checked. The posts really existed, and fact-checkers checked them."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "czy-moge-wrzucic", "nazwa": {"pl": "Czy mogę to wrzucić?", "en": "Can I post this?"}, "opis": {"pl": "Uczniowie głosują nad sytuacjami z publikowania w sieci: MOGĘ, NIE MOGĘ albo MOGĘ, JEŚLI… Po każdej odsłonie pokazujemy przepis i to, jak zrobić to legalnie. Na koniec jest wyścig po wolną licencję i ściąga.", "en": "Students vote on situations about posting online: I CAN, I CAN'T or I CAN, IF… After each reveal we show the rule and how to do it legally. At the end there is a race for a free licence and a cheat sheet."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "fabryka-clickbaitu", "nazwa": {"pl": "Fabryka clickbaitu", "en": "Clickbait factory"}, "opis": {"pl": "Zespoły piszą do prawdziwego, nudnego newsa dwa nagłówki: uczciwy i clickbait. Sala ocenia, który kusi, a po którym czuje się oszukana.", "en": "Teams write two headlines for a real, boring news story: an honest one and a clickbait one. The class rates which one tempts them and which one makes them feel cheated."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "fakt-czy-fejk", "nazwa": {"pl": "Fakt czy fejk o przyrodzie", "en": "Fact or fake about nature"}, "opis": {"pl": "Zespoły sprawdzają zdania o Kampinosie i o Grecji oraz podpisy pod zdjęciami, głosując jednym telefonem. Po głosowaniu jest odsłona ze źródłem, na koniec ranking i ciekawostka po angielsku.", "en": "Teams check sentences about Kampinos and Greece and photo captions, voting with one phone. After each vote there is a reveal with the source, and at the end a ranking and a fun fact in English."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "fotoreportaz", "nazwa": {"pl": "Fotoreportaż", "en": "Photo story"}, "opis": {"pl": "Zespoły losują tematy, robią zdjęcia i dają serduszka najlepszym zdjęciom innych. Potem piszą podpisy, a fotoreportaż pokazuje się na TV i zapisuje do pliku.", "en": "Teams draw topics, take photos and give hearts to the best photos of other teams. Then they write captions, and the photo story is shown on the TV and saved to a file."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "kalkulator-eko", "nazwa": {"pl": "Kalkulator eko: Polska i Grecja", "en": "Eco calculator: Poland and Greece"}, "opis": {"pl": "Uczniowie odpowiadają na telefonach, jak jest u nich w domu, i zgadują, jak jest w Grecji. Potem na telewizorze porównują to z prawdziwymi danymi i rozmawiają o plusach, minusach i przyszłości.", "en": "Students answer on their phones how it is in their homes and guess how it is in Greece. Then on the TV they compare this with real data and talk about pros, cons and the future."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-ctccd4.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": true, "manifest": true, "braki": []}, {"slug": "kto-za-tym-stoi", "nazwa": {"pl": "Kto za tym stoi?", "en": "Who is behind it?"}, "opis": {"pl": "Zespoły sprawdzają, kto prowadzi stronę o ekologii, kto za nią płaci i czy ma adres i podpisanych autorów. Sala głosuje, czy stronie ufa.", "en": "Teams check who runs a website about ecology, who pays for it and whether it has an address and named authors. The class votes on whether to trust it."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "liczby-mowia", "nazwa": {"pl": "Liczby mówią", "en": "Numbers talk"}, "opis": {"pl": "Uczniowie liczą ślad węglowy wyjazdu, poznają 3 zasady pisania o liczbach i w zespołach piszą krótki artykuł z jedną liczbą w tytule.", "en": "Students count the carbon footprint of the trip, learn 3 rules for writing about numbers and write a short team article with one number in the title."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "problem-tu-i-tam", "nazwa": {"pl": "Problem tu i tam", "en": "A problem here and there"}, "opis": {"pl": "Uczniowie oceniają 6 problemów przyrody w Grecji i w Polsce, widzą mapę różnic i w zespołach piszą pytania do podcastu.", "en": "Students rate 6 nature problems in Greece and in Poland, see a map of differences and write podcast questions in teams."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "quiz-ai", "nazwa": {"pl": "Zdjęcie: prawdziwe czy AI?", "en": "Photo: real or AI?"}, "opis": {"pl": "Uczniowie głosują telefonem, który z dwóch obrazów zrobiła sztuczna inteligencja, a po odsłonie poznają oznaki obrazu z AI i źródło prawdziwego zdjęcia. Na koniec piszą artykuł o tym, jak nie dać się nabrać.", "en": "Students vote on their phones which of two images was made by artificial intelligence. After the reveal they learn the signs of an AI image and the source of the real photo, and then write an article about how not to be fooled."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-q7m2xk.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": true, "manifest": true, "braki": []}, {"slug": "redakcja-pod-presja", "nazwa": {"pl": "Redakcja pod presją", "en": "Newsroom under pressure"}, "opis": {"pl": "Redakcje po 6 osób dostają depesze o ekologii i w 3 minuty decydują: publikujemy, sprawdzamy albo odrzucamy. Punkty za trafne decyzje, na koniec artykuł o sprawdzonej depeszy.", "en": "Newsrooms of 6 people get news wires about ecology and have 3 minutes to decide: publish, check or reject. Points for good decisions, and at the end an article about a checked wire."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "slad-weglowy", "nazwa": {"pl": "Mój ślad węglowy z wyjazdu", "en": "My carbon footprint from the trip"}, "opis": {"pl": "Każdy liczy na telefonie ślad węglowy swojego pobytu i widzi, co go zmniejszy najbardziej. Średnia grupy trafia na ekran, bez imion.", "en": "Everyone counts the carbon footprint of their stay on a phone and sees what would cut it most. The group average goes on the screen, no names."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "wyscig-po-oryginal", "nazwa": {"pl": "Wyścig po oryginał", "en": "Race to the original"}, "opis": {"pl": "Zespoły szukają obrazem, skąd naprawdę są zdjęcia z fałszywymi podpisami, i wpisują miejsce, datę i link do oryginału. Ranking na czas i odsłona z autorem i licencją.", "en": "Teams use image search to find where photos with fake captions really come from, and type the place, the date and a link to the original. A timed ranking and a reveal with the author and licence."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "zielona-obietnica", "nazwa": {"pl": "Moja zielona obietnica", "en": "My green promise"}, "opis": {"pl": "Uczniowie liczą swój ślad z wyjazdu, wybierają jedną obietnicę na rok, sprawdzają, ile ona daje, i głosują na 3 wspólne.", "en": "Students count their trip footprint, choose one promise for a year, see what it gives and vote for 3 shared promises."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}, {"slug": "znajdz-przerobke", "nazwa": {"pl": "Znajdź przeróbkę", "en": "Find the edit"}, "opis": {"pl": "Uczniowie stukają w telefonie w miejsce przeróbki na zdjęciach z Grecji. Mapa stuknięć sali, odsłona z czerwoną ramką i oryginałem obok.", "en": "Students tap on their phones where a photo from Greece was edited. A map of the class taps, then a reveal with a red frame and the original next to it."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "manifest": true, "braki": []}];
+const ZAJECIA = [{"slug": "5w-swiadkowie", "nazwa": {"pl": "5W w praktyce: świadkowie zdarzenia", "en": "5W in practice: witnesses of an event"}, "opis": {"pl": "Uczniowie są świadkami przygotowanej scenki i piszą zeznania, potem rozbierają na 5W prawdziwy news i clickbait, a na koniec piszą własny news z checklistą 5W.", "en": "Students witness a staged scene and write statements, then take apart a real news story and a clickbait headline with the 5Ws, and finally write their own news with a 5W checklist."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 5, "manifest": true, "braki": []}, {"slug": "co-mowi-plik", "nazwa": {"pl": "Co mówi plik zdjęcia", "en": "What a photo file tells"}, "opis": {"pl": "Uczniowie widzą, co zdradza plik zdjęcia: miejsce, datę i aparat. Sprawdzają swoje zdjęcia z wyjazdu i uczą się wyłączać lokalizację przed wrzuceniem.", "en": "Students see what a photo file gives away: the place, the date and the camera. They check their own trip photos and learn to turn off location before posting."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": null, "manifest": true, "braki": []}, {"slug": "cztery-ruchy", "nazwa": {"pl": "Cztery ruchy w 4 minuty", "en": "Four moves in 4 minutes"}, "opis": {"pl": "Zespoły w 4 minuty ustalają metodą SIFT, czy wpis z sieci jest prawdziwy, i podają, gdzie to sprawdziły. Wpisy istniały naprawdę, sprawdzili je fact-checkerzy.", "en": "In 4 minutes, teams use the SIFT method to decide if an online post is true, and say where they checked. The posts really existed, and fact-checkers checked them."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 6, "manifest": true, "braki": []}, {"slug": "czy-moge-wrzucic", "nazwa": {"pl": "Czy mogę to wrzucić?", "en": "Can I post this?"}, "opis": {"pl": "Uczniowie głosują nad sytuacjami z publikowania w sieci: MOGĘ, NIE MOGĘ albo MOGĘ, JEŚLI… Po każdej odsłonie pokazujemy przepis i to, jak zrobić to legalnie. Na koniec jest wyścig po wolną licencję i ściąga.", "en": "Students vote on situations about posting online: I CAN, I CAN'T or I CAN, IF… After each reveal we show the rule and how to do it legally. At the end there is a race for a free licence and a cheat sheet."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 5, "manifest": true, "braki": []}, {"slug": "fabryka-clickbaitu", "nazwa": {"pl": "Fabryka clickbaitu", "en": "Clickbait factory"}, "opis": {"pl": "Zespoły piszą do prawdziwego, nudnego newsa dwa nagłówki: uczciwy i clickbait. Sala ocenia, który kusi, a po którym czuje się oszukana.", "en": "Teams write two headlines for a real, boring news story: an honest one and a clickbait one. The class rates which one tempts them and which one makes them feel cheated."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 6, "manifest": true, "braki": []}, {"slug": "fakt-czy-fejk", "nazwa": {"pl": "Fakt czy fejk o przyrodzie", "en": "Fact or fake about nature"}, "opis": {"pl": "Zespoły sprawdzają zdania o Kampinosie i o Grecji oraz podpisy pod zdjęciami, głosując jednym telefonem. Po głosowaniu jest odsłona ze źródłem, na koniec ranking i ciekawostka po angielsku.", "en": "Teams check sentences about Kampinos and Greece and photo captions, voting with one phone. After each vote there is a reveal with the source, and at the end a ranking and a fun fact in English."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 5, "manifest": true, "braki": []}, {"slug": "fotoreportaz", "nazwa": {"pl": "Fotoreportaż", "en": "Photo story"}, "opis": {"pl": "Zespoły losują tematy, robią zdjęcia i dają serduszka najlepszym zdjęciom innych. Potem piszą podpisy, a fotoreportaż pokazuje się na TV i zapisuje do pliku.", "en": "Teams draw topics, take photos and give hearts to the best photos of other teams. Then they write captions, and the photo story is shown on the TV and saved to a file."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 5, "manifest": true, "braki": []}, {"slug": "kalkulator-eko", "nazwa": {"pl": "Kalkulator eko: Polska i Grecja", "en": "Eco calculator: Poland and Greece"}, "opis": {"pl": "Uczniowie na telefonach mówią, jak jest u nich, albo zgadują liczby o Polsce, a potem zgadują, jak jest w Grecji. Na telewizorze porównują to z prawdziwymi danymi i rozmawiają o tym, co to zmienia w ich życiu.", "en": "On their phones students say how it is for them or guess numbers about Poland, then guess how it is in Greece. On the TV they compare this with real data and talk about what it changes in their lives."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-ctccd4.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": true, "zespoly": null, "manifest": true, "braki": []}, {"slug": "kto-za-tym-stoi", "nazwa": {"pl": "Kto za tym stoi?", "en": "Who is behind it?"}, "opis": {"pl": "Zespoły sprawdzają, kto prowadzi stronę o ekologii, kto za nią płaci i czy ma adres i podpisanych autorów. Sala głosuje, czy stronie ufa.", "en": "Teams check who runs a website about ecology, who pays for it and whether it has an address and named authors. The class votes on whether to trust it."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 6, "manifest": true, "braki": []}, {"slug": "liczby-mowia", "nazwa": {"pl": "Liczby mówią", "en": "Numbers talk"}, "opis": {"pl": "Uczniowie liczą ślad węglowy wyjazdu, poznają 3 zasady pisania o liczbach i w zespołach piszą krótki artykuł z jedną liczbą w tytule.", "en": "Students count the carbon footprint of the trip, learn 3 rules for writing about numbers and write a short team article with one number in the title."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 5, "manifest": true, "braki": []}, {"slug": "problem-tu-i-tam", "nazwa": {"pl": "Problem tu i tam", "en": "A problem here and there"}, "opis": {"pl": "Uczniowie oceniają 6 problemów przyrody w Grecji i w Polsce, widzą mapę różnic i w zespołach piszą pytania do podcastu.", "en": "Students rate 6 nature problems in Greece and in Poland, see a map of differences and write podcast questions in teams."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 6, "manifest": true, "braki": []}, {"slug": "quiz-ai", "nazwa": {"pl": "Zdjęcie: prawdziwe czy AI?", "en": "Photo: real or AI?"}, "opis": {"pl": "Uczniowie głosują telefonem, który z dwóch obrazów zrobiła sztuczna inteligencja, a po odsłonie poznają oznaki obrazu z AI i źródło prawdziwego zdjęcia. Na koniec piszą artykuł o tym, jak nie dać się nabrać.", "en": "Students vote on their phones which of two images was made by artificial intelligence. After the reveal they learn the signs of an AI image and the source of the real photo, and then write an article about how not to be fooled."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-q7m2xk.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": true, "zespoly": null, "manifest": true, "braki": []}, {"slug": "redakcja-pod-presja", "nazwa": {"pl": "Redakcja pod presją", "en": "Newsroom under pressure"}, "opis": {"pl": "Redakcje po 6 osób dostają depesze o ekologii i w 3 minuty decydują: publikujemy, sprawdzamy albo odrzucamy. Punkty za trafne decyzje, na koniec artykuł o sprawdzonej depeszy.", "en": "Newsrooms of 6 people get news wires about ecology and have 3 minutes to decide: publish, check or reject. Points for good decisions, and at the end an article about a checked wire."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 5, "manifest": true, "braki": []}, {"slug": "slad-weglowy", "nazwa": {"pl": "Mój ślad węglowy z wyjazdu", "en": "My carbon footprint from the trip"}, "opis": {"pl": "Każdy liczy na telefonie ślad węglowy swojego pobytu i widzi, co go zmniejszy najbardziej. Średnia grupy trafia na ekran, bez imion.", "en": "Everyone counts the carbon footprint of their stay on a phone and sees what would cut it most. The group average goes on the screen, no names."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": null, "manifest": true, "braki": []}, {"slug": "wyscig-po-oryginal", "nazwa": {"pl": "Wyścig po oryginał", "en": "Race to the original"}, "opis": {"pl": "Zespoły szukają obrazem, skąd naprawdę są zdjęcia z fałszywymi podpisami, i wpisują miejsce, datę i link do oryginału. Ranking na czas i odsłona z autorem i licencją.", "en": "Teams use image search to find where photos with fake captions really come from, and type the place, the date and a link to the original. A timed ranking and a reveal with the author and licence."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": 6, "manifest": true, "braki": []}, {"slug": "zielona-obietnica", "nazwa": {"pl": "Moja zielona obietnica", "en": "My green promise"}, "opis": {"pl": "Uczniowie liczą swój ślad z wyjazdu, wybierają jedną obietnicę na rok, sprawdzają, ile ona daje, i głosują na 3 wspólne.", "en": "Students count their trip footprint, choose one promise for a year, see what it gives and vote for 3 shared promises."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": null, "manifest": true, "braki": []}, {"slug": "znajdz-przerobke", "nazwa": {"pl": "Znajdź przeróbkę", "en": "Find the edit"}, "opis": {"pl": "Uczniowie stukają w telefonie w miejsce przeróbki na zdjęciach z Grecji. Mapa stuknięć sali, odsłona z czerwoną ramką i oryginałem obok.", "en": "Students tap on their phones where a photo from Greece was edited. A map of the class taps, then a reveal with a red frame and the original next to it."}, "uczen": "index.html", "tv": "tv.html", "prowadzacy": "prowadzacy-tablet.html", "podglad": "podglad.html", "instrukcja": "instrukcja.html", "dropbox": false, "zespoly": null, "manifest": true, "braki": []}];
+const KONSOLA_PRYWATNA = true;
 /*! qrcode-generator 1.4.4 (npm), plik qrcode.js bez zmian.
  * Źródło: https://registry.npmjs.org/qrcode-generator/-/qrcode-generator-1.4.4.tgz
  * sha256 paczki: ab6ed47d378877441deae95972e07b2716c26545a735a23aa6b9d442b33026ed
@@ -2628,31 +2635,54 @@ function poprawnaBaza(tekst) {
   return tekst.replace(/\/+$/, "");
 }
 
+/* ?zespoly=N: liczba zespołów 2 do 10 wybrana w konsoli uruchamiania, inna wartość = null (liczba z zajęć). Bez stałych spoza funkcji:
+   strona woła ją w pierwszej linii skryptu (zbuduj.py). */
+function liczbaZespolowZAdresu(search) {
+  const tekst = new URLSearchParams(search || "").get("zespoly");
+  const n = /^\d{1,2}$/.test(tekst || "") ? Number(tekst) : NaN;
+  return n >= 2 && n <= 10 ? n : null;
+}
+
 /* Parametry adresu: ?k=<kod>, ?test (lokalnie, w kartach jednej przeglądarki) albo ?test=siec (przez serwery),
-   ?baza=<url> (nadpisuje ADRES_UCZNIOW w kodzie QR), ?jez=pl|en (język domyślny). */
+   ?baza=<url> (nadpisuje ADRES_UCZNIOW w kodzie QR), ?jez=pl|en (język domyślny), ?zespoly=2…10 (liczba zespołów, zespoly.js). */
 function parametryAdresu(search) {
   const p = new URLSearchParams(search || "");
   const test = p.has("test") ? (p.get("test") === "siec" ? "siec" : "lokalnie") : null;
   const jez = ["pl", "en"].includes(p.get("jez")) ? p.get("jez") : null;
-  return { kod: poprawnyKod(p.get("k")), test, baza: poprawnaBaza(p.get("baza")), jez };
+  return { kod: poprawnyKod(p.get("k")), test, baza: poprawnaBaza(p.get("baza")), jez, zespoly: liczbaZespolowZAdresu(search) };
 }
 
-/* Zapytanie do linków między widokami. Język tylko angielski (polski jest domyślny); baza tylko między TV i tabletem. */
-function zapytanieAdresu(kod, test, baza = null, jez = null) {
+/* Zapytanie do linków między widokami. Język tylko angielski (polski jest domyślny); baza tylko między TV i konsolą prowadzącego. */
+function zapytanieAdresu(kod, test, baza = null, jez = null, zespoly = null) {
   const czesci = [];
   if (kod) czesci.push(`k=${kod}`);
   if (test === "siec") czesci.push("test=siec");
   else if (test) czesci.push("test");
   if (jez === "en") czesci.push("jez=en");
+  if (zespoly) czesci.push(`zespoly=${zespoly}`);
   if (baza) czesci.push(`baza=${encodeURIComponent(baza)}`);
   return czesci.length ? `?${czesci.join("&")}` : "";
 }
 
 /* Adres dla telefonów (kod QR): <baza>/<slug>/index.html?k=…, a bez bazy index.html obok bieżącej strony. */
-function adresUczniow({ baza, slug, kod, test, biezacy, jez = null }) {
-  const zapytanie = zapytanieAdresu(kod, test, null, jez);
+function adresUczniow({ baza, slug, kod, test, biezacy, jez = null, zespoly = null }) {
+  const zapytanie = zapytanieAdresu(kod, test, null, jez, zespoly);
   if (baza) return `${baza}/${slug}/index.html${zapytanie}`;
   return new URL(`index.html${zapytanie}`, biezacy).href;
+}
+
+/* Pełny publiczny adres pliku zajęć (np. media/x.jpg) dla wyszukiwarek obrazem: z bazy (?baza albo adres_uczniow z ustawień),
+   a bez niej względem bieżącej strony. Wyszukiwarka pobiera obraz sama, więc adres musi być bezwzględny. */
+function adresPublicznyObrazu({ plik, baza, slug, biezacy }) {
+  if (baza) return `${baza}/${slug}/${plik.replace(/^\.?\//, "")}`;
+  return new URL(plik, biezacy).href;
+}
+
+/* Wyszukiwanie obrazem po adresie: Google Lens, Bing, TinEye. */
+function adresySzukaniaObrazem(adres) {
+  const a = encodeURIComponent(adres);
+  return { lens: `https://lens.google.com/uploadbyurl?url=${a}`, bing: `https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:${a}`,
+    tineye: `https://tineye.com/search?url=${a}` };
 }
 
 function prefiksKanalu(kod, test) {
@@ -2685,8 +2715,11 @@ function timerWejscia(krok, teraz) {
   return { czasMs, koniec: startuje ? teraz + czasMs : null, zostaloMs: czasMs };
 }
 
+/* Stan sesji; przy zajęciach zespołowych z liczbą zespołów (TV i telefony z inną liczbą w adresie przeładowują się, widok.js). */
 function nowyStan(teraz, zajecia, jez = "pl") {
-  return wejdzWKrok({ v: teraz, krok: 0, faza: "", timer: null, ukryte: {}, pokazane: {}, oceny: {}, qr: false, jez }, zajecia, 0, teraz);
+  const stan = { v: teraz, krok: 0, faza: "", timer: null, ukryte: {}, pokazane: {}, oceny: {}, qr: false, jez };
+  if (zajecia.zespoly) stan.zespoly = zajecia.zespoly.liczba;
+  return wejdzWKrok(stan, zajecia, 0, teraz);
 }
 
 function wejdzWKrok(stan, zajecia, indeks, teraz) {
@@ -2772,6 +2805,16 @@ function formatCzasu(ms) {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 }
 
+/* Ocena wpisu po nowej odpowiedzi tego samego telefonu (nowsze t): „do poprawy” to polecenie poprawki, więc po poprawce ocena znika
+   i prowadzący ocenia jeszcze raz. Ocena wpisu: napis; w wyścigu: lista na zdjęcie, zdejmujemy „popraw” tylko przy zmienionych zdjęciach. */
+function ocenaPoNowejOdpowiedzi(ocena, poprzednia, nowa) {
+  if (!poprzednia || !nowa || !(nowa.t > poprzednia.t)) return ocena;
+  if (ocena === "popraw") return null;
+  if (!Array.isArray(ocena)) return ocena;
+  const zdjecie = (d, i) => JSON.stringify(d && Array.isArray(d.a) ? d.a[i] ?? null : null);
+  return ocena.map((o, i) => (o === "popraw" && zdjecie(poprzednia, i) !== zdjecie(nowa, i) ? null : o));
+}
+
 /* Nowszy z dwóch stanów sesji; null przegrywa. */
 function wybierzNowszy(obecny, nowy) {
   if (!nowy || typeof nowy.v !== "number") return obecny;
@@ -2781,9 +2824,9 @@ function wybierzNowszy(obecny, nowy) {
 
 if (typeof module !== "undefined") {
   module.exports = {
-    nowyKod, poprawnyKod, poprawnaBaza, parametryAdresu, zapytanieAdresu, adresUczniow, prefiksKanalu, fazyKroku, czyZbieranie, timerWejscia,
+    nowyKod, poprawnyKod, poprawnaBaza, liczbaZespolowZAdresu, parametryAdresu, zapytanieAdresu, adresUczniow, adresPublicznyObrazu, adresySzukaniaObrazem, prefiksKanalu, fazyKroku, czyZbieranie, timerWejscia,
     nowyStan, wejdzWKrok, zmien, dalej, wstecz, celDalej, zostaloMs, uruchomTimer, zatrzymajTimer, dodajCzas, resetujTimer,
-    zdarzenieTimera, formatCzasu, wybierzNowszy, TYPY_DODATKOWE,
+    zdarzenieTimera, formatCzasu, ocenaPoNowejOdpowiedzi, wybierzNowszy, TYPY_DODATKOWE,
   };
 }
 
@@ -2792,11 +2835,13 @@ if (typeof module !== "undefined") {
    te adresy, które apki czytają. Testy: test_konsola_logika.js. */
 const SILNIK = typeof module !== "undefined" && module.exports
   ? require("../silnik/logika.js")
-  : { nowyKod, poprawnyKod, poprawnaBaza, zapytanieAdresu };
+  : { nowyKod, poprawnyKod, poprawnaBaza, zapytanieAdresu, liczbaZespolowZAdresu };
 
 const LIMIT_OSTATNICH = 10;
 const WZOR_SLUGA = /^[a-z0-9][a-z0-9-]*$/;
 const TRYBY_TESTU = [null, "siec", "lokalnie"];
+/* Wersja do udostępniania (KONSOLA_PRYWATNA = false w zbuduj.py) nie ma próby w kartach. */
+const TRYBY_UDOSTEPNIANE = [null, "siec"];
 const ZRODLA_BAZY = ["lan", "pages"];
 const JEZYKI_ZAJEC = ["pl", "en"];
 const DOMYSLNE_USTAWIENIA = { zrodlo: null, pages: "", dropbox: "" };
@@ -2863,11 +2908,14 @@ function wybierzBaze(ustawienia, { lan, publiczny }) {
   return pages ? { zrodlo, baza: pages, brak: null } : { zrodlo, baza: null, brak: "pages" };
 }
 
-/* Zapytanie silnika (k, test, baza) plus język zajęć i Dropbox. */
-function zapytanieWidoku({ kod, test, jez, baza = null, dropbox = null }) {
+/* Liczba zespołów z wyboru w konsoli: 2 do 10 albo null (zajęcia bez zespołów, zła wartość). */
+const poprawneZespoly = (n) => (Number.isInteger(n) ? SILNIK.liczbaZespolowZAdresu(`?zespoly=${n}`) : null);
+
+/* Zapytanie silnika (k, test, zespoly, baza) plus język zajęć i Dropbox. */
+function zapytanieWidoku({ kod, test, jez, baza = null, dropbox = null, zespoly = null }) {
   const dodatki = [`jez=${jez}`];
   if (dropbox) dodatki.push(`dropbox=${encodeURIComponent(dropbox)}`);
-  const zapytanie = SILNIK.zapytanieAdresu(kod, test, baza);
+  const zapytanie = SILNIK.zapytanieAdresu(kod, test, baza, null, zespoly);
   return `${zapytanie}${zapytanie ? "&" : "?"}${dodatki.join("&")}`;
 }
 
@@ -2879,37 +2927,43 @@ function tekstWJezyku(wartosc, jezyk) {
   return wartosc[jezyk] || wartosc[drugi] || "";
 }
 
-/* Trzy adresy jednej sesji. TV i tablet otwierane z konsoli (względem korzenia wyników), uczniowie i tablet z innego
-   urządzenia przez adres bazowy. Język zajęć idzie do wszystkich trzech widoków, Dropbox tylko do apek,
-   które go przyjmują. uczenTutaj: telefon ucznia w karcie tej przeglądarki (próba w kartach). Brak pliku = null. */
-function adresySesji({ zajecia, kod, test, jez, baza, dropbox, korzen }) {
+/* Trzy adresy jednej sesji. TV i konsola prowadzącego otwierane stąd (względem korzenia wyników), uczniowie i konsola prowadzącego
+   z innego urządzenia przez adres bazowy. Język zajęć i liczba zespołów (zespoly, tylko zajęcia zespołowe) idą do wszystkich trzech widoków,
+   Dropbox tylko do apek, które go przyjmują. uczenTutaj: telefon ucznia w karcie tej przeglądarki (próba w kartach). Brak pliku = null. */
+function adresySesji({ zajecia, kod, test, jez, baza, dropbox, korzen, zespoly = null }) {
   if (!SILNIK.poprawnyKod(kod)) throw new RangeError(`Zły kod sesji: ${kod}`);
   if (!TRYBY_TESTU.includes(test)) throw new RangeError(`Zły tryb: ${test}`);
   if (!JEZYKI_ZAJEC.includes(jez)) throw new RangeError(`Zły język: ${jez}`);
+  if (zespoly !== null && !poprawneZespoly(zespoly)) throw new RangeError(`Zła liczba zespołów: ${zespoly}`);
   const { slug } = zajecia;
+  const z = zajecia.zespoly ? zespoly : null;
   const obok = (plik, zapytanie) => (plik ? new URL(`${slug}/${plik}${zapytanie}`, korzen).href : null);
   const zBazy = (plik, zapytanie) => (plik && baza ? `${baza}/${slug}/${plik}${zapytanie}` : obok(plik, zapytanie));
-  const dlaProwadzacego = zapytanieWidoku({ kod, test, jez, baza, dropbox: zajecia.dropbox ? dropbox : null });
+  const dlaProwadzacego = zapytanieWidoku({ kod, test, jez, baza, dropbox: zajecia.dropbox ? dropbox : null, zespoly: z });
   return {
-    uczen: zBazy(zajecia.uczen, zapytanieWidoku({ kod, test, jez })),
-    uczenTutaj: obok(zajecia.uczen, zapytanieWidoku({ kod, test, jez })),
-    tv: obok(zajecia.tv, zapytanieWidoku({ kod, test, jez, baza })),
+    uczen: zBazy(zajecia.uczen, zapytanieWidoku({ kod, test, jez, zespoly: z })),
+    uczenTutaj: obok(zajecia.uczen, zapytanieWidoku({ kod, test, jez, zespoly: z })),
+    tv: obok(zajecia.tv, zapytanieWidoku({ kod, test, jez, baza, zespoly: z })),
     prowadzacy: obok(zajecia.prowadzacy, dlaProwadzacego),
     prowadzacyZdalnie: zBazy(zajecia.prowadzacy, dlaProwadzacego),
   };
 }
 
-/* Ostatnie sesje: najnowsza na górze, bez powtórek tej samej pary zajęcia + kod. Wpis: {slug, kod, test, jez}. */
+/* Ostatnie sesje: najnowsza na górze, bez powtórek tej samej pary zajęcia + kod. Wpis: {slug, kod, test, jez, zespoly?}. */
 function dodajDoOstatnich(lista, wpis, limit = LIMIT_OSTATNICH) {
   const reszta = lista.filter((w) => !(w.slug === wpis.slug && w.kod === wpis.kod));
   return [wpis, ...reszta].slice(0, limit);
 }
 
-function normalizujOstatnie(dane) {
+/* Wpisy z pamięci przeglądarki. tryby: dozwolone tryby tej konsoli; próba spoza nich (np. próba w kartach zapisana w konsoli prywatnej,
+   otwierana w wersji do udostępniania) zostaje próbą, ale przez internet. Liczba zespołów tylko gdy poprawna. */
+function normalizujOstatnie(dane, tryby = TRYBY_TESTU) {
   if (!Array.isArray(dane)) return [];
+  const tryb = (test) => (tryby.includes(test) ? test : TRYBY_TESTU.includes(test) && test ? "siec" : null);
   return dane
     .filter((w) => w && WZOR_SLUGA.test(w.slug || "") && SILNIK.poprawnyKod(w.kod) === w.kod)
-    .map((w) => ({ slug: w.slug, kod: w.kod, test: TRYBY_TESTU.includes(w.test) ? w.test : null, jez: JEZYKI_ZAJEC.includes(w.jez) ? w.jez : "pl" }))
+    .map((w) => ({ slug: w.slug, kod: w.kod, test: tryb(w.test), jez: JEZYKI_ZAJEC.includes(w.jez) ? w.jez : "pl",
+      ...(poprawneZespoly(w.zespoly) ? { zespoly: w.zespoly } : {}) }))
     .slice(0, LIMIT_OSTATNICH);
 }
 
@@ -2926,89 +2980,91 @@ function czytajJson(tekst) {
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
-    LIMIT_OSTATNICH, ADRES_PAGES_DOMYSLNY, nowyKod: SILNIK.nowyKod, poprawnyKod: SILNIK.poprawnyKod, hostSieciLokalnej, korzenWynikow, wykryjLan, wykryjPubliczny, poprawnyDropbox,
+    LIMIT_OSTATNICH, ADRES_PAGES_DOMYSLNY, TRYBY_TESTU, TRYBY_UDOSTEPNIANE, poprawneZespoly, nowyKod: SILNIK.nowyKod, poprawnyKod: SILNIK.poprawnyKod, hostSieciLokalnej, korzenWynikow, wykryjLan, wykryjPubliczny, poprawnyDropbox,
     JEZYKI_ZAJEC, normalizujUstawienia, wybierzBaze, tekstWJezyku, adresySesji, dodajDoOstatnich, normalizujOstatnie, czytajJson,
   };
 }
 
-/* Teksty konsoli PL i EN (jak slownik_*.js w generatorze debat). Wartość: napis albo funkcja dla tekstów z danymi.
+/* Teksty strony „Uruchamianie zajęć” (konsoli uruchamiania) PL i EN (jak slownik_*.js w generatorze debat). Wartość: napis albo funkcja dla tekstów z danymi.
    Test kompletności: test_slownik_konsoli.js. */
 const SLOWNIK_KONSOLI = {
   pl: {
-    tytulStrony: "Konsola zajęć", logo: "Zajęcia interaktywne", projekt: "Konsola prowadzącego", jezyk: "Język konsoli",
+    tytulStrony: "Uruchamianie zajęć", logo: "Zajęcia interaktywne", projekt: "Uruchamianie zajęć", jezyk: "Język strony",
     telefony: "Telefony: ", telefonyBrak: "Telefony: brak adresu, zobacz ustawienia",
-    wstepH1: "Uruchom zajęcia", wstepOpis: "Każda sesja ma własny kod. Telefony, TV i tablet z tym samym kodem widzą te same zajęcia.",
+    wstepH1: "Uruchom zajęcia", wstepOpis: "Każda sesja ma własny kod. Telefony, TV i konsola prowadzącego z tym samym kodem widzą te same zajęcia.",
     kroki: [["Nowa sesja", "Przy zajęciach kliknij Nowa sesja. Dostajesz kod dla tej grupy."],
-      ["TV i tablet", "Otwórz oba ekrany. Mają ten sam kod sesji."], ["Uczniowie", "Skanują kod QR z TV albo z tej konsoli."]],
+      ["TV i konsola prowadzącego", "Otwórz oba ekrany. Mają ten sam kod sesji."], ["Uczniowie", "Skanują kod QR z TV albo z tej strony."]],
     zajecia: "Zajęcia", podglad: "Podgląd ekranów", instrukcja: "Instrukcja", nowaSesja: "Nowa sesja", brakPliku: "Brak pliku w folderze zajęć",
     bezManifestu: "Brak manifest.json: nazwa wzięta z ekranu TV.", brakPlikow: (lista) => `Brak plików: ${lista}.`,
     widoki: { uczen: "uczeń", tv: "TV", prowadzacy: "prowadzący" },
-    pusto: "W folderze wyniki nie ma jeszcze zajęć. Po zbudowaniu apki odśwież konsolę (polecenie w stopce).",
+    pusto: "W folderze wyniki nie ma jeszcze zajęć. Po zbudowaniu apki odśwież tę stronę (polecenie w stopce).",
     adresTelefonow: "Adres dla telefonów", wifi: "Wi-Fi tego komputera", wifiBrak: "Nie wykryto. Uruchom na Macu Konsola.command.",
-    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Puste pole oznacza adres tej konsoli: ${adres}`,
+    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Puste pole oznacza adres tej strony: ${adres}`,
     pagesOpis: "Adres folderu z zajęciami, zaczyna się od https://",
     hotel: "Wi-Fi w hotelu czy w szkole bywa izolowane i telefony nie widzą laptopa. Wtedy wybierz adres internetowy (GitHub Pages).",
     dropbox: "Dropbox na pliki z wynikami",
-    dropboxCzesc: (nazwy) => `Link trafia do tabletu prowadzącego w: ${nazwy}. Pozostałe apki mają link wpisany na stałe.`,
-    dropboxNikt: "Żadna apka nie czyta jeszcze tego ustawienia: każda ma link do Dropboxa wpisany na stałe. Konsola zapamięta link i przekaże go apkom, gdy zaczną go przyjmować.",
+    dropboxCzesc: (nazwy) => `Link trafia do konsoli prowadzącego w: ${nazwy}. Pozostałe apki mają link wpisany na stałe.`,
+    dropboxNikt: "Żadna apka nie czyta jeszcze tego ustawienia: każda ma link do Dropboxa wpisany na stałe. Ta strona zapamięta link i przekaże go apkom, gdy zaczną go przyjmować.",
     ostatnie: "Ostatnie sesje", ostatniePusto: "Tu pojawią się sesje otwarte na tym urządzeniu.", proba: "próba",
     otworz: "Otwórz", wyczysc: "Wyczyść listę",
     stopka1: "Nowe zajęcia w folderze wyniki: na Macu uruchom ponownie Konsola.command albo polecenie ", stopka2: ", potem odśwież tę stronę.",
     kodSesji: "Kod sesji", nowyKod: "Nowy kod", zamknij: "Zamknij sesję", tryb: "Tryb", jezykZajec: "Język zajęć",
+    liczbaZespolow: "Liczba zespołów", zespolyDomyslnie: (n) => `Domyślnie ${n}. TV, konsola prowadzącego i kod QR dostają wybraną liczbę.`, zespolyKrotko: (n) => `${n} zesp.`,
     tryby: [["Zajęcia", "Prawdziwa grupa uczniów."], ["Próba z telefonami", "Osobny kanał: próba nie miesza się z zajęciami."],
-      ["Próba w kartach", "TV, tablet i uczeń w kartach tej przeglądarki."]],
+      ["Próba w kartach", "TV, konsola prowadzącego i uczeń w kartach tej przeglądarki."]],
     banerProby: (tryb) => `TRYB PRÓBNY: ${tryb}`,
-    brakBazyLan: "Telefony nie otworzą tego adresu: konsola nie zna adresu Maca w Wi-Fi. Uruchom Konsola.command albo w ustawieniach wybierz adres internetowy.",
+    brakBazyLan: "Telefony nie otworzą tego adresu: ta strona nie zna adresu Maca w Wi-Fi. Uruchom Konsola.command albo w ustawieniach wybierz adres internetowy.",
     brakBazyPages: "Telefony nie otworzą tego adresu: brak adresu internetowego. Wpisz go w ustawieniach (zaczyna się od https://).",
     tv: "Telewizor", tvOpis: "Otwiera się w osobnym oknie. Przeciągnij je na ekran TV i włącz pełny ekran: Ctrl+Cmd+F.",
     otworzTv: "Otwórz TV", tvBrak: "W folderze zajęć brak pliku TV.",
     uczniowie: "Uczniowie", uczniowieOpis: "Telefony skanują kod QR. Ten sam kod pokazuje TV.", uczniowieBrak: "W folderze zajęć brak strony ucznia.",
     otworzUcznia: "Otwórz telefon ucznia", uczenKarty: "Każda karta to osobny uczeń. Otwórz kilka, żeby zagrać za kilku.",
     qrUczniow: (nazwa, kod) => `Kod QR dla uczniów: ${nazwa}, sesja ${kod}`, pokazQr: "Pokaż QR na cały ekran",
-    tablet: "Tablet prowadzącego", tylkoTy: "Tylko dla prowadzącego. Nie pokazuj tego adresu uczniom.",
-    otworzTablet: "Otwórz tablet prowadzącego", osobnyTablet: "Na osobnym tablecie otwórz ten adres:",
-    qrTabletu: "Kod QR dla tabletu prowadzącego", pokazQrTabletu: "Pokaż QR dla tabletu", schowajQr: "Schowaj QR",
-    dropboxNaStale: "Ta apka ma link do Dropboxa wpisany na stałe i nie bierze go z ustawień konsoli.",
+    tablet: "Konsola prowadzącego", tylkoTy: "Tylko dla prowadzącego. Nie pokazuj tego adresu uczniom.",
+    otworzTablet: "Otwórz konsolę prowadzącego", osobnyTablet: "Na osobnym tablecie albo laptopie otwórz ten adres:",
+    qrTabletu: "Kod QR dla konsoli prowadzącego", pokazQrTabletu: "Pokaż QR konsoli prowadzącego", schowajQr: "Schowaj QR",
+    dropboxNaStale: "Ta apka ma link do Dropboxa wpisany na stałe i nie bierze go z ustawień tej strony.",
     zeskanuj: "Zeskanuj kod telefonem", zamknijOkno: "Zamknij",
     kopiuj: "Kopiuj adres", skopiowano: "Skopiowano.", zaznaczono: "Adres jest zaznaczony, skopiuj go przez Cmd+C.",
     bezQr: "Tego adresu nie da się zamienić na kod QR. Skopiuj go i wyślij uczniom.",
     ogloszenieSesja: (kod) => `Nowa sesja, kod ${kod}`, ogloszenieKod: (kod) => `Nowy kod sesji ${kod}`,
   },
   en: {
-    tytulStrony: "Session console", logo: "Interactive classes", projekt: "Teacher console", jezyk: "Console language",
+    tytulStrony: "Class launcher", logo: "Interactive classes", projekt: "Class launcher", jezyk: "Page language",
     telefony: "Phones: ", telefonyBrak: "Phones: no address, see settings",
-    wstepH1: "Start a class", wstepOpis: "Every session has its own code. Phones, TV and tablet with the same code see the same class.",
+    wstepH1: "Start a class", wstepOpis: "Every session has its own code. Phones, TV and the teacher console with the same code see the same class.",
     kroki: [["New session", "Next to a class, click New session. You get a code for this group."],
-      ["TV and tablet", "Open both screens. They share the session code."], ["Students", "They scan the QR code from the TV or from this console."]],
+      ["TV and teacher console", "Open both screens. They share the session code."], ["Students", "They scan the QR code from the TV or from this page."]],
     zajecia: "Classes", podglad: "Screen preview", instrukcja: "Guide", nowaSesja: "New session", brakPliku: "File missing in the class folder",
     bezManifestu: "No manifest.json: name taken from the TV screen.", brakPlikow: (lista) => `Missing files: ${lista}.`,
     widoki: { uczen: "student", tv: "TV", prowadzacy: "teacher" },
-    pusto: "There are no classes in the wyniki folder yet. After building an app, refresh the console (command in the footer).",
+    pusto: "There are no classes in the wyniki folder yet. After building an app, refresh this page (command in the footer).",
     adresTelefonow: "Address for phones", wifi: "This computer's Wi-Fi", wifiBrak: "Not detected. Run Konsola.command on the Mac.",
-    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `An empty field means this console's address: ${adres}`,
+    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `An empty field means this page's address: ${adres}`,
     pagesOpis: "Address of the classes folder, starts with https://",
     hotel: "Wi-Fi in a hotel or a school is often isolated, so phones cannot see the laptop. Then choose the internet address (GitHub Pages).",
     dropbox: "Dropbox for result files",
-    dropboxCzesc: (nazwy) => `The link goes to the teacher tablet in: ${nazwy}. Other apps have the link built in.`,
-    dropboxNikt: "No app reads this setting yet: each has its Dropbox link built in. The console keeps the link and will pass it on once apps accept it.",
+    dropboxCzesc: (nazwy) => `The link goes to the teacher console in: ${nazwy}. Other apps have the link built in.`,
+    dropboxNikt: "No app reads this setting yet: each has its Dropbox link built in. This page keeps the link and will pass it on once apps accept it.",
     ostatnie: "Recent sessions", ostatniePusto: "Sessions opened on this device will appear here.", proba: "test",
     otworz: "Open", wyczysc: "Clear list",
     stopka1: "New classes in the wyniki folder: run Konsola.command again on the Mac or the command ", stopka2: ", then refresh this page.",
     kodSesji: "Session code", nowyKod: "New code", zamknij: "Close session", tryb: "Mode", jezykZajec: "Class language",
+    liczbaZespolow: "Number of teams", zespolyDomyslnie: (n) => `Default ${n}. The TV, the teacher console and the QR code get the chosen number.`, zespolyKrotko: (n) => `${n} teams`,
     tryby: [["Class", "A real group of students."], ["Test with phones", "Separate channel: the test does not mix with classes."],
-      ["Test in tabs", "TV, tablet and student in tabs of this browser."]],
+      ["Test in tabs", "TV, teacher console and student in tabs of this browser."]],
     banerProby: (tryb) => `TEST MODE: ${tryb}`,
-    brakBazyLan: "Phones cannot open this address: the console does not know the Mac's Wi-Fi address. Run Konsola.command or choose the internet address in settings.",
+    brakBazyLan: "Phones cannot open this address: this page does not know the Mac's Wi-Fi address. Run Konsola.command or choose the internet address in settings.",
     brakBazyPages: "Phones cannot open this address: no internet address. Enter it in settings (starts with https://).",
     tv: "TV", tvOpis: "Opens in a separate window. Drag it to the TV screen and go full screen: Ctrl+Cmd+F.",
     otworzTv: "Open TV", tvBrak: "The class folder has no TV file.",
     uczniowie: "Students", uczniowieOpis: "Phones scan the QR code. The TV shows the same code.", uczniowieBrak: "The class folder has no student page.",
     otworzUcznia: "Open student phone", uczenKarty: "Each tab is a separate student. Open several to play as several.",
     qrUczniow: (nazwa, kod) => `QR code for students: ${nazwa}, session ${kod}`, pokazQr: "Show QR full screen",
-    tablet: "Teacher tablet", tylkoTy: "Teacher only. Do not show this address to students.",
-    otworzTablet: "Open teacher tablet", osobnyTablet: "On a separate tablet, open this address:",
-    qrTabletu: "QR code for the teacher tablet", pokazQrTabletu: "Show QR for tablet", schowajQr: "Hide QR",
-    dropboxNaStale: "This app has its Dropbox link built in and does not take it from the console settings.",
+    tablet: "Teacher console", tylkoTy: "Teacher only. Do not show this address to students.",
+    otworzTablet: "Open teacher console", osobnyTablet: "On a separate tablet or laptop, open this address:",
+    qrTabletu: "QR code for the teacher console", pokazQrTabletu: "Show QR for teacher console", schowajQr: "Hide QR",
+    dropboxNaStale: "This app has its Dropbox link built in and does not take it from the settings on this page.",
     zeskanuj: "Scan the code with your phone", zamknijOkno: "Close",
     kopiuj: "Copy address", skopiowano: "Copied.", zaznaczono: "The address is selected, copy it with Cmd+C.",
     bezQr: "This address cannot be turned into a QR code. Copy it and send it to students.",
@@ -3142,8 +3198,9 @@ function przelacznikPlEn({ etykieta, wybrany, naWybor, idPrefiks }) {
 
 document.documentElement.lang = JEZYK;
 
-/* Konsola: ekran otwartej sesji (kod, tryb, język zajęć, karty TV, uczniów i tabletu) oraz kod QR na cały ekran. */
-const TESTY_SESJI = [null, "siec", "lokalnie"];
+/* Uruchamianie zajęć: ekran otwartej sesji (kod, tryb, język zajęć, liczba zespołów, karty TV, uczniów i konsoli prowadzącego)
+   oraz kod QR na cały ekran. Tryby: TRYBY_SESJI (konsola.js), bez próby w kartach w wersji do udostępniania. */
+const ZAKRES_ZESPOLOW = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 /* Okno TV: osobne okno, żeby przeciągnąć je na ekran telewizora. Gdy przeglądarka blokuje okna, link otwiera kartę. */
 function przyciskTv(adres, kod) {
@@ -3159,13 +3216,28 @@ function przyciskTv(adres, kod) {
 }
 
 function wyborTrybu(sesja, zmienTryb) {
-  const przyciski = t("tryby").map(([nazwa, opis], i) => {
+  const przyciski = t("tryby").slice(0, TRYBY_SESJI.length).map(([nazwa, opis], i) => {
     const b = el("button", { type: "button", id: `tryb-${i}` }, el("span", { textContent: nazwa }), el("small", { textContent: opis }));
-    b.setAttribute("aria-pressed", String(TESTY_SESJI[i] === sesja.test));
-    b.addEventListener("click", () => zmienTryb(TESTY_SESJI[i], b.id));
+    b.setAttribute("aria-pressed", String(TRYBY_SESJI[i] === sesja.test));
+    b.addEventListener("click", () => zmienTryb(TRYBY_SESJI[i], b.id));
     return b;
   });
   return el("fieldset", { className: "k1-ust zi-tryb" }, el("legend", { textContent: t("tryb") }), el("div", { className: "k1-seg" }, ...przyciski));
+}
+
+/* Liczba zespołów przy otwarciu zajęć zespołowych: 2 do 10, domyślnie z zajęć. Trafia do adresów wszystkich widoków (?zespoly=). */
+function wyborZespolow(sesja, zajecia, zmienZespoly) {
+  if (!zajecia.zespoly) return null;
+  const przyciski = ZAKRES_ZESPOLOW.map((n) => {
+    const b = el("button", { type: "button", id: `zespoly-${n}`, className: "num", textContent: String(n) });
+    b.setAttribute("aria-pressed", String(n === sesja.zespoly));
+    b.addEventListener("click", () => zmienZespoly(n, b.id));
+    return b;
+  });
+  const grupa = el("div", { className: "zi-zespoly-wybor", role: "group" }, ...przyciski);
+  grupa.setAttribute("aria-label", t("liczbaZespolow"));
+  return el("div", { className: "zi-zespoly" }, el("span", { textContent: t("liczbaZespolow") }), grupa,
+    el("small", { textContent: t("zespolyDomyslnie", zajecia.zespoly) }));
 }
 
 function naglowekSesji(sesja, zajecia, akcje) {
@@ -3174,6 +3246,7 @@ function naglowekSesji(sesja, zajecia, akcje) {
     przelacznikPlEn({ etykieta: t("jezykZajec"), wybrany: sesja.jez, naWybor: akcje.zmienJezyk, idPrefiks: "jez-zajec" }));
   return el("header", { className: "k1-ghero" },
     el("div", {}, el("h1", { id: "sesja-h1", tabIndex: -1, textContent: poJezyku(zajecia.nazwa) }), kod, jezyk,
+      wyborZespolow(sesja, zajecia, akcje.zmienZespoly),
       el("div", { className: "k1-akcje" },
         przycisk(t("nowyKod"), "k1-btn", akcje.nowyKod, "nowy-kod"),
         przycisk(t("zamknij"), "k1-btn", akcje.zamknij, "zamknij-sesje"))),
@@ -3187,10 +3260,10 @@ function kartaTv(adresy, sesja) {
     adresy.tv ? el("code", { className: "k1-adres", textContent: adresy.tv }) : el("p", { className: "komunikat", textContent: t("tvBrak") }));
 }
 
-/* Próba w kartach: telefon ucznia otwiera się w karcie tej przeglądarki (QR nie da się kliknąć). */
+/* Próba w kartach (tylko konsola prywatna): telefon ucznia otwiera się w karcie tej przeglądarki (QR nie da się kliknąć). */
 function przyciskiUcznia(adresy, sesja, pokazQr) {
   const qr = przycisk(t("pokazQr"), sesja.test === "lokalnie" ? "k1-btn" : "k1-btn-gl", pokazQr, "pokaz-qr");
-  if (sesja.test !== "lokalnie" || !adresy.uczenTutaj) return [qr];
+  if (!KONSOLA_PRYWATNA || sesja.test !== "lokalnie" || !adresy.uczenTutaj) return [qr];
   return [linkNowaKarta(t("otworzUcznia"), adresy.uczenTutaj, "k1-btn-gl"), el("p", { className: "k1-meta", textContent: t("uczenKarty") }), qr];
 }
 
@@ -3225,7 +3298,7 @@ function kartaTabletu(adresy, zajecia, ustawienia) {
 function ekranSesji({ sesja, zajecia, adresy, baza, ustawienia, akcje }) {
   const brak = { lan: "brakBazyLan", pages: "brakBazyPages" }[baza.brak];
   return [
-    sesja.test ? el("p", { className: "baner-testu", textContent: t("banerProby", t("tryby")[TESTY_SESJI.indexOf(sesja.test)][0]) }) : null,
+    sesja.test ? el("p", { className: "baner-testu", textContent: t("banerProby", t("tryby")[TRYBY_TESTU.indexOf(sesja.test)][0]) }) : null,
     naglowekSesji(sesja, zajecia, akcje),
     brak ? el("p", { className: "komunikat zi-komunikat", role: "alert", textContent: t(brak) }) : null,
     el("div", { className: "k1-linki" },
@@ -3244,7 +3317,7 @@ function pokazPelnyQr(adres, zajecia, kod) {
   okno.showModal();
 }
 
-/* Konsola: pasek, wstęp, lista zajęć, ustawienia adresu i Dropboxa, ostatnie sesje, stopka. */
+/* Uruchamianie zajęć: pasek, wstęp, lista zajęć, ustawienia adresu i Dropboxa, ostatnie sesje, stopka. */
 const PODPOWIEDZ_PAGES = "https://firmaszydlowski.github.io/zajecia-interaktywne/";
 
 function pasek(baza, zmienJezykKonsoli) {
@@ -3330,6 +3403,7 @@ function panelOstatnich(ostatnie, wszystkie, otworz, wyczysc) {
   const tresc = znane.length
     ? el("ul", { className: "zi-ostatnie" }, ...znane.map((w, i) => el("li", {},
       el("span", {}, el("b", { className: "num", textContent: w.kod }), el("span", { className: "zi-jez", textContent: w.jez.toUpperCase() }),
+        w.zespoly ? el("span", { className: "zi-jez", textContent: t("zespolyKrotko", w.zespoly) }) : null,
         w.test ? el("span", { className: "zi-proba", textContent: t("proba") }) : null),
       el("span", { className: "k1-meta", textContent: poJezyku(wszystkie.find((z) => z.slug === w.slug).nazwa) }),
       przycisk(t("otworz"), "k1-btn", () => otworz(w), `ostatnia-${i}`))))
@@ -3342,14 +3416,16 @@ function stopka() {
   return el("footer", { className: "k1-gstopka" }, t("stopka1"), el("code", { textContent: "python3 _backoffice/konsola/zbuduj.py" }), t("stopka2"));
 }
 
-/* Konsola zajęć: stan strony, akcje i rysowanie. ZAJECIA wstawia zbuduj.py z manifestów w wyniki/. */
+/* Uruchamianie zajęć: stan strony, akcje i rysowanie. ZAJECIA i KONSOLA_PRYWATNA wstawia zbuduj.py (ZAJECIA z manifestów w wyniki/).
+   Wersja prywatna ma wszystkie tryby, wersja do udostępniania nie ma próby w kartach (TRYBY_SESJI). */
+const TRYBY_SESJI = KONSOLA_PRYWATNA ? TRYBY_TESTU : TRYBY_UDOSTEPNIANE;
 const KORZEN = korzenWynikow(location.href);
 const LAN = wykryjLan(location.href);
 const PUBLICZNY = wykryjPubliczny(location.href);
 
 const stanKonsoli = {
   ustawienia: normalizujUstawienia(czytajPamiec(KLUCZ_USTAWIEN)),
-  ostatnie: normalizujOstatnie(czytajPamiec(KLUCZ_OSTATNICH)),
+  ostatnie: normalizujOstatnie(czytajPamiec(KLUCZ_OSTATNICH), TRYBY_SESJI),
   sesja: null,
 };
 
@@ -3365,7 +3441,8 @@ function otworzSesje(sesja, fokus = "sesja-h1") {
 
 const akcjeKonsoli = {
   nowaSesja: (slug) => {
-    otworzSesje({ slug, kod: nowyKod(), test: null, jez: JEZYK });
+    const zajecia = zajeciaPoSlugu(slug);
+    otworzSesje({ slug, kod: nowyKod(), test: null, jez: JEZYK, ...(zajecia && zajecia.zespoly ? { zespoly: zajecia.zespoly } : {}) });
     ogloszenie(t("ogloszenieSesja", stanKonsoli.sesja.kod));
   },
   nowyKod: () => {
@@ -3375,6 +3452,8 @@ const akcjeKonsoli = {
   zmienTryb: (test, fokus) => otworzSesje({ ...stanKonsoli.sesja, test }, fokus),
   /* Język zajęć: domyślnie język konsoli w chwili otwarcia sesji, potem zmiana tylko dla tej sesji. */
   zmienJezyk: (jez, fokus) => otworzSesje({ ...stanKonsoli.sesja, jez }, fokus),
+  /* Liczba zespołów tej sesji (2 do 10); domyślna z zajęć, zapamiętana w ostatnich sesjach. */
+  zmienZespoly: (zespoly, fokus) => otworzSesje({ ...stanKonsoli.sesja, zespoly }, fokus),
   zmienJezykKonsoli: (jezyk, fokus) => {
     ustawJezyk(jezyk);
     rysuj(fokus);
@@ -3406,12 +3485,14 @@ function widokSesji(baza) {
   const { sesja, ustawienia } = stanKonsoli;
   const zajecia = zajeciaPoSlugu(sesja.slug);
   const dropbox = poprawnyDropbox(ustawienia.dropbox);
-  const adresy = adresySesji({ zajecia, kod: sesja.kod, test: sesja.test, jez: sesja.jez, baza: baza.baza, dropbox, korzen: KORZEN });
+  const zespoly = zajecia.zespoly ? poprawneZespoly(sesja.zespoly) || zajecia.zespoly : null;
+  const adresy = adresySesji({ zajecia, kod: sesja.kod, test: sesja.test, jez: sesja.jez, baza: baza.baza, dropbox, korzen: KORZEN, zespoly });
   const akcje = {
     nowyKod: akcjeKonsoli.nowyKod, zamknij: akcjeKonsoli.zamknij, zmienTryb: akcjeKonsoli.zmienTryb, zmienJezyk: akcjeKonsoli.zmienJezyk,
+    zmienZespoly: akcjeKonsoli.zmienZespoly,
     pokazQr: () => pokazPelnyQr(adresy.uczen, zajecia, sesja.kod),
   };
-  return ekranSesji({ sesja, zajecia, adresy, baza, ustawienia, akcje });
+  return ekranSesji({ sesja: { ...sesja, zespoly }, zajecia, adresy, baza, ustawienia, akcje });
 }
 
 function rysuj(fokus = null) {

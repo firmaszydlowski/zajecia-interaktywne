@@ -5,8 +5,8 @@
     "en": "Eco calculator: Poland and Greece"
   },
   "opis": {
-    "pl": "Uczniowie odpowiadają na telefonach, jak jest u nich w domu, i zgadują, jak jest w Grecji. Potem na telewizorze porównują to z prawdziwymi danymi i rozmawiają o plusach, minusach i przyszłości.",
-    "en": "Students answer on their phones how it is in their homes and guess how it is in Greece. Then on the TV they compare this with real data and talk about pros, cons and the future."
+    "pl": "Uczniowie na telefonach mówią, jak jest u nich, albo zgadują liczby o Polsce, a potem zgadują, jak jest w Grecji. Na telewizorze porównują to z prawdziwymi danymi i rozmawiają o tym, co to zmienia w ich życiu.",
+    "en": "On their phones students say how it is for them or guess numbers about Poland, then guess how it is in Greece. On the TV they compare this with real data and talk about what it changes in their lives."
   },
   "uczen": "index.html",
   "tv": "tv.html",
@@ -16,8 +16,8 @@
   "parametry": {
     "k": "kod sesji",
     "test": "tryb próbny",
-    "baza": "korzeń zestawu zajęć do kodu QR (tv.html i tablet); QR: <baza>/kalkulator-eko/index.html?k=…",
-    "dropbox": "link do wysyłki pliku z wynikami (tablet)",
-    "jez": "język sesji pl albo en (tablet ustawia go dla TV i telefonów; na TV i telefonie język startowy)"
+    "baza": "korzeń zestawu zajęć do kodu QR (tv.html i konsola prowadzącego); QR: <baza>/kalkulator-eko/index.html?k=…",
+    "dropbox": "link do wysyłki pliku z wynikami (konsola prowadzącego)",
+    "jez": "język sesji pl albo en (konsola prowadzącego ustawia go dla TV i telefonów; telefon nie ma przełącznika)"
   }
 }

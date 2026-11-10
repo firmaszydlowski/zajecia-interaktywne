@@ -150,14 +150,14 @@ figcaption b { color: var(--ink); }
 <div lang="pl" data-wersja="pl">
 <header class="d-glowa">
   <h1>Kalkulator eko: Polska i Grecja</h1>
-  <p>Instrukcja dla prowadzącego. Uczniowie na telefonach odpowiadają, jak jest u nich w domu, i zgadują, jak jest w Grecji. Potem na telewizorze porównujecie to z prawdziwymi danymi.</p>
+  <p>Instrukcja dla prowadzącego. W każdej kategorii uczniowie na telefonach najpierw mówią, jak jest u nich, albo zgadują liczbę o Polsce. Potem zgadują, jak jest w Grecji. Na telewizorze porównujecie to z prawdziwymi danymi.</p>
 </header>
 <main class="d-tresc">
   <section class="d-sekcja">
     <h2>Co jest potrzebne</h2>
     <ul class="d-lista">
       <li>Telewizor podłączony do komputera z przeglądarką (najlepiej przez HDMI).</li>
-      <li>Tablet albo laptop prowadzącego.</li>
+      <li>Konsola prowadzącego: tablet albo laptop.</li>
       <li>Telefony uczniów z internetem. Pseudonim jest dobrowolny i widzi go tylko prowadzący.</li>
     </ul>
   </section>
@@ -165,37 +165,37 @@ figcaption b { color: var(--ink); }
   <section class="d-sekcja">
     <h2>Uruchomienie</h2>
     <ol class="d-kroki">
-      <li><p><b>Tablet.</b> Otwórz stronę prowadzącego <code>prowadzacy-ctccd4.html</code> i wybierz „Nowa sesja”. Tablet losuje kod sesji, widać go na górze ekranu. Jeśli kod nadała konsola zajęć, strona otwiera się od razu z tym kodem.</p></li>
-      <li><p><b>Telewizor.</b> Na tablecie w zakładce „Sesja” jest adres ekranu TV z kodem sesji i przycisk „Otwórz ekran TV”. Otwórz ten adres na komputerze przy telewizorze i kliknij w ekran: włączy się pełny ekran i dźwięki timera. Gdy w adresie nie ma kodu, telewizor poprosi o kod z tabletu.</p></li>
-      <li><p><b>Język.</b> W zakładce „Sesja” wybierz język sesji: PL albo EN (albo dopisz do adresu tabletu <code>&amp;jez=en</code>). Telewizor i telefony przejmą go same. Każde urządzenie ma też własny przełącznik PL/EN: tablet w górnym pasku, telefon w pasku, telewizor w prawym dolnym rogu (przed pełnym ekranem).</p></li>
+      <li><p><b>Konsola prowadzącego.</b> Otwórz stronę prowadzącego <code>prowadzacy-ctccd4.html</code> i wybierz „Nowa sesja”. Konsola losuje kod sesji, widać go na górze ekranu. Jeśli kod nadała konsola zajęć, strona otwiera się od razu z tym kodem.</p></li>
+      <li><p><b>Telewizor.</b> Na konsoli prowadzącego w zakładce „Sesja” jest adres ekranu TV z kodem sesji i przycisk „Otwórz ekran TV”. Otwórz ten adres na komputerze przy telewizorze i kliknij w ekran: włączy się pełny ekran i dźwięki timera. Gdy w adresie nie ma kodu, telewizor poprosi o kod z konsoli prowadzącego.</p></li>
+      <li><p><b>Język.</b> W zakładce „Sesja” wybierz język sesji: PL albo EN (albo dopisz do adresu konsoli <code>&amp;jez=en</code>). Telewizor i telefony przejmą go same. Telefony uczniów nie mają przełącznika języka, język zmieniasz tylko ty. Konsola ma własny przełącznik PL/EN w górnym pasku, telewizor w prawym dolnym rogu (przed pełnym ekranem).</p></li>
       <li><p><b>Kod QR.</b> Telewizor pokazuje kod QR, adres strony i kod sesji. Uczniowie skanują kod QR. Kto nie może, wpisuje adres, a strona poprosi o kod sesji.</p></li>
-      <li><p><b>Inny adres stron.</b> Gdy strony są otwierane z innego miejsca niż opublikowane (np. z komputera w sieci Wi-Fi szkoły), dopisz na końcu adresu TV i tabletu parametr <code>baza</code> z adresem głównego folderu zajęć, np. <code>&amp;baza=http://192.168.1.10:8000</code>. Kod QR poprowadzi wtedy tam. Strona TV otwarta z pliku bez tego parametru pokaże zamiast kodu QR prośbę o ustawienie adresu w konsoli.</p></li>
+      <li><p><b>Inny adres stron.</b> Gdy strony są otwierane z innego miejsca niż opublikowane (np. z komputera w sieci Wi-Fi szkoły), dopisz na końcu adresu TV i konsoli parametr <code>baza</code> z adresem głównego folderu zajęć, np. <code>&amp;baza=http://192.168.1.10:8000</code>. Kod QR poprowadzi wtedy tam. Strona TV otwarta z pliku bez tego parametru pokaże zamiast kodu QR prośbę o ustawienie adresu w konsoli.</p></li>
     </ol>
-    <p class="d-uwaga">Próba przed zajęciami: dopisz do adresu tabletu <code>?test</code>. Próba ma osobny kanał i żółty pasek „TRYB TESTOWY” na każdym ekranie, więc nie miesza się z zajęciami.</p>
+    <p class="d-uwaga">Próba przed zajęciami: dopisz do adresu konsoli <code>?test</code>. Próba ma osobny kanał i żółty pasek „TRYB TESTOWY” na każdym ekranie, więc nie miesza się z zajęciami.</p>
   </section>
 
   <section class="d-sekcja">
     <h2>Przebieg</h2>
     <ol class="d-kroki">
-      <li><p><b>Zbieranie odpowiedzi.</b> Uczniowie przechodzą na telefonach przez wszystkie kategorie. Na tablecie możesz wyłączyć kategorie, których nie robicie. Telewizor pokazuje, ile telefonów jest podłączonych i ile osób skończyło. Timer na tablecie jest do wyboru.</p></li>
-      <li><p><b>Kategorie po kolei.</b> Przycisk „Dalej” na tablecie przechodzi przez trzy ekrany każdej kategorii: Wyniki, Plusy i minusy, Co to zmienia w twoim życiu. Gdy kategoria pojawi się na telewizorze, telefony nie mogą już zmienić w niej odpowiedzi, a uczeń widzi swoje odpowiedzi obok prawdziwych liczb.</p></li>
+      <li><p><b>Zbieranie odpowiedzi.</b> Uczniowie przechodzą na telefonach przez wszystkie kategorie. Każdą odpowiedź uczeń wysyła raz i potem już jej nie zmienia. Na konsoli możesz wyłączyć kategorie, których nie robicie. Telewizor pokazuje, ile telefonów jest podłączonych i ile osób skończyło. Timer na konsoli jest do wyboru.</p></li>
+      <li><p><b>Kategorie po kolei.</b> Przycisk „Dalej” na konsoli przechodzi przez trzy ekrany każdej kategorii: Wyniki, Plusy i minusy, Co to zmienia w twoim życiu. Gdy kategoria pojawi się na telewizorze, zamyka się dla telefonów, a uczeń widzi swoje odpowiedzi obok prawdy. Przy pytaniach z wyborem poprawna odpowiedź o Grecję ma na telewizorze znak ✓.</p></li>
       <li><p><b>Podsumowanie.</b> Telewizor pokazuje kategorie, w których grupa najbardziej pomyliła się co do Grecji. W zakładce „Wyniki” zapisz plik z wynikami. Jeśli w zakładce „Sesja” jest link do wysyłki, przycisk „Wyślij plik” otworzy go.</p></li>
     </ol>
   </section>
 
   <section class="d-sekcja">
     <h2>Co mówić przy odsłonach</h2>
-    <p>Na tablecie, nad przyciskami „Wstecz” i „Dalej”, zawsze jest tekst do powiedzenia na ekran, który widać na telewizorze.</p>
-    <p class="d-mow"><b>Wyniki</b>Po lewej to, jak jest u was. Po prawej to, co zgadywaliście o Grecji. Na żółto prawdziwe liczby. Kto był najbliżej? Co was zaskoczyło?</p>
+    <p>Na konsoli, nad przyciskami „Wstecz” i „Dalej”, zawsze jest tekst do powiedzenia na ekran, który widać na telewizorze.</p>
+    <p class="d-mow"><b>Wyniki</b>Po lewej Polska: jak jest u was albo co zgadywaliście. Po prawej to, co zgadywaliście o Grecji. Na żółto prawdziwe dane, znak ✓ przy poprawnej odpowiedzi. Kto był najbliżej? Co was zaskoczyło?</p>
     <p class="d-mow"><b>Plusy i minusy</b>Przeczytaj zdanie o różnicy. Potem: który plus albo minus was zaskoczył? Skąd może się brać ta różnica?</p>
-    <p class="d-mow"><b>Co to zmienia w twoim życiu</b>To najważniejszy ekran. Przeczytaj skutki po kolei i przy każdym zapytaj, czy to widzą u siebie: w rachunkach, w powietrzu, w drodze do szkoły. Na koniec „Ty możesz” i pytania do klasy z tabletu (lista niżej).</p>
+    <p class="d-mow"><b>Co to zmienia w twoim życiu</b>To najważniejszy ekran. Przeczytaj skutki po kolei i przy każdym zapytaj, czy to widzą u siebie: w rachunkach, w powietrzu, w drodze do szkoły. Na koniec „Ty możesz” i pytania do klasy z konsoli (lista niżej).</p>
     <p class="d-mow"><b>Podsumowanie</b>Gdzie najbardziej się pomyliliśmy? Dlaczego tak myśleliśmy?</p>
   </section>
 
   <section class="d-sekcja">
     <h2>Pytania do rozmowy przy kategoriach</h2>
-    <p>Te same pytania są na tablecie przy ekranie „Co to zmienia w twoim życiu”.</p>
-    <ol class="d-pytania"><li><b>Prąd: ile z węgla</b><ul><li>Do czego używasz prądu najwięcej w ciągu dnia?</li><li>Który zawód przy nowej energii wydaje ci się ciekawy?</li></ul></li><li><b>Ogrzewanie domu zimą</b><ul><li>Czy w zimie czujesz smog na swojej ulicy? Skąd się bierze?</li></ul></li><li><b>Ciepła woda: ile ze słońca</b><ul><li>Ile trwa twój prysznic? Ile wody i energii można by oszczędzić?</li></ul></li><li><b>Czy stać nas na ciepło w domu</b><ul><li>Kogo w waszej okolicy może nie stać na ciepło zimą?</li></ul></li><li><b>Cena prądu dla rodziny</b><ul><li>Które sprzęty w twoim domu zużywają najwięcej prądu?</li><li>Co twoja rodzina mogłaby kupić za pieniądze zaoszczędzone na prądzie?</li></ul></li><li><b>Samochody w rodzinie</b><ul><li>Jak dojeżdżasz do szkoły i ile to trwa? Czy da się inaczej?</li></ul></li><li><b>Ile śmieci wyrzucamy</b><ul><li>Co najczęściej wyrzucasz w ciągu dnia? Czego dałoby się uniknąć?</li></ul></li><li><b>Recykling i segregacja</b><ul><li>Czy w twoim domu łatwo segregować? Co by pomogło?</li></ul></li><li><b>Wyrzucone jedzenie</b><ul><li>Co ostatnio wyrzuciliście w domu i dlaczego?</li></ul></li><li><b>Mięso na talerzu</b><ul><li>Ile razy w tygodniu jesz wędlinę albo mięso? Co mogłoby je zastąpić?</li></ul></li><li><b>Owoce i warzywa każdego dnia</b><ul><li>Ile porcji zjadłeś wczoraj? Co najłatwiej dodać do śniadania?</li></ul></li><li><b>Ile wody zabieramy naturze</b><ul><li>Jak chronisz się w upał? Co mogłoby pomóc w szkole?</li></ul></li><li><b>Autem, autobusem czy pociągiem</b><ul><li>Gdzie można u was dojechać autobusem albo pociągiem, a gdzie tylko autem?</li></ul></li><li><b>Kiedy wyprowadzka od rodziców</b><ul><li>Co trzeba mieć, żeby się wyprowadzić? Ile to może kosztować?</li></ul></li><li><b>Praca dla młodych</b><ul><li>Jaki zawód chcesz wykonywać? Czy będzie potrzebny za 10 lat?</li></ul></li></ol>
+    <p>Te same pytania są na konsoli przy ekranie „Co to zmienia w twoim życiu”.</p>
+    <ol class="d-pytania"><li><b>Prąd: ile z węgla</b><ul><li>Do czego używasz prądu najwięcej w ciągu dnia?</li><li>Który zawód przy nowej energii wydaje ci się ciekawy?</li></ul></li><li><b>Ogrzewanie domu zimą</b><ul><li>Czy w zimie czujesz smog na swojej ulicy? Skąd się bierze?</li></ul></li><li><b>Ciepła woda pod prysznicem</b><ul><li>Ile trwa twój prysznic? Ile wody i energii można by oszczędzić?</li></ul></li><li><b>Czy stać nas na ciepło w domu</b><ul><li>Kogo w waszej okolicy może nie stać na ciepło zimą?</li></ul></li><li><b>Rachunek za prąd</b><ul><li>Które sprzęty w twoim domu zużywają najwięcej prądu?</li><li>Co twoja rodzina mogłaby kupić za pieniądze zaoszczędzone na prądzie?</li></ul></li><li><b>Ile samochodów</b><ul><li>Jak dojeżdżasz do szkoły i ile to trwa? Czy da się inaczej?</li></ul></li><li><b>Ile śmieci wyrzucamy</b><ul><li>Co najczęściej wyrzucasz w ciągu dnia? Czego dałoby się uniknąć?</li></ul></li><li><b>Recykling i segregacja</b><ul><li>Czy w twoim domu łatwo segregować? Co by pomogło?</li></ul></li><li><b>Wyrzucone jedzenie</b><ul><li>Co ostatnio wyrzuciliście w domu i dlaczego?</li></ul></li><li><b>Mięso na talerzu</b><ul><li>Ile razy w tygodniu jesz wędlinę albo mięso? Co mogłoby je zastąpić?</li></ul></li><li><b>Owoce i warzywa każdego dnia</b><ul><li>Ile porcji zjadłeś wczoraj? Co najłatwiej dodać do śniadania?</li></ul></li><li><b>Ile wody zabieramy naturze</b><ul><li>Jak chronisz się w upał? Co mogłoby pomóc w szkole?</li></ul></li><li><b>Autem, autobusem czy pociągiem</b><ul><li>Gdzie można u was dojechać autobusem albo pociągiem, a gdzie tylko autem?</li></ul></li><li><b>Kiedy wyprowadzka od rodziców</b><ul><li>Co trzeba mieć, żeby się wyprowadzić? Ile to może kosztować?</li></ul></li><li><b>Praca dla młodych</b><ul><li>Jaki zawód chcesz wykonywać? Czy będzie potrzebny za 10 lat?</li></ul></li></ol>
   </section>
 
   <section class="d-sekcja">
@@ -203,8 +203,8 @@ figcaption b { color: var(--ink); }
     <ul class="d-lista">
       <li>Kropka przy stanie łącza: zielona to oba serwery, żółta jeden, czerwona brak sieci. Wystarczy jeden serwer.</li>
       <li>Telefon stracił sieć: odpowiedzi zostają na telefonie i wyślą się po powrocie sieci.</li>
-      <li>Telewizor nie gra dźwięku: kliknij w ekran TV albo przycisk „Dźwięk” w prawym dolnym rogu. Na tablecie „Test dźwięku” sprawdza dźwięk na TV.</li>
-      <li>Ktoś się spóźnił, a kategorie są już odsłonięte: na ekranie zbierania na tablecie wybierz „Otwórz ponownie odpowiedzi we wszystkich kategoriach”.</li>
+      <li>Telewizor nie gra dźwięku: kliknij w ekran TV albo przycisk „Dźwięk” w prawym dolnym rogu. Na konsoli „Test dźwięku” sprawdza dźwięk na TV.</li>
+      <li>Ktoś się spóźnił, a kategorie są już odsłonięte: na ekranie zbierania na konsoli wybierz „Wpuść spóźnionych”. Odsłonięte kategorie otworzą się tylko dla tych, którzy jeszcze nie odpowiedzieli; kto już odpowiedział, nie zmieni odpowiedzi.</li>
       <li>Nowe zajęcia albo nowa grupa: w zakładce „Sesja” wybierz „Nowa sesja”. Nowy kod oznacza, że telewizor i telefony trzeba otworzyć od nowa.</li>
     </ul>
   </section>
@@ -220,7 +220,7 @@ figcaption b { color: var(--ink); }
     <h2>What you need</h2>
     <ul class="d-lista">
       <li>A TV connected to a computer with a web browser (best with HDMI).</li>
-      <li>The teacher's tablet or laptop.</li>
+      <li>The teacher's console: a tablet or laptop.</li>
       <li>Students' phones with internet. A nickname is optional and only the teacher can see it.</li>
     </ul>
   </section>
@@ -228,37 +228,37 @@ figcaption b { color: var(--ink); }
   <section class="d-sekcja">
     <h2>Getting started</h2>
     <ol class="d-kroki">
-      <li><p><b>Tablet.</b> Open the teacher page <code>prowadzacy-ctccd4.html</code> and choose “New session”. The tablet makes a session code, you can see it at the top of the screen. If the class console gave the code, the page opens with this code straight away.</p></li>
-      <li><p><b>TV.</b> In the “Session” tab on the tablet there is the TV address with the session code and an “Open TV screen” button. Open this address on the computer next to the TV and click the screen: this turns on full screen and timer sounds. If the address has no code, the TV asks for the code from the tablet.</p></li>
-      <li><p><b>Language.</b> In the “Session” tab choose the session language: PL or EN (or add <code>&amp;jez=en</code> to the tablet address). The TV and phones take it automatically. Every device also has its own PL/EN switch: the tablet in the top bar, the phone in the bar, the TV in the bottom right corner (before full screen).</p></li>
+      <li><p><b>Teacher's console.</b> Open the teacher page <code>prowadzacy-ctccd4.html</code> and choose “New session”. The console makes a session code, you can see it at the top of the screen. If the class console gave the code, the page opens with this code straight away.</p></li>
+      <li><p><b>TV.</b> In the “Session” tab on the teacher's console there is the TV address with the session code and an “Open TV screen” button. Open this address on the computer next to the TV and click the screen: this turns on full screen and timer sounds. If the address has no code, the TV asks for the code from the teacher's console.</p></li>
+      <li><p><b>Language.</b> In the “Session” tab choose the session language: PL or EN (or add <code>&amp;jez=en</code> to the console address). The TV and phones take it automatically. Students' phones have no language switch, only you change the language. The console has its own PL/EN switch in the top bar, the TV in the bottom right corner (before full screen).</p></li>
       <li><p><b>QR code.</b> The TV shows a QR code, the page address and the session code. Students scan the QR code. If someone cannot, they type the address and the page asks for the session code.</p></li>
-      <li><p><b>A different address.</b> If the pages are opened from a different place than the published one (for example from a computer in the school Wi-Fi), add the <code>baza</code> parameter with the address of the main class folder to the end of the TV and tablet address, for example <code>&amp;baza=http://192.168.1.10:8000</code>. The QR code will then lead there. A TV page opened from a file without this parameter shows a request to set the address in the console instead of the QR code.</p></li>
+      <li><p><b>A different address.</b> If the pages are opened from a different place than the published one (for example from a computer in the school Wi-Fi), add the <code>baza</code> parameter with the address of the main class folder to the end of the TV and console address, for example <code>&amp;baza=http://192.168.1.10:8000</code>. The QR code will then lead there. A TV page opened from a file without this parameter shows a request to set the address in the console instead of the QR code.</p></li>
     </ol>
-    <p class="d-uwaga">Test before class: add <code>?test</code> to the tablet address. The test has its own channel and a yellow “TEST MODE” bar on every screen, so it does not mix with the class.</p>
+    <p class="d-uwaga">Test before class: add <code>?test</code> to the console address. The test has its own channel and a yellow “TEST MODE” bar on every screen, so it does not mix with the class.</p>
   </section>
 
   <section class="d-sekcja">
     <h2>How the class goes</h2>
     <ol class="d-kroki">
-      <li><p><b>Collecting answers.</b> Students go through all categories on their phones. On the tablet you can switch off categories you do not want to do. The TV shows how many phones are connected and how many students have finished. The timer on the tablet is optional.</p></li>
-      <li><p><b>Categories one by one.</b> The “Next” button on the tablet goes through three screens for each category: Results, Pros and cons, What it changes in your life. When a category appears on the TV, phones can no longer change answers in it, and each student sees their answers next to the real numbers.</p></li>
+      <li><p><b>Collecting answers.</b> Students go through all categories on their phones. Students send each answer once and cannot change it later. On the console you can switch off categories you do not want to do. The TV shows how many phones are connected and how many students have finished. The timer on the console is optional.</p></li>
+      <li><p><b>Categories one by one.</b> The “Next” button on the console goes through three screens for each category: Results, Pros and cons, What it changes in your life. When a category appears on the TV, it closes for phones, and each student sees their answers next to the real data. In choice questions the right answer about Greece has a ✓ on the TV.</p></li>
       <li><p><b>Summary.</b> The TV shows the categories where the group was most wrong about Greece. In the “Results” tab save the results file. If there is a link in the “Session” tab, the “Send file” button opens it.</p></li>
     </ol>
   </section>
 
   <section class="d-sekcja">
     <h2>What to say on each screen</h2>
-    <p>On the tablet, above the “Back” and “Next” buttons, there is always a text to say for the screen that is on the TV.</p>
-    <p class="d-mow"><b>Results</b>On the left is how it is in your homes. On the right is what you guessed about Greece. In yellow, the real figures. Who was closest? What surprised you?</p>
+    <p>On the console, above the “Back” and “Next” buttons, there is always a text to say for the screen that is on the TV.</p>
+    <p class="d-mow"><b>Results</b>On the left is Poland: how it is for you or what you guessed. On the right is what you guessed about Greece. In yellow, the real data, with ✓ next to the right answer. Who was closest? What surprised you?</p>
     <p class="d-mow"><b>Pros and cons</b>Read the sentence about the difference. Then: which plus or minus surprised you? Where can this difference come from?</p>
-    <p class="d-mow"><b>What it changes in your life</b>This is the most important screen. Read the effects one by one and ask each time if they see it in their own lives: in bills, in the air, on the way to school. End with “You can” and the class questions from the tablet (list below).</p>
+    <p class="d-mow"><b>What it changes in your life</b>This is the most important screen. Read the effects one by one and ask each time if they see it in their own lives: in bills, in the air, on the way to school. End with “You can” and the class questions from the console (list below).</p>
     <p class="d-mow"><b>Summary</b>Where were we most wrong? Why did we think so?</p>
   </section>
 
   <section class="d-sekcja">
     <h2>Questions for the class, by category</h2>
-    <p>The same questions are on the tablet next to the “What it changes in your life” screen.</p>
-    <ol class="d-pytania"><li><b>Electricity: how much from coal</b><ul><li>What do you use electricity for most during the day?</li><li>Which job in new energy sounds interesting to you?</li></ul></li><li><b>Heating the home in winter</b><ul><li>Do you notice smog on your street in winter? Where does it come from?</li></ul></li><li><b>Hot water: how much from the sun</b><ul><li>How long is your shower? How much water and energy could you save?</li></ul></li><li><b>Can we afford a warm home</b><ul><li>Who in your area might not afford a warm home in winter?</li></ul></li><li><b>Electricity price for a family</b><ul><li>Which devices in your home use the most electricity?</li><li>What could your family buy with money saved on electricity?</li></ul></li><li><b>Cars in the family</b><ul><li>How do you get to school and how long does it take? Is there another way?</li></ul></li><li><b>How much rubbish we throw away</b><ul><li>What do you throw away most often in a day? What could you avoid?</li></ul></li><li><b>Recycling and sorting</b><ul><li>Is it easy to sort waste in your home? What would help?</li></ul></li><li><b>Food we throw away</b><ul><li>What food did your family throw away recently, and why?</li></ul></li><li><b>Meat on the plate</b><ul><li>How many times a week do you eat ham or meat? What could replace it?</li></ul></li><li><b>Fruit and vegetables every day</b><ul><li>How many portions did you eat yesterday? What is easiest to add to breakfast?</li></ul></li><li><b>How much water we take from nature</b><ul><li>How do you stay safe in a heatwave? What could help at school?</li></ul></li><li><b>By car, bus or train</b><ul><li>Where can you go by bus or train, and where only by car?</li></ul></li><li><b>When to move out from parents</b><ul><li>What do you need to move out? How much could it cost?</li></ul></li><li><b>Jobs for young people</b><ul><li>What job do you want? Will it be needed in 10 years?</li></ul></li></ol>
+    <p>The same questions are on the console next to the “What it changes in your life” screen.</p>
+    <ol class="d-pytania"><li><b>Electricity: how much from coal</b><ul><li>What do you use electricity for most during the day?</li><li>Which job in new energy sounds interesting to you?</li></ul></li><li><b>Heating the home in winter</b><ul><li>Do you notice smog on your street in winter? Where does it come from?</li></ul></li><li><b>Hot water for the shower</b><ul><li>How long is your shower? How much water and energy could you save?</li></ul></li><li><b>Can we afford a warm home</b><ul><li>Who in your area might not afford a warm home in winter?</li></ul></li><li><b>Electricity bill</b><ul><li>Which devices in your home use the most electricity?</li><li>What could your family buy with money saved on electricity?</li></ul></li><li><b>How many cars</b><ul><li>How do you get to school and how long does it take? Is there another way?</li></ul></li><li><b>How much rubbish we throw away</b><ul><li>What do you throw away most often in a day? What could you avoid?</li></ul></li><li><b>Recycling and sorting</b><ul><li>Is it easy to sort waste in your home? What would help?</li></ul></li><li><b>Food we throw away</b><ul><li>What food did your family throw away recently, and why?</li></ul></li><li><b>Meat on the plate</b><ul><li>How many times a week do you eat ham or meat? What could replace it?</li></ul></li><li><b>Fruit and vegetables every day</b><ul><li>How many portions did you eat yesterday? What is easiest to add to breakfast?</li></ul></li><li><b>How much water we take from nature</b><ul><li>How do you stay safe in a heatwave? What could help at school?</li></ul></li><li><b>By car, bus or train</b><ul><li>Where can you go by bus or train, and where only by car?</li></ul></li><li><b>When to move out from parents</b><ul><li>What do you need to move out? How much could it cost?</li></ul></li><li><b>Jobs for young people</b><ul><li>What job do you want? Will it be needed in 10 years?</li></ul></li></ol>
   </section>
 
   <section class="d-sekcja">
@@ -266,8 +266,8 @@ figcaption b { color: var(--ink); }
     <ul class="d-lista">
       <li>The connection dot: green means both servers, yellow one, red no network. One server is enough.</li>
       <li>A phone lost the network: answers stay on the phone and are sent when the network is back.</li>
-      <li>The TV makes no sound: click the TV screen or the “Sound” button in the bottom right corner. On the tablet, “Sound test” checks the sound on the TV.</li>
-      <li>Someone came late and categories are already shown: on the collecting screen on the tablet choose “Reopen answers in all categories”.</li>
+      <li>The TV makes no sound: click the TV screen or the “Sound” button in the bottom right corner. On the console, “Sound test” checks the sound on the TV.</li>
+      <li>Someone came late and categories are already shown: on the collecting screen on the console choose “Let latecomers in”. Categories already shown open only for those who have not answered yet; students who have answered cannot change their answers.</li>
       <li>A new class or a new group: in the “Session” tab choose “New session”. A new code means that the TV and phones must be opened again.</li>
     </ul>
   </section>

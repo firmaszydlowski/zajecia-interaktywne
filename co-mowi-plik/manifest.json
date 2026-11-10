@@ -20,7 +20,7 @@
   "parametry": {
     "k": "kod sesji",
     "test": "tryb próbny",
-    "jez": "język: pl albo en (domyślnie pl; tablet ustala język sesji)",
-    "baza": "adres bazowy dla kodu QR (tv.html, tablet)"
+    "jez": "język: pl albo en (domyślnie pl; konsola prowadzącego ustala język sesji)",
+    "baza": "adres bazowy dla kodu QR (tv.html, konsola prowadzącego)"
   }
 }
