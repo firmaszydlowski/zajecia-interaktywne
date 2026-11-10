@@ -2881,7 +2881,7 @@ function tekstWJezyku(wartosc, jezyk) {
 
 /* Trzy adresy jednej sesji. TV i tablet otwierane z konsoli (względem korzenia wyników), uczniowie i tablet z innego
    urządzenia przez adres bazowy. Język zajęć idzie do wszystkich trzech widoków, Dropbox tylko do apek,
-   które go przyjmują. Brak pliku = null. */
+   które go przyjmują. uczenTutaj: telefon ucznia w karcie tej przeglądarki (próba w kartach). Brak pliku = null. */
 function adresySesji({ zajecia, kod, test, jez, baza, dropbox, korzen }) {
   if (!SILNIK.poprawnyKod(kod)) throw new RangeError(`Zły kod sesji: ${kod}`);
   if (!TRYBY_TESTU.includes(test)) throw new RangeError(`Zły tryb: ${test}`);
@@ -2892,6 +2892,7 @@ function adresySesji({ zajecia, kod, test, jez, baza, dropbox, korzen }) {
   const dlaProwadzacego = zapytanieWidoku({ kod, test, jez, baza, dropbox: zajecia.dropbox ? dropbox : null });
   return {
     uczen: zBazy(zajecia.uczen, zapytanieWidoku({ kod, test, jez })),
+    uczenTutaj: obok(zajecia.uczen, zapytanieWidoku({ kod, test, jez })),
     tv: obok(zajecia.tv, zapytanieWidoku({ kod, test, jez, baza })),
     prowadzacy: obok(zajecia.prowadzacy, dlaProwadzacego),
     prowadzacyZdalnie: zBazy(zajecia.prowadzacy, dlaProwadzacego),
@@ -2962,6 +2963,7 @@ const SLOWNIK_KONSOLI = {
     tv: "Telewizor", tvOpis: "Otwiera się w osobnym oknie. Przeciągnij je na ekran TV i włącz pełny ekran: Ctrl+Cmd+F.",
     otworzTv: "Otwórz TV", tvBrak: "W folderze zajęć brak pliku TV.",
     uczniowie: "Uczniowie", uczniowieOpis: "Telefony skanują kod QR. Ten sam kod pokazuje TV.", uczniowieBrak: "W folderze zajęć brak strony ucznia.",
+    otworzUcznia: "Otwórz telefon ucznia", uczenKarty: "Każda karta to osobny uczeń. Otwórz kilka, żeby zagrać za kilku.",
     qrUczniow: (nazwa, kod) => `Kod QR dla uczniów: ${nazwa}, sesja ${kod}`, pokazQr: "Pokaż QR na cały ekran",
     tablet: "Tablet prowadzącego", tylkoTy: "Tylko dla prowadzącego. Nie pokazuj tego adresu uczniom.",
     otworzTablet: "Otwórz tablet prowadzącego", osobnyTablet: "Na osobnym tablecie otwórz ten adres:",
@@ -3001,6 +3003,7 @@ const SLOWNIK_KONSOLI = {
     tv: "TV", tvOpis: "Opens in a separate window. Drag it to the TV screen and go full screen: Ctrl+Cmd+F.",
     otworzTv: "Open TV", tvBrak: "The class folder has no TV file.",
     uczniowie: "Students", uczniowieOpis: "Phones scan the QR code. The TV shows the same code.", uczniowieBrak: "The class folder has no student page.",
+    otworzUcznia: "Open student phone", uczenKarty: "Each tab is a separate student. Open several to play as several.",
     qrUczniow: (nazwa, kod) => `QR code for students: ${nazwa}, session ${kod}`, pokazQr: "Show QR full screen",
     tablet: "Teacher tablet", tylkoTy: "Teacher only. Do not show this address to students.",
     otworzTablet: "Open teacher tablet", osobnyTablet: "On a separate tablet, open this address:",
@@ -3184,6 +3187,13 @@ function kartaTv(adresy, sesja) {
     adresy.tv ? el("code", { className: "k1-adres", textContent: adresy.tv }) : el("p", { className: "komunikat", textContent: t("tvBrak") }));
 }
 
+/* Próba w kartach: telefon ucznia otwiera się w karcie tej przeglądarki (QR nie da się kliknąć). */
+function przyciskiUcznia(adresy, sesja, pokazQr) {
+  const qr = przycisk(t("pokazQr"), sesja.test === "lokalnie" ? "k1-btn" : "k1-btn-gl", pokazQr, "pokaz-qr");
+  if (sesja.test !== "lokalnie" || !adresy.uczenTutaj) return [qr];
+  return [linkNowaKarta(t("otworzUcznia"), adresy.uczenTutaj, "k1-btn-gl"), el("p", { className: "k1-meta", textContent: t("uczenKarty") }), qr];
+}
+
 function kartaUczniow(adresy, zajecia, sesja, pokazQr) {
   if (!adresy.uczen) {
     return el("section", { className: "k1-link" }, el("h2", { textContent: t("uczniowie") }), el("p", { className: "komunikat", textContent: t("uczniowieBrak") }));
@@ -3191,7 +3201,7 @@ function kartaUczniow(adresy, zajecia, sesja, pokazQr) {
   return el("section", { className: "k1-link" },
     el("h2", { textContent: t("uczniowie") }), el("p", { className: "k1-meta", textContent: t("uczniowieOpis") }),
     obrazQr(adresy.uczen, t("qrUczniow", poJezyku(zajecia.nazwa), sesja.kod), "zi-qr"),
-    przycisk(t("pokazQr"), "k1-btn-gl", pokazQr, "pokaz-qr"),
+    ...przyciskiUcznia(adresy, sesja, pokazQr),
     ...adresDoSkopiowania(adresy.uczen));
 }
 
