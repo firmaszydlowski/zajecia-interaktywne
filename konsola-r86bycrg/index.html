@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <title>Konsola zajęć</title>
 <style>
-/* Kopia 1:1 z generator-debat/apka/styl.css (Wygląd A „Tablica wyników”, stan 09.11.2026). Zmiany wyglądu nanosić tam i kopiować tu. */
+/* Kopia 1:1 z generator-debat/apka/styl.css (Wygląd A „Tablica wyników”). Zmiany wyglądu nanosić tam i kopiować tu. */
 /* Wygląd A „Tablica wyników” (makiety/kierunek-A-v2.html): tokeny i elementy wspólne wszystkich stron.
    Tokeny i typografia 1:1 z makiety. Strony: <body class="k1"> (jasna) albo <body class="k1 k1-ciemny">.
    Kontrast WCAG AA sprawdzony dla par tokenów (najniższa para szary/ciem2: 4,9:1). */
@@ -2945,9 +2945,9 @@ const SLOWNIK_KONSOLI = {
     widoki: { uczen: "uczeń", tv: "TV", prowadzacy: "prowadzący" },
     pusto: "W folderze wyniki nie ma jeszcze zajęć. Po zbudowaniu apki odśwież konsolę (polecenie w stopce).",
     adresTelefonow: "Adres dla telefonów", wifi: "Wi-Fi tego komputera", wifiBrak: "Nie wykryto. Uruchom na Macu Konsola.command.",
-    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Puste pole: adres tej konsoli, ${adres}`,
+    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Puste pole oznacza adres tej konsoli: ${adres}`,
     pagesOpis: "Adres folderu z zajęciami, zaczyna się od https://",
-    hotel: "Wi-Fi w hotelu albo w szkole bywa izolowane: telefony nie widzą laptopa. Wtedy wybierz adres internetowy (GitHub Pages).",
+    hotel: "Wi-Fi w hotelu czy w szkole bywa izolowane i telefony nie widzą laptopa. Wtedy wybierz adres internetowy (GitHub Pages).",
     dropbox: "Dropbox na pliki z wynikami",
     dropboxCzesc: (nazwy) => `Link trafia do tabletu prowadzącego w: ${nazwy}. Pozostałe apki mają link wpisany na stałe.`,
     dropboxNikt: "Żadna apka nie czyta jeszcze tego ustawienia: każda ma link do Dropboxa wpisany na stałe. Konsola zapamięta link i przekaże go apkom, gdy zaczną go przyjmować.",
@@ -2970,7 +2970,7 @@ const SLOWNIK_KONSOLI = {
     qrTabletu: "Kod QR dla tabletu prowadzącego", pokazQrTabletu: "Pokaż QR dla tabletu", schowajQr: "Schowaj QR",
     dropboxNaStale: "Ta apka ma link do Dropboxa wpisany na stałe i nie bierze go z ustawień konsoli.",
     zeskanuj: "Zeskanuj kod telefonem", zamknijOkno: "Zamknij",
-    kopiuj: "Kopiuj adres", skopiowano: "Skopiowano.", zaznaczono: "Adres zaznaczony: skopiuj Cmd+C.",
+    kopiuj: "Kopiuj adres", skopiowano: "Skopiowano.", zaznaczono: "Adres jest zaznaczony, skopiuj go przez Cmd+C.",
     bezQr: "Tego adresu nie da się zamienić na kod QR. Skopiuj go i wyślij uczniom.",
     ogloszenieSesja: (kod) => `Nowa sesja, kod ${kod}`, ogloszenieKod: (kod) => `Nowy kod sesji ${kod}`,
   },
@@ -2985,9 +2985,9 @@ const SLOWNIK_KONSOLI = {
     widoki: { uczen: "student", tv: "TV", prowadzacy: "teacher" },
     pusto: "There are no classes in the wyniki folder yet. After building an app, refresh the console (command in the footer).",
     adresTelefonow: "Address for phones", wifi: "This computer's Wi-Fi", wifiBrak: "Not detected. Run Konsola.command on the Mac.",
-    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `Empty field: this console's address, ${adres}`,
+    pages: "Internet (GitHub Pages)", pagesPusty: (adres) => `An empty field means this console's address: ${adres}`,
     pagesOpis: "Address of the classes folder, starts with https://",
-    hotel: "Hotel or school Wi-Fi is often isolated: phones cannot see the laptop. Then choose the internet address (GitHub Pages).",
+    hotel: "Wi-Fi in a hotel or a school is often isolated, so phones cannot see the laptop. Then choose the internet address (GitHub Pages).",
     dropbox: "Dropbox for result files",
     dropboxCzesc: (nazwy) => `The link goes to the teacher tablet in: ${nazwy}. Other apps have the link built in.`,
     dropboxNikt: "No app reads this setting yet: each has its Dropbox link built in. The console keeps the link and will pass it on once apps accept it.",
@@ -3010,7 +3010,7 @@ const SLOWNIK_KONSOLI = {
     qrTabletu: "QR code for the teacher tablet", pokazQrTabletu: "Show QR for tablet", schowajQr: "Hide QR",
     dropboxNaStale: "This app has its Dropbox link built in and does not take it from the console settings.",
     zeskanuj: "Scan the code with your phone", zamknijOkno: "Close",
-    kopiuj: "Copy address", skopiowano: "Copied.", zaznaczono: "Address selected: copy with Cmd+C.",
+    kopiuj: "Copy address", skopiowano: "Copied.", zaznaczono: "The address is selected, copy it with Cmd+C.",
     bezQr: "This address cannot be turned into a QR code. Copy it and send it to students.",
     ogloszenieSesja: (kod) => `New session, code ${kod}`, ogloszenieKod: (kod) => `New session code ${kod}`,
   },
