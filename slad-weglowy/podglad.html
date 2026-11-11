@@ -872,6 +872,60 @@ ul.tv-lista li::before { content: none; }
 .tv-wideo-ramka { flex: 1; min-height: 0; display: flex; justify-content: center; align-items: center; }
 .tv-wideo { display: block; max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: contain; }
 
+/* Typ „punkty” (typ_punkty.js) na TV: zasady punktów, decyzje zespołów, tablica wyników. Najmniejszy tekst 64 px przy 1080p.
+   Punkty jednym kodem: zysk zielony na ciemnym (#4ADE80, jak łącze OK), strata ciemna na jasnym (--uwaga-t), zero szare. */
+.tv-pk-liczba { display: inline-grid; place-items: center; font: 700 1em/1 var(--kond); font-variant-numeric: tabular-nums; background: var(--ciem2); color: #4ADE80; }
+.tv-pk-liczba.pk-minus { background: var(--uwaga-t); color: var(--uwaga); }
+.tv-pk-liczba.pk-zero { color: var(--szary); }
+.tv-pk-tytul { flex: none; font: 700 calc(112 * var(--u))/0.95 var(--kond); }
+.tv-pk-werdykt { color: #fff; }
+
+/* zasady: macierz rodzaj × decyzja */
+.tv-pk-zasady { flex: 1; min-height: 0; display: grid; grid-template-columns: calc(470 * var(--u)) repeat(var(--kolumny, 3), minmax(0, 1fr));
+  grid-template-rows: auto; grid-auto-rows: minmax(0, 1fr); gap: calc(16 * var(--u)); }
+.tv-pk-rog { align-self: end; font: 700 calc(112 * var(--u))/0.95 var(--kond); }
+.tv-pk-kol { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: calc(12 * var(--u)); padding-bottom: calc(8 * var(--u));
+  font: 700 calc(64 * var(--u))/1 var(--kond); border-bottom: calc(8 * var(--u)) solid currentColor; }
+.tv-pk-kol .ik { width: calc(80 * var(--u)); height: calc(80 * var(--u)); }
+.tv-pk-wiersz { display: flex; align-items: center; font: 700 calc(72 * var(--u))/1 var(--kond); }
+.tv-pk-zasady .tv-pk-liczba { font-size: calc(150 * var(--u)); }
+
+/* decyzje: kolumna na opcję, numery zespołów jako kafle */
+.tv-pk-decyzje { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(var(--kolumny, 3), minmax(0, 1fr)); gap: calc(48 * var(--u)); }
+.tv-pk-decyzja { min-height: 0; display: flex; flex-direction: column; gap: calc(24 * var(--u)); }
+.tv-pk-decyzja h2 { display: flex; align-items: center; gap: calc(16 * var(--u)); padding-bottom: calc(12 * var(--u)); border-bottom: calc(8 * var(--u)) solid currentColor;
+  font: 700 calc(72 * var(--u))/1 var(--kond); white-space: nowrap; }
+.tv-pk-decyzja h2 .ik { width: calc(72 * var(--u)); height: calc(72 * var(--u)); }
+.tv-pk-decyzja > .tv-pk-liczba { align-self: start; min-width: calc(260 * var(--u)); padding: calc(12 * var(--u)) calc(28 * var(--u)); font-size: calc(150 * var(--u)); }
+.tv-pk-kafle { display: flex; flex-wrap: wrap; gap: calc(16 * var(--u)); }
+.tv-pk-kafle li { display: grid; place-items: center; width: calc(124 * var(--u)); height: calc(124 * var(--u)); background: var(--ciem3); font: 700 calc(88 * var(--u))/1 var(--kond); }
+.tv-pk-nikt { font: 700 calc(64 * var(--u))/1 var(--kond); color: var(--szary); }
+
+/* tablica wyników: jedna kolumna do 6 zespołów, dwie powyżej */
+.tv-pk-tablica { --r: 100; flex: 1; min-height: 0; display: grid; grid-auto-flow: column; grid-template-columns: repeat(var(--kol, 1), minmax(0, 1fr));
+  column-gap: calc(64 * var(--u)); align-content: start; }
+.tv-pk-tablica.pk-dwie { --r: 84; --kol: 2; }
+.tv-pk-tablica.pk-koniec { --r: 96; }
+.tv-pk-tablica.pk-koniec.pk-dwie { --r: 88; }
+.tv-pk-gl, .tv-pk-poz { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; column-gap: calc(24 * var(--u)); }
+.tv-pk-tablica.pk-koniec .tv-pk-poz { grid-template-columns: auto minmax(0, 1fr) auto; }
+.tv-pk-gl > :nth-child(n+3), .tv-pk-poz > :nth-child(n+3) { justify-self: end; }
+.tv-pk-gl { padding-bottom: calc(8 * var(--u)); font: 700 calc(64 * var(--u))/1 var(--kond); color: var(--jasny); }
+.tv-pk-poz { padding: calc(14 * var(--u)) 0; border-top: calc(4 * var(--u)) solid var(--ciem3); font: 700 calc(var(--r) * var(--u))/1.05 var(--kond); }
+.tv-pk-miejsce { color: var(--jasny); }
+.tv-pk-nazwa { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tv-pk-poz.pk-lider .tv-pk-nazwa, .tv-pk-poz.pk-lider .tv-pk-miejsce, .tv-pk-poz.pk-lider .tv-pk-suma { color: var(--zolty); }
+.tv-pk-zmiana { display: flex; align-items: center; gap: calc(14 * var(--u)); }
+.tv-pk-zmiana .ik { width: calc(64 * var(--u)); height: calc(64 * var(--u)); }
+.tv-pk-zmiana .tv-pk-liczba { min-width: calc(150 * var(--u)); padding: calc(8 * var(--u)) calc(14 * var(--u)); font-size: calc(var(--r) * 0.8 * var(--u)); }
+.tv-pk-tablica.pk-dwie .tv-pk-gl, .tv-pk-tablica.pk-dwie .tv-pk-poz { column-gap: calc(16 * var(--u)); }
+.tv-pk-tablica.pk-dwie .tv-pk-poz { padding: calc(20 * var(--u)) 0; }
+.tv-pk-tablica.pk-dwie .tv-pk-zmiana .tv-pk-liczba { min-width: calc(120 * var(--u)); }
+.tv-pk-tablica.pk-koniec .tv-pk-poz { padding-top: calc(10 * var(--u)); padding-bottom: calc(10 * var(--u)); }
+.tv-pk-suma small { margin-left: calc(12 * var(--u)); font-size: calc(64 * var(--u)); color: var(--jasny); }
+.tv-pk-tablica.pk-koniec .tv-pk-poz.pk-lider { margin: 0 calc(-24 * var(--u)); padding-left: calc(24 * var(--u)); padding-right: calc(24 * var(--u)); background: var(--zolty); border-top-color: var(--zolty); }
+.tv-pk-tablica.pk-koniec .tv-pk-poz.pk-lider > *, .tv-pk-tablica.pk-koniec .tv-pk-poz.pk-lider small { color: var(--ciem); }
+
 </style>
 </head>
 <body class="k1 pg">
@@ -4863,14 +4917,14 @@ const zespolowPl = (n) => (n === 1 ? "1 zespół" : [2, 3, 4].includes(n % 10) &
 
 if (typeof SLOWNIK !== "undefined") {
   Object.assign(SLOWNIK.pl, { typ_wyzwanie: "Wyzwanie zespołowe", faza_omowienie: "Omówienie",
-    wyzPlany: (n, m) => `Plany: ${n} z ${m}`, wyzRanking: "Ranking: najmniejszy ślad na osobę", wyzSzacunek: (s) => `szacunek ${s}`, wyzSzacunekEt: "szacunek",
-    wyzBezPlanu: "bez planu", wyzBrakPlanow: "Żaden zespół nie wysłał planu.", wyzNajlepszy: (z, r) => `Najlepszy szacunek: ${z}, różnica ${r} kg`,
+    wyzPlany: (n, m) => `Plany: ${n} z ${m}`, wyzRanking: "Ranking: najmniejszy ślad na osobę", wyzSzacunek: (s) => `typ: ${s}`, wyzSzacunekEt: "typ",
+    wyzBezPlanu: "bez planu", wyzBrakPlanow: "Żaden zespół nie wysłał planu.", wyzNajlepszy: (z, r) => `Najlepiej oszacował: ${z}, pomyłka ${r} kg`,
     wyzKategoria: (i, n) => `Kategoria ${i} z ${n}`, wyzZespolow: zespolowPl, wyzZZycia: "Z życia", wyzWyslij: "Wyślij plan",
     wyzWyslany: "Plan wysłany. Czekamy na ranking.", wyzJedenTelefon: "Plan wysyła jeden telefon w zespole. Liczy się pierwszy wysłany plan.",
     wyzPlanNaEkranie: "Plan waszego zespołu i ranking są na dużym ekranie.", wyzWaszPlan: "Plan wysłany z tego telefonu", wyzNaOsobe: "kg CO2e na osobę",
     wyzTwojSzacunek: (s, r) => `Szacunek: ${s} kg. Różnica: ${r} kg.`, wyzRankingNaEkranie: "Ranking zespołów jest na dużym ekranie.",
     wyzRoznica: (r) => `różnica ${r}`, wyzPoprzednia: "Poprzednia kategoria", wyzNastepna: "Następna kategoria",
-    wyzOpisKonsoli: "Liczy się pierwszy plan każdego zespołu. Ranking: mniejszy ślad wyżej, przy remisie lepszy szacunek." });
+    wyzOpisKonsoli: "Liczy się pierwszy plan każdego zespołu. Ranking: mniejszy ślad wyżej, przy remisie wygrywa trafniejszy typ." });
   Object.assign(SLOWNIK.en, { typ_wyzwanie: "Team challenge", faza_omowienie: "Discussion",
     wyzPlany: (n, m) => `Plans: ${n} of ${m}`, wyzRanking: "Ranking: smallest footprint per person", wyzSzacunek: (s) => `estimate ${s}`, wyzSzacunekEt: "estimate",
     wyzBezPlanu: "no plan", wyzBrakPlanow: "No team has sent a plan.", wyzNajlepszy: (z, r) => `Best estimate: ${z}, ${r} kg off`,
@@ -5406,6 +5460,149 @@ if (typeof SLOWNIK !== "undefined") {
     odtworzNaTv: (n, razy) => `Play on TV (${n} of ${razy})`, odtworzonoWszystkie: (razy) => `Played ${razy} of ${razy}`,
     patrzNaEkranWideo: "Watch the screen. Put your phone down.", wideoBezDzwieku: "Video without sound.", wideoZDzwiekiem: "Video with sound: turn the sound on on the TV." });
 }
+
+;
+/* Typ kroku „punkty”: tablice punktów zespołów za krok glos z polem punkty (np. depesze w „Redakcji pod presją”). Trzy odmiany:
+   - zasady { z_kroku, tytul, zasady: { wiersze: [{tekst}], punkty: [[liczba na opcję]] }, tresc }: tabela, wiersz = rodzaj, kolumna = opcja kroku z_kroku;
+   - po kroku { z_kroku, tytul, etykieta, za_krok: { tytul, tresc? }, tresc }: fazy „decyzje” (kto co wybrał, ile to dało) i „ranking” (decyzja, punkty za krok, suma);
+   - koniec { z_kroku, koniec: true, tytul, tresc }: sam ranking z sumą, 1. miejsce na żółtym pasku.
+   Decyzja zespołu i punkty jak punktKroku (wyniki.js): najczęstszy głos telefonów zespołu, remis = bez decyzji (0). Suma liczy kroki do z_kroku włącznie.
+   Ponad 6 zespołów: tablica w dwóch kolumnach. Format: README.md, „punkty”. */
+const MAKS_ZESPOLOW_W_KOLUMNIE = 6;
+
+const krokZrodlowy = (zajecia, krok) => zajecia.kroki.find((k) => k.id === krok.z_kroku);
+const odmianaPunktow = (krok) => (krok.zasady ? "zasady" : krok.koniec ? "koniec" : "po");
+const znakPunktow = (n) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0");
+
+/* Numer opcji, którą wybrał zespół (najczęstszy głos jego telefonów), albo null: brak głosu albo remis. */
+function decyzjaZespolu(krok, glosy) {
+  const liczby = krok.opcje.map((_, i) => glosy.filter((d) => d.o === i).length);
+  const max = Math.max(...liczby);
+  if (!max || liczby.filter((n) => n === max).length > 1) return null;
+  return liczby.indexOf(max);
+}
+
+/* Zajęcia obcięte do kroku o tym id włącznie: suma „po depeszy 3” nie liczy późniejszych depesz. */
+function zajeciaDoKroku(zajecia, id) {
+  const i = zajecia.kroki.findIndex((k) => k.id === id);
+  return { ...zajecia, kroki: zajecia.kroki.slice(0, i + 1) };
+}
+
+/* Ranking po kroku z_kroku: miejsce, zespół, suma (punkty), decyzja w kroku z_kroku i punkty za nią (zmiana). */
+function tablicaPunktow(zajecia, krok, odp) {
+  const zrodlo = krokZrodlowy(zajecia, krok);
+  const glosy = odpowiedziKroku(odp, zrodlo.id).filter((d) => dobryGlos(zrodlo, d));
+  return rankingZespolow(zajeciaDoKroku(zajecia, zrodlo.id), odp).map((p) => {
+    const moje = glosy.filter((d) => d.z === p.zespol);
+    return { ...p, decyzja: decyzjaZespolu(zrodlo, moje), zmiana: punktKroku(zrodlo, moje) };
+  });
+}
+
+/* Elementy wspólne TV: liczba punktów (zysk zielony, strata na jasnym, zero szare) i ikona opcji. */
+const pktEl = (n) => el("span", { className: `tv-pk-liczba${n < 0 ? " pk-minus" : n === 0 ? " pk-zero" : ""}`, textContent: znakPunktow(n) });
+const ikonaOpcjiPunktow = (opcja) => (IKONY_OPCJI[opcja.styl] ? ikona(IKONY_OPCJI[opcja.styl], `ik ${klasaOpcji(opcja)}`) : null);
+const ramkaZNaglowkiem = (k, naglowek, prawa, ...tresc) => tvRama({ ...k, krok: { ...k.krok, naglowek } }, prawa, ...tresc);
+const stopkaTv = (tekst) => (tekst ? el("p", { className: "tv-d", textContent: tekst }) : null);
+
+function tvZasadPunktow(k) {
+  const kr = k.krok;
+  const opcje = krokZrodlowy(k.zajecia, kr).opcje;
+  const siatka = el("div", { className: "tv-pk-zasady" }, el("h1", { className: "tv-pk-rog", textContent: tx(kr.tytul) }),
+    ...opcje.map((o) => el("div", { className: `tv-pk-kol ${klasaOpcji(o)}` }, ikonaOpcjiPunktow(o), el("span", { textContent: tx(o.tekst) }))));
+  kr.zasady.wiersze.forEach((w, i) => siatka.append(el("div", { className: "tv-pk-wiersz", textContent: tx(w.tekst) }), ...kr.zasady.punkty[i].map(pktEl)));
+  siatka.style.setProperty("--kolumny", String(opcje.length));
+  return ramkaZNaglowkiem(k, "", null, siatka, stopkaTv(tx(kr.tresc)));
+}
+
+const kafleZespolow = (numery) => (numery.length ? el("ul", { className: "tv-pk-kafle" }, ...numery.map((z) => el("li", { className: "num", textContent: String(z) })))
+  : el("p", { className: "tv-pk-nikt", textContent: t("pktNikt") }));
+
+/* Faza „decyzje”: kolumna na opcję z punktami opcji i numerami zespołów, które ją wybrały; zespoły bez decyzji w stopce. */
+function tvDecyzji(k) {
+  const kr = k.krok;
+  const zrodlo = krokZrodlowy(k.zajecia, kr);
+  const wiersze = tablicaPunktow(k.zajecia, kr, k.odp);
+  const kolumny = zrodlo.opcje.map((o, i) => el("div", { className: `tv-pk-decyzja ${klasaOpcji(o)}` },
+    el("h2", {}, ikonaOpcjiPunktow(o), el("span", { textContent: tx(o.tekst) })), pktEl(zrodlo.punkty[i] || 0),
+    kafleZespolow(wiersze.filter((p) => p.decyzja === i).map((p) => p.zespol).sort((a, b) => a - b))));
+  const bez = wiersze.filter((p) => p.decyzja === null).map((p) => p.zespol).sort((a, b) => a - b);
+  const stopka = bez.length ? t("pktBez", bez.map((z) => nazwaZespolu(k.zajecia, z)).join(", ")) : tx(kr.za_krok.tresc) || t("pktKafle");
+  const werdykt = zrodlo.odslona && zrodlo.odslona.werdykt ? el("b", { className: "tv-pk-werdykt", textContent: tx(zrodlo.odslona.werdykt) }) : null;
+  const siatka = el("div", { className: "tv-pk-decyzje" }, ...kolumny);
+  siatka.style.setProperty("--kolumny", String(kolumny.length));
+  return ramkaZNaglowkiem(k, tx(zrodlo.naglowek), werdykt, el("h1", { className: "tv-pk-tytul", textContent: tx(kr.za_krok.tytul) }), siatka, stopkaTv(stopka));
+}
+
+function naglowekTablicy(kr, koniec, dwie) {
+  if (koniec) return null;
+  return el("div", { className: "tv-pk-gl" }, el("span"), el("span"), el("span", { textContent: tx(kr.etykieta) }), el("span", { textContent: t(dwie ? "pktRazemPkt" : "pktRazem") }));
+}
+
+function wierszTablicy(k, zrodlo, p, koniec, dwie) {
+  const opcja = p.decyzja === null ? null : zrodlo.opcje[p.decyzja];
+  const zmiana = koniec ? null : el("span", { className: "tv-pk-zmiana" }, opcja ? ikonaOpcjiPunktow(opcja) : null, pktEl(p.zmiana));
+  const suma = el("span", { className: "tv-pk-suma num" }, znakPunktow(p.punkty).replace("+", ""), koniec || !dwie ? el("small", { textContent: t("pktSkrot") }) : null);
+  return el("div", { className: `tv-pk-poz${p.miejsce === 1 ? " pk-lider" : ""}` }, el("span", { className: "tv-pk-miejsce num", textContent: `${p.miejsce}.` }),
+    el("span", { className: "tv-pk-nazwa", textContent: nazwaZespolu(k.zajecia, p.zespol) }), zmiana, suma);
+}
+
+/* Faza „ranking” (i krok końcowy): miejsce, zespół, [decyzja i punkty za krok], suma. */
+function tablicaWynikow(k, koniec) {
+  const zrodlo = krokZrodlowy(k.zajecia, k.krok);
+  const wiersze = tablicaPunktow(k.zajecia, k.krok, k.odp);
+  const kolumn = wiersze.length > MAKS_ZESPOLOW_W_KOLUMNIE ? 2 : 1;
+  const naKolumne = Math.ceil(wiersze.length / kolumn);
+  const tab = el("div", { className: `tv-pk-tablica${koniec ? " pk-koniec" : ""}${kolumn === 2 ? " pk-dwie" : ""}` });
+  tab.style.gridTemplateRows = `${koniec ? "" : "auto "}repeat(${naKolumne}, auto)`;
+  for (let c = 0; c < kolumn; c++) {
+    tab.append(...[naglowekTablicy(k.krok, koniec, kolumn === 2), ...wiersze.slice(c * naKolumne, (c + 1) * naKolumne)
+      .map((p) => wierszTablicy(k, zrodlo, p, koniec, kolumn === 2))].filter(Boolean));
+  }
+  return tab;
+}
+
+function tvPunktow(k) {
+  const odmiana = odmianaPunktow(k.krok);
+  if (odmiana === "zasady") return tvZasadPunktow(k);
+  if (odmiana === "koniec") {
+    return ramkaZNaglowkiem(k, "", null, el("h1", { className: "tv-pk-tytul", textContent: tx(k.krok.tytul) }), tablicaWynikow(k, true), stopkaTv(tx(k.krok.tresc)));
+  }
+  if (k.faza === "decyzje") return tvDecyzji(k);
+  return ramkaZNaglowkiem(k, tx(k.krok.tytul), null, tablicaWynikow(k, false), stopkaTv(tx(k.krok.tresc)));
+}
+
+/* Wiersze tekstowe dla konsoli prowadzącego i pliku wyników: [lewy, prawy]. */
+function wierszePunktow(zajecia, krok, odp) {
+  const zrodlo = krokZrodlowy(zajecia, krok);
+  if (krok.zasady) {
+    return krok.zasady.wiersze.map((w, i) => [tx(w.tekst), zrodlo.opcje.map((o, c) => `${tx(o.tekst)} ${znakPunktow(krok.zasady.punkty[i][c])}`).join(" · ")]);
+  }
+  return tablicaPunktow(zajecia, krok, odp).map((p) => {
+    const decyzja = krok.koniec ? "" : `${p.decyzja === null ? t("pktBezDecyzji") : tx(zrodlo.opcje[p.decyzja].tekst)} ${znakPunktow(p.zmiana)} · `;
+    return [`${p.miejsce}. ${nazwaZespolu(zajecia, p.zespol)}`, `${decyzja}${t("pkt", p.punkty)}`];
+  });
+}
+
+function uPunktow(u) {
+  const zasady = u.krok.zasady ? listaEl(wierszePunktow(u.zajecia, u.krok, {}).map(([l, p]) => `${l}: ${p}`), "u-lista", false) : null;
+  return uRama(u, el("h2", { textContent: tx(u.krok.tytul) }), u.zespol ? el("p", { className: "u-info", textContent: t("grasz", nazwaZespolu(u.zajecia, u.zespol)) }) : null,
+    zasady, naEkranie(t(u.krok.zasady ? "wynikiNaEkranie" : "rankingNaEkranie")), u.krok.tresc ? el("p", { textContent: tx(u.krok.tresc) }) : null);
+}
+
+const pPunktow = (p, krok) => [el("ul", { className: "p-wyniki" }, ...wierszePunktow(p.zajecia, krok, p.odp).map(([l, w]) => wierszWyniku(l, w)))];
+const plikPunktow = (krok, lista, zajecia, stan, odp) => wierszePunktow(zajecia, krok, odp).map(([lewy, prawy]) => ({ typ: "w", lewy, prawy }));
+const fazyPunktow = (krok) => ({ zasady: ["pokaz"], koniec: ["ranking"], po: ["decyzje", "ranking"] })[odmianaPunktow(krok)];
+
+if (typeof TYPY_DODATKOWE !== "undefined") {
+  TYPY_DODATKOWE.punkty = { fazy: fazyPunktow, tv: tvPunktow, uczen: uPunktow, prowadzacy: pPunktow, symulacja: () => null, plik: plikPunktow };
+}
+if (typeof SLOWNIK !== "undefined") {
+  Object.assign(SLOWNIK.pl, { typ_punkty: "Punkty i ranking", faza_decyzje: "Decyzje", faza_ranking: "Ranking", pktNikt: "nikt", pktSkrot: "pkt",
+    pktRazem: "razem", pktRazemPkt: "pkt razem", pktKafle: "Numery zespołów pod decyzją.", pktBez: (kto) => `Bez decyzji, 0 pkt: ${kto}.`, pktBezDecyzji: "bez decyzji" });
+  Object.assign(SLOWNIK.en, { typ_punkty: "Points and ranking", faza_decyzje: "Decisions", faza_ranking: "Ranking", pktNikt: "nobody", pktSkrot: "pts",
+    pktRazem: "total", pktRazemPkt: "total pts", pktKafle: "Team numbers under each decision.", pktBez: (kto) => `No decision, 0 pts: ${kto}.`, pktBezDecyzji: "no decision" });
+}
+if (typeof module !== "undefined") module.exports = { decyzjaZespolu, zajeciaDoKroku, tablicaPunktow, wierszePunktow, fazyPunktow, znakPunktow };
 
 ;
 /*! qrcode-generator 1.4.4 (npm), plik qrcode.js bez zmian.
