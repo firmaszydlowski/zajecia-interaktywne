@@ -5,8 +5,8 @@
     "en": "Find the edit"
   },
   "opis": {
-    "pl": "Uczniowie stukają w telefonie w miejsce przeróbki na zdjęciach z Grecji. Mapa stuknięć sali, odsłona z czerwoną ramką i oryginałem obok.",
-    "en": "Students tap on their phones where a photo from Greece was edited. A map of the class taps, then a reveal with a red frame and the original next to it."
+    "pl": "Uczniowie stukają w telefonie w miejsce przeróbki na zdjęciach z Grecji i z Polski. Potem zespoły wysyłają własne przeróbki i zgadują, co zmieniły inne zespoły.",
+    "en": "Students tap on their phones where a photo from Greece or Poland was edited. Then teams send their own edits and guess what the other teams changed."
   },
   "jez": [
     "pl",
@@ -17,10 +17,12 @@
   "prowadzacy": "prowadzacy-tablet.html",
   "podglad": "podglad.html",
   "instrukcja": "instrukcja.html",
+  "zespoly": 4,
   "parametry": {
     "k": "kod sesji",
     "test": "tryb próbny",
     "jez": "język: pl albo en (domyślnie pl; konsola prowadzącego ustala język sesji)",
-    "baza": "adres bazowy dla kodu QR (tv.html, konsola prowadzącego)"
+    "baza": "adres bazowy dla kodu QR (tv.html, konsola prowadzącego)",
+    "zespoly": "liczba zespołów od 2 do 10 (domyślnie z zajęć)"
   }
 }

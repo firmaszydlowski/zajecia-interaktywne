@@ -1,0 +1,31 @@
+# Wdrożenie zestawu zajęć na GitHub Pages. Kopiowane do repo firmaszydlowski/zajecia-interaktywne przez publikuj.sh.
+# Własny workflow zamiast domyślnego, bo domyślny przerywał synchronizację plików po 10 minutach.
+name: Publikacja na GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  wdrozenie:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.wdrozenie.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: wdrozenie
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000

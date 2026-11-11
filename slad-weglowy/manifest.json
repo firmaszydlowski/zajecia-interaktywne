@@ -5,8 +5,8 @@
     "en": "My carbon footprint from the trip"
   },
   "opis": {
-    "pl": "Każdy liczy na telefonie ślad węglowy swojego pobytu i widzi, co go zmniejszy najbardziej. Średnia grupy trafia na ekran, bez imion.",
-    "en": "Everyone counts the carbon footprint of their stay on a phone and sees what would cut it most. The group average goes on the screen, no names."
+    "pl": "Każdy zgaduje i liczy na telefonie ślad węglowy swojego pobytu, a potem zespoły planują wyjazd z jak najmniejszym śladem. Wyniki idą na ekran bez imion.",
+    "en": "Everyone guesses and then counts the carbon footprint of their stay on a phone, and then teams plan the trip with the smallest footprint. Results go on the screen with no names."
   },
   "jez": [
     "pl",
@@ -17,10 +17,12 @@
   "prowadzacy": "prowadzacy-tablet.html",
   "podglad": "podglad.html",
   "instrukcja": "instrukcja.html",
+  "zespoly": 5,
   "parametry": {
     "k": "kod sesji",
     "test": "tryb próbny",
     "jez": "język: pl albo en (domyślnie pl; konsola prowadzącego ustala język sesji)",
-    "baza": "adres bazowy dla kodu QR (tv.html, konsola prowadzącego)"
+    "baza": "adres bazowy dla kodu QR (tv.html, konsola prowadzącego)",
+    "zespoly": "liczba zespołów od 2 do 10 (domyślnie z zajęć)"
   }
 }
