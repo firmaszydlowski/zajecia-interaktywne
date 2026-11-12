@@ -165,7 +165,7 @@ figcaption b { color: var(--ink); }
   <section class="d-sekcja">
     <h2>Uruchomienie</h2>
     <ol class="d-kroki">
-      <li><p><b>Konsola prowadzącego.</b> Otwórz stronę prowadzącego <code>prowadzacy-ctccd4.html</code> i wybierz „Nowa sesja”. Konsola losuje kod sesji, widać go na górze ekranu. Jeśli kod nadała konsola zajęć, strona otwiera się od razu z tym kodem.</p></li>
+      <li><p><b>Konsola prowadzącego.</b> Na stronie uruchamiania zajęć kliknij „Otwórz konsolę prowadzącego” i wybierz „Nowa sesja”. Konsola losuje kod sesji, widać go na górze ekranu. Jeśli kod nadała konsola zajęć, strona otwiera się od razu z tym kodem.</p></li>
       <li><p><b>Telewizor.</b> Na konsoli prowadzącego w zakładce „Sesja” jest adres ekranu TV z kodem sesji i przycisk „Otwórz ekran TV”. Otwórz ten adres na komputerze przy telewizorze i kliknij w ekran: włączy się pełny ekran i dźwięki timera. Gdy w adresie nie ma kodu, telewizor poprosi o kod z konsoli prowadzącego.</p></li>
       <li><p><b>Język.</b> W zakładce „Sesja” wybierz język sesji: PL albo EN (albo dopisz do adresu konsoli <code>&amp;jez=en</code>). Telewizor i telefony przejmą go same. Telefony uczniów nie mają przełącznika języka, język zmieniasz tylko ty. Konsola ma własny przełącznik PL/EN w górnym pasku, telewizor w prawym dolnym rogu (przed pełnym ekranem).</p></li>
       <li><p><b>Kod QR.</b> Telewizor pokazuje kod QR, adres strony i kod sesji. Uczniowie skanują kod QR. Kto nie może, wpisuje adres, a strona poprosi o kod sesji.</p></li>
@@ -205,7 +205,7 @@ figcaption b { color: var(--ink); }
       <li>Telefon stracił sieć: odpowiedzi zostają na telefonie i wyślą się po powrocie sieci.</li>
       <li>Telewizor nie gra dźwięku: kliknij w ekran TV albo przycisk „Dźwięk” w prawym dolnym rogu. Na konsoli „Test dźwięku” sprawdza dźwięk na TV.</li>
       <li>Ktoś się spóźnił, a kategorie są już odsłonięte: na ekranie zbierania na konsoli wybierz „Wpuść spóźnionych”. Odsłonięte kategorie otworzą się tylko dla tych, którzy jeszcze nie odpowiedzieli; kto już odpowiedział, nie zmieni odpowiedzi.</li>
-      <li>Nowe zajęcia albo nowa grupa: w zakładce „Sesja” wybierz „Nowa sesja”. Nowy kod oznacza, że telewizor i telefony trzeba otworzyć od nowa.</li>
+      <li>Po zajęciach albo po próbie: w zakładce „Sesja” wybierz „Zakończ sesję”. Odpowiedzi i pseudonimy znikną z serwerów, a konsola otworzy nową sesję z nowym kodem. Telewizor i telefony trzeba wtedy otworzyć od nowa.</li>
     </ul>
   </section>
 </main>
@@ -213,7 +213,7 @@ figcaption b { color: var(--ink); }
 <div lang="en" data-wersja="en" hidden>
 <header class="d-glowa">
   <h1>Eco calculator: Poland and Greece</h1>
-  <p>Teacher's guide. Students answer on their phones how it is in their homes and guess how it is in Greece. Then on the TV you compare this with real data.</p>
+  <p>Teacher's guide. Students first say how it is for them or guess a number about Poland. Then they guess how it is in Greece. On the TV you compare this with real data.</p>
 </header>
 <main class="d-tresc">
   <section class="d-sekcja">
@@ -228,7 +228,7 @@ figcaption b { color: var(--ink); }
   <section class="d-sekcja">
     <h2>Getting started</h2>
     <ol class="d-kroki">
-      <li><p><b>Teacher's console.</b> Open the teacher page <code>prowadzacy-ctccd4.html</code> and choose “New session”. The console makes a session code, you can see it at the top of the screen. If the class console gave the code, the page opens with this code straight away.</p></li>
+      <li><p><b>Teacher's console.</b> On the class launcher page click “Open teacher console” and choose “New session”. The console makes a session code, you can see it at the top of the screen. If the class console gave the code, the page opens with this code straight away.</p></li>
       <li><p><b>TV.</b> In the “Session” tab on the teacher's console there is the TV address with the session code and an “Open TV screen” button. Open this address on the computer next to the TV and click the screen: this turns on full screen and timer sounds. If the address has no code, the TV asks for the code from the teacher's console.</p></li>
       <li><p><b>Language.</b> In the “Session” tab choose the session language: PL or EN (or add <code>&amp;jez=en</code> to the console address). The TV and phones take it automatically. Students' phones have no language switch, only you change the language. The console has its own PL/EN switch in the top bar, the TV in the bottom right corner (before full screen).</p></li>
       <li><p><b>QR code.</b> The TV shows a QR code, the page address and the session code. Students scan the QR code. If someone cannot, they type the address and the page asks for the session code.</p></li>
@@ -258,7 +258,7 @@ figcaption b { color: var(--ink); }
   <section class="d-sekcja">
     <h2>Questions for the class, by category</h2>
     <p>The same questions are on the console next to the “What it changes in your life” screen.</p>
-    <ol class="d-pytania"><li><b>Electricity: how much from coal</b><ul><li>What do you use electricity for most during the day?</li><li>Which job in new energy sounds interesting to you?</li></ul></li><li><b>Heating the home in winter</b><ul><li>Do you notice smog on your street in winter? Where does it come from?</li></ul></li><li><b>Hot water for the shower</b><ul><li>How long is your shower? How much water and energy could you save?</li></ul></li><li><b>Can we afford a warm home</b><ul><li>Who in your area might not afford a warm home in winter?</li></ul></li><li><b>Electricity bill</b><ul><li>Which devices in your home use the most electricity?</li><li>What could your family buy with money saved on electricity?</li></ul></li><li><b>How many cars</b><ul><li>How do you get to school and how long does it take? Is there another way?</li></ul></li><li><b>How much rubbish we throw away</b><ul><li>What do you throw away most often in a day? What could you avoid?</li></ul></li><li><b>Recycling and sorting</b><ul><li>Is it easy to sort waste in your home? What would help?</li></ul></li><li><b>Food we throw away</b><ul><li>What food did your family throw away recently, and why?</li></ul></li><li><b>Meat on the plate</b><ul><li>How many times a week do you eat ham or meat? What could replace it?</li></ul></li><li><b>Fruit and vegetables every day</b><ul><li>How many portions did you eat yesterday? What is easiest to add to breakfast?</li></ul></li><li><b>How much water we take from nature</b><ul><li>How do you stay safe in a heatwave? What could help at school?</li></ul></li><li><b>By car, bus or train</b><ul><li>Where can you go by bus or train, and where only by car?</li></ul></li><li><b>When to move out from parents</b><ul><li>What do you need to move out? How much could it cost?</li></ul></li><li><b>Jobs for young people</b><ul><li>What job do you want? Will it be needed in 10 years?</li></ul></li></ol>
+    <ol class="d-pytania"><li><b>Electricity: how much from coal</b><ul><li>What do you use electricity for most during the day?</li><li>Which job in new energy sounds interesting to you?</li></ul></li><li><b>Heating the home in winter</b><ul><li>Do you notice smog on your street in winter? Where does it come from?</li></ul></li><li><b>Hot water for the shower</b><ul><li>How long is your shower? How much water and energy could you save?</li></ul></li><li><b>Can we afford a warm home</b><ul><li>Who in your area might not afford a warm home in winter?</li></ul></li><li><b>Electricity bill</b><ul><li>Which devices in your home use the most electricity?</li><li>What could your family buy with money saved on electricity?</li></ul></li><li><b>How many cars</b><ul><li>How do you get to school and how long does it take? Is there another way?</li></ul></li><li><b>How much rubbish we throw away</b><ul><li>What do you throw away most often in a day? What could you avoid?</li></ul></li><li><b>Recycling and sorting</b><ul><li>Is it easy to sort waste in your home? What would help?</li></ul></li><li><b>Food we throw away</b><ul><li>What food did your family throw away recently, and why?</li></ul></li><li><b>Meat on the plate</b><ul><li>How many times a week do you eat ham or meat? What could replace it?</li></ul></li><li><b>Fruit and vegetables every day</b><ul><li>How many portions did you eat yesterday? What is easiest to add to breakfast?</li></ul></li><li><b>How much water we take from nature</b><ul><li>How do you stay safe in a heatwave? What could help at school?</li></ul></li><li><b>By car, bus or train</b><ul><li>Where can you go by bus or train, and where only by car?</li></ul></li><li><b>When to leave home</b><ul><li>What do you need to move out? How much could it cost?</li></ul></li><li><b>Jobs for young people</b><ul><li>What job do you want? Will it be needed in 10 years?</li></ul></li></ol>
   </section>
 
   <section class="d-sekcja">
@@ -268,7 +268,7 @@ figcaption b { color: var(--ink); }
       <li>A phone lost the network: answers stay on the phone and are sent when the network is back.</li>
       <li>The TV makes no sound: click the TV screen or the “Sound” button in the bottom right corner. On the console, “Sound test” checks the sound on the TV.</li>
       <li>Someone came late and categories are already shown: on the collecting screen on the console choose “Let latecomers in”. Categories already shown open only for those who have not answered yet; students who have answered cannot change their answers.</li>
-      <li>A new class or a new group: in the “Session” tab choose “New session”. A new code means that the TV and phones must be opened again.</li>
+      <li>After the class or a test run: in the “Session” tab choose “End session”. Answers and nicknames are removed from the servers and the console opens a new session with a new code. Then the TV and phones must be opened again.</li>
     </ul>
   </section>
 </main>

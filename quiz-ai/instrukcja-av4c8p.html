@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Zdjęcie: prawdziwe czy AI? Instrukcja · Photo: real or AI? Teacher guide</title>
+<style>
+/* Wygląd A „Tablica wyników” (generator-debat/apka/styl.css, makiety/kierunek-A-v2.html): tokeny i kroje 1:1,
+   z elementów wspólnych tylko te, których używa quiz (bez przełączników języka i widoku, klawiszy, ikon TAK/NIE).
+   Tokeny i typografia 1:1 z makiety. Strony: <body class="k1"> (jasna) albo <body class="k1 k1-ciemny">.
+   Kontrast WCAG AA sprawdzony dla par tokenów (najniższa para szary/ciem2: 4,9:1). */
+:root {
+  --tlo: #F2F0EB; --biel: #FFFFFF; --ink: #16181D; --mute: #4F5560; --linia: #D6D2C8; --ciem: #16181D; --ciem2: #22262E; --ciem3: #2E333D;
+  --jasny: #C9CED8; --szary: #8B93A1; --tak: #1D5FD6; --nie: #C2410C; --tak-j: #7AAEFF; --nie-j: #FF9B54; --zolty: #FFC94D; --uwaga: #8A3A0A; --uwaga-t: #FDEBD9;
+  --kond: "Avenir Next Condensed", "DIN Condensed", "Bahnschrift SemiCondensed", "Arial Narrow", sans-serif;
+  --tekst: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+h1, h2, h3, h4, p, dl, dd, figure, blockquote { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+[hidden] { display: none !important; }
+button { cursor: pointer; touch-action: manipulation; }
+button:disabled { cursor: default; }
+:focus-visible { outline: 3px solid var(--zolty); outline-offset: 2px; }
+.k1 :focus-visible { outline-color: var(--tak); }
+.k1-ciemny :focus-visible { outline-color: var(--zolty); }
+
+.k1 { font: 16px/1.45 var(--tekst); color: var(--ink); background: var(--tlo); }
+:where(.k1) button, :where(.k1) input, :where(.k1) select { font: inherit; }
+.k1-ciemny { background: var(--ciem); color: #fff; }
+.num { font-variant-numeric: tabular-nums; }
+.qr { display: block; shape-rendering: crispEdges; }
+.qr svg { display: block; width: 100%; height: auto; }
+
+/* przełącznik języka PL/EN (jak .jez w generatorze debat) */
+.k1 .jez { display: inline-flex; border: 1px solid currentColor; }
+.k1 .jez button { background: none; border: 0; color: inherit; font-weight: 600; padding: 0 14px; min-height: 44px; white-space: nowrap; }
+.k1 .jez button[aria-pressed="true"] { background: #fff; color: var(--ciem); }
+
+/* przyciski */
+.k1-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border: 1px solid var(--ink); background: var(--biel); color: var(--ink); font-weight: 600; white-space: nowrap; text-decoration: none; }
+.k1-btn.pelny { background: var(--ciem); color: #fff; }
+.k1-btn:disabled { border-color: var(--linia); color: var(--mute); background: transparent; font-weight: 400; }
+.k1-ciemny .k1-btn { background: transparent; color: #fff; border-color: #fff; }
+.k1-ciemny .k1-btn.pelny { background: #fff; color: var(--ciem); }
+.k1-ciemny .k1-btn:disabled { border-color: var(--ciem3); color: var(--szary); }
+.k1-btn-gl { display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 24px; border: 0; background: var(--zolty); color: var(--ciem); font: 700 22px/1 var(--kond); }
+.k1-btn-gl:disabled { opacity: .6; }
+.k1-akcje { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* drobne teksty */
+.k1-meta { font-size: 14px; color: var(--mute); }
+.k1-ciemny .k1-meta { color: var(--jasny); }
+.k1 a { color: var(--tak); }
+.k1-ciemny a { color: var(--tak-j); }
+.k1-tylko { display: flex; gap: 8px; align-items: center; padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 700; font-size: 15px; }
+.komunikat { padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 600; font-size: 15px; }
+
+/* stan łącza */
+.k1-lacze { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--jasny); white-space: nowrap; }
+.k1-lacze::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--nie-j); }
+.k1-lacze.czesc::before { background: var(--zolty); }
+.k1-lacze.ok::before { background: #4ADE80; }
+
+/* tryb testowy */
+.baner-testu { background: var(--zolty); color: var(--ciem); font-weight: 700; text-align: center; padding: 8px 16px; letter-spacing: .02em; }
+
+/* Podgląd i instrukcja: wygląd A na jasnym tle (tokeny z styl.css). Kolumna do czytania, ekrany w ramkach urządzeń. */
+.d-pasek { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 24px; padding: 20px 32px; background: var(--ciem); color: #fff; }
+.d-pasek h1 { font: 700 40px/1.05 var(--kond); }
+.d-pasek p { color: var(--jasny); }
+.d-pasek a { color: #fff; }
+.d-pasek > div:not(.jez) { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 24px; margin-right: auto; }
+.d-pasek .jez { align-self: center; }
+.d-tresc { max-width: 1240px; margin: 0 auto; padding: 24px 32px 64px; display: grid; gap: 32px; }
+.d-tresc > section { background: var(--biel); border-top: 6px solid var(--ciem); padding: 20px 24px; }
+.d-tresc h2 { font: 700 30px/1.1 var(--kond); margin-bottom: 12px; }
+.d-tresc h3 { font: 700 22px/1.15 var(--kond); margin: 20px 0 8px; }
+.d-tresc p, .d-tresc li { max-width: 75ch; }
+.d-tresc p + p { margin-top: 8px; }
+.d-tresc ol, .d-tresc ul { list-style: revert; padding-left: 24px; display: grid; gap: 6px; margin-top: 8px; }
+.d-tresc code { font: 15px/1.4 ui-monospace, "SF Mono", Menlo, monospace; background: var(--tlo); padding: 1px 5px; }
+.d-uwaga { padding: 10px 12px; background: var(--uwaga-t); color: var(--uwaga); font-weight: 600; margin-top: 12px; max-width: 75ch; }
+.d-spis { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.d-spis a { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* ekrany: telewizor szeroko, telefon i tablet obok */
+.d-ekrany { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; margin-top: 12px; }
+.d-ekrany figure { display: grid; gap: 6px; }
+.d-ekrany figcaption { font-size: 15px; color: var(--mute); max-width: 60ch; }
+.d-ekrany img { display: block; height: auto; border: 1px solid var(--linia); background: var(--ciem); }
+.d-tv img { width: min(100%, 880px); }
+.d-tv { flex: 1 1 100%; }
+.d-tel img { width: 260px; }
+.d-tab img { width: 520px; max-width: 100%; }
+
+/* galeria par */
+.d-para { border-top: 1px solid var(--linia); padding-top: 16px; margin-top: 16px; }
+.d-para h3 { margin-top: 0; }
+.d-para .d-ekrany { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); }
+.d-para .d-ekrany img { width: 100%; }
+
+/* tabela licencji */
+.d-tabela { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 15px; }
+.d-tabela th { text-align: left; color: var(--mute); font-weight: 600; padding: 6px 12px 6px 0; border-bottom: 2px solid var(--ciem); }
+.d-tabela td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--linia); vertical-align: top; }
+
+</style>
+</head>
+<body class="k1">
+<header class="d-pasek"><div data-jez="pl"><h1>Zdjęcie: prawdziwe czy AI? Instrukcja</h1><p>Dla prowadzącego</p></div><div data-jez="en"><h1>Photo: real or AI? Teacher guide</h1><p>For the teacher</p></div><div class="jez" role="group" aria-label="Język / Language"><button type="button" value="pl" lang="pl">PL</button><button type="button" value="en" lang="en">EN</button></div></header>
+<main class="d-tresc" data-jez="pl" lang="pl"><section><p class="d-spis"><a href="#uruchomienie-pl">Uruchomienie</a><a href="#przebieg-pl">Przebieg</a><a href="#artykul-pl">Zadanie z artykułem</a><a href="#licencje-pl">Licencje zdjęć</a></p></section><section id="uruchomienie-pl"><h2>Uruchomienie</h2>
+<p>Potrzebne są: komputer podłączony do telewizora albo projektora (Chrome albo Edge), tablet albo laptop z konsolą prowadzącego i telefony uczniów.
+Wszystkie urządzenia muszą mieć internet: konsola prowadzącego, telewizor i telefony łączą się przez dwa publiczne serwery wymiany wiadomości.</p>
+<ol>
+<li>Na tablecie albo laptopie otwórz konsolę prowadzącego: na stronie uruchamiania zajęć kliknij „Otwórz konsolę prowadzącego”. Konsola sama losuje kod sesji i pokazuje go w ciemnym pasku u góry.
+Jeśli kod nadaje konsola uruchamiania, przychodzi w adresie jako <code>?k=…</code> i konsola prowadzącego go przyjmuje.</li>
+<li>Wybierz język sesji przełącznikiem PL/EN w pasku konsoli prowadzącego. Telewizor i telefony przejdą na ten język same.</li>
+<li>Na komputerze przy telewizorze otwórz ekran telewizora z tym samym kodem: łączem „Telewizor” w pasku konsoli prowadzącego.
+Bez kodu w adresie telewizor poprosi o jego wpisanie. Kliknij ekran telewizora: włącza pełny ekran i dźwięki timera.</li>
+<li>Uczniowie skanują kod QR z telewizora. Kto nie może, wpisuje adres widoczny pod kodem, a potem kod sesji.</li>
+<li>W pasku konsoli prowadzącego widać, ile telefonów dołączyło i czy telewizor ma włączony dźwięk. „Test dźwięku” w karcie timera gra na telewizorze.</li>
+</ol>
+<h3>Język</h3>
+<p>Język sesji ustawia konsola prowadzącego. Telefony uczniów nie mają przełącznika: zawsze pokazują język sesji.
+Telewizor ma własny przełącznik PL/EN. Treść quizu (tematy, oznaki, zdania o zdjęciach, oznaki ogólne) jest w obu językach;
+autorzy, licencje i nazwy źródeł zostają bez tłumaczenia.</p>
+<h3>Parametry adresu</h3>
+<ul>
+<li><code>?k=x7k2m9</code>: kod sesji (6 znaków). Telewizor, konsola prowadzącego i telefony z tym samym kodem są na jednym kanale.</li>
+<li><code>?jez=en</code> albo <code>?jez=pl</code>: język sesji w konsoli prowadzącego; na telewizorze i telefonie język, zanim przyjdzie stan sesji.</li>
+<li><code>?test</code>: próba. Osobny kanał i pasek „TRYB TESTOWY”, żeby próby nie pomylić z zajęciami.</li>
+<li><code>?baza=…</code>: korzeń zestawu zajęć (na telewizorze i w konsoli prowadzącego), na przykład adres komputera w sieci Wi-Fi
+albo strona na GitHub Pages. Kod QR prowadzi wtedy do <code>&lt;baza&gt;/quiz-ai/index.html?k=…</code>. Bez tego parametru: adres ustawiony
+przy budowaniu (https://firmaszydlowski.github.io/zajecia-interaktywne). Adresu file:// telefon nie otworzy, więc taki nigdy nie trafia do kodu QR:
+telewizor pokazuje wtedy „Ustaw adres dla telefonów w konsoli”.</li>
+<li><code>?dropbox=…</code>: link do wysyłki pliku z wynikami (konsola prowadzącego). Bez linku przycisk wysyłki jest ukryty.</li>
+</ul>
+<h3>Nowa sesja</h3>
+<p>Po próbie albo przed kolejną grupą: konsola prowadzącego, zakładka Wyniki, „Nowa sesja”. Konsola losuje nowy kod, telewizor i telefony przechodzą na niego same.
+Głosy poprzedniej sesji zostają w archiwum na tym urządzeniu.</p></section><section id="przebieg-pl"><h2>Przebieg</h2>
+<p>Prowadzący przeklikuje wszystko w konsoli prowadzącego przyciskiem „Dalej”. Telewizor pokazuje to samo, co wybrała konsola. W konsoli jest też
+podpowiedź, co powiedzieć, i odpowiedź, której sala nie widzi.</p>
+<ol>
+<li><b>Wstęp.</b> Zasady, kod QR, kod sesji. Uczniowie nie podają imion: głos jest anonimowy.</li>
+<li><b>Pary obrazów</b>, od najłatwiejszej. Każda para ma kroki:
+<ul>
+<li>głosowanie: oba obrazy w identycznych ramkach, uczniowie wybierają na telefonie, który zrobiła AI; każdy głosuje raz, bez zmiany zdania; timer uruchamiasz w konsoli prowadzącego;</li>
+<li>wynik głosowania: procent głosów na A i na B;</li>
+<li>odsłona: obraz AI, czyli poprawna odpowiedź, w grubej żółtej ramce ze znakiem ✓ i napisem „Poprawna”, prawdziwe zdjęcie przygaszone; ile procent trafiło; każdy uczeń widzi na telefonie, czy trafił;</li>
+<li>po czym poznać: duży obraz AI z czerwonymi oznaczeniami i oznaki z numerami; gdy tekst się nie mieści, idzie na następną stronę;
+ostatnia strona to prawdziwe zdjęcie, jedno zdanie o nim, autor i licencja.</li>
+</ul>
+Nie trzeba przejść wszystkich par: „Pomiń parę” przechodzi do następnej, a pominiętą można otworzyć później z listy numerów.</li>
+<li><b>Najtrudniejsze pary.</b> Pary, w których najwięcej osób się pomyliło, i wynik całej grupy. Każdy uczeń widzi na telefonie swój wynik.</li>
+<li><b>Oznaki AI.</b> Ogólne oznaki obrazu z AI (na telewizorze dwie strony), pełne opisy ze źródłami na telefonach. Żaden znak nie jest dowodem sam w sobie.</li>
+<li><b>Artykuł.</b> Zadanie poniżej.</li>
+<li><b>Zapis wyników.</b> Konsola prowadzącego, zakładka Wyniki: „Zapisz plik z wynikami” pobiera obraz PNG z rankingiem par, wynikiem grupy, źródłami i licencjami,
+w języku sesji. Obok jest ten sam tekst do skopiowania. Przycisk wysyłki pojawia się, gdy jest link do wysyłki.</li>
+</ol></section><section id="artykul-pl"><h2>Zadanie z artykułem</h2>
+<p>Uczniowie piszą artykuł „Jak nie dać się nabrać na zdjęcie z AI”, na przykład do szkolnej gazetki albo na stronę szkoły. W artykule muszą być:</p>
+<ol>
+<li>jedna para z quizu: oba obrazy i wyjaśnienie, który to AI i po czym to poznać;</li>
+<li>trzy oznaki obrazu z AI, własnymi słowami, z przykładem;</li>
+<li>wynik grupy: ile procent trafili i która para była najtrudniejsza;</li>
+<li>źródła i licencje: autor i licencja prawdziwego zdjęcia, narzędzie, które zrobiło obraz AI.</li>
+</ol>
+<p>Materiały mają na telefonach (pary ze źródłami). Wyniki grupy są w pliku z konsoli prowadzącego. Czas ustawiasz timerem w konsoli.</p></section><section id="licencje-pl"><h2>Licencje zdjęć przy publikacji artykułu</h2>
+<p>Prawdziwe zdjęcia pochodzą z Wikimedia Commons i są na licencjach Creative Commons. Przy publikacji artykułu z takim zdjęciem podaj:</p>
+<ul>
+<li>autora zdjęcia (tak, jak jest podpisany na stronie pliku),</li>
+<li>nazwę licencji z linkiem do niej,</li>
+<li>link do strony zdjęcia,</li>
+<li>informację o zmianach: w quizie zdjęcia są przycięte do wspólnych proporcji, więc dopisz „przycięte”.</li>
+</ul>
+<p>Przykład podpisu: <i>Fot. Kocio, CC BY 3.0, Wikimedia Commons, przycięte.</i></p>
+<p>Licencje z „SA” (na przykład CC BY-SA 4.0): zmienioną wersję zdjęcia, na przykład przyciętą, publikuje się na tej samej licencji.
+CC0: podpis nie jest wymagany, ale warto go dać. Obrazy AI podpisz jako wygenerowane przez AI, z nazwą narzędzia: Nano Banana Pro (Google), przez fal.ai.</p>
+<p class="d-uwaga">Przed publikacją sprawdź licencję na stronie zdjęcia (link w tabeli): obowiązuje to, co jest tam napisane.</p><table class="d-tabela"><thead><tr><th>Para</th><th>Autor prawdziwego zdjęcia</th><th>Licencja</th><th>Źródło</th></tr></thead><tbody><tr><td>1. Kładka w Puszczy Kampinoskiej</td><td>Kocio</td><td><a href="https://creativecommons.org/licenses/by/3.0/deed.pl">CC BY 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Kampinoski_Park_Narodowy_-_Wok%C3%B3%C5%82_Opalenia_education_path.jpg">strona zdjęcia</a></td></tr><tr><td>2. Plaża ze śmieciami</td><td>Piotrus</td><td><a href="https://creativecommons.org/licenses/by-sa/3.0/deed.pl">CC BY-SA 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Corfu_beach_60.JPG">strona zdjęcia</a></td></tr><tr><td>3. Samolot gaśniczy nad morzem</td><td>Tsui</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Polemiki_Aeroporia_Canadair_CL-415_2054_Naxos-2025-06-18_0826crop.jpg">strona zdjęcia</a></td></tr><tr><td>4. Dym z pożaru nad miastem</td><td>George E. Koronaios</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:View_of_the_smoke_from_the_wildfires_in_Attica_from_Philopappos_Hill_on_August_18,_2021.jpg">strona zdjęcia</a></td></tr><tr><td>5. Jaszczurka na plaży</td><td>Piotr T. Czekala</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Cretan_wall_Lizard_(Podarcis_cretensis).jpg">strona zdjęcia</a></td></tr><tr><td>6. Żółw morski</td><td>Dionysisa303</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Loggerhead_Turtle_Caretta_Caretta.jpg">strona zdjęcia</a></td></tr><tr><td>7. Zalana ulica po ulewie</td><td>Fotis A.</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Larisa_-_Nikolopoulou_Street_after_Storm_Daniel_(2023).jpg">strona zdjęcia</a></td></tr><tr><td>8. Pelikan na jeziorze</td><td>Wkkasimag</td><td><a href="https://creativecommons.org/licenses/by/4.0/deed.pl">CC BY 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Lake_Kerkini_Dalmatian_Pelican_1.jpg">strona zdjęcia</a></td></tr><tr><td>9. Pszczoła na kwiecie</td><td>Anna N Chapman</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.pl">CC0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Glebionis_coronaria_with_1Honey-Bee.jpg">strona zdjęcia</a></td></tr><tr><td>10. Wisła w czasie suszy</td><td>Bernard NoK</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Wis%C5%82a_w_Warszawie_-_niski_stan_wody.jpg">strona zdjęcia</a></td></tr><tr><td>11. Gaj oliwny</td><td>Bouke ten Cate</td><td><a href="https://creativecommons.org/licenses/by/4.0/deed.pl">CC BY 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Naxos_Olive_Groves.jpg">strona zdjęcia</a></td></tr><tr><td>12. Wyschnięte jezioro</td><td>Nikolai Bulykin</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:%D0%90%D0%B8%D0%BE%D1%81_%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%BE%D1%81,_%D0%B2%D1%8B%D1%81%D0%BE%D1%85%D1%88%D0%B5%D0%B5_%D0%B4%D0%BD%D0%BE_%D0%BE%D0%B7%D0%B5%D1%80%D0%B0_%D0%9A%D0%BE%D1%80%D0%BE%D0%BD%D0%B8%D1%8F.jpg">strona zdjęcia</a></td></tr><tr><td>13. Maki przy drodze</td><td>Alexandros Georgiou</td><td><a href="https://creativecommons.org/licenses/by/3.0/deed.pl">CC BY 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:%CE%A0%CE%B1%CF%80%CE%B1%CF%81%CE%BF%CF%8D%CE%BD%CE%B5%CF%82_-_panoramio.jpg">strona zdjęcia</a></td></tr><tr><td>14. Łoś w Kampinosie</td><td>Wojsyl</td><td><a href="https://creativecommons.org/licenses/by-sa/2.5/deed.pl">CC BY-SA 2.5</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Poland_Kampinos_Alces_alces_1.jpg">strona zdjęcia</a></td></tr><tr><td>15. Flamingi w delcie rzeki</td><td>Zsolyomi</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Flamingos_in_Nestos_Delta.jpg">strona zdjęcia</a></td></tr><tr><td>16. Winnica na Santorynie</td><td>Treephoto</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Old_vines_at_Domaine_Sigalas_in_Santorini,_Greece.jpg">strona zdjęcia</a></td></tr><tr><td>17. Klasztor w Meteorach</td><td>Bernard Gagnon</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Roussanou_Monastery,_Meteora.jpg">strona zdjęcia</a></td></tr><tr><td>18. Bociany na gnieździe</td><td>Charles J. Sharp</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:White_storks_(Ciconia_ciconia)_on_nest_Biebrzanski.jpg">strona zdjęcia</a></td></tr><tr><td>19. Cykada na drzewie oliwnym</td><td>Sputniktilt</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Cicadidae_2017_Koroni_02.jpg">strona zdjęcia</a></td></tr><tr><td>20. Motyl paź królowej</td><td>Stylianos-Marinos Charalampidis</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Papilio_Machaon_01.jpg">strona zdjęcia</a></td></tr><tr><td>21. Uliczka z tawernami w Atenach</td><td>Jakub Hałun</td><td><a href="https://creativecommons.org/licenses/by/4.0/deed.pl">CC BY 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Restaurants_on_Mnisikleous_Street_in_Athens,_20240601_0917_0009.jpg">strona zdjęcia</a></td></tr><tr><td>22. Spalony las</td><td>Stathis floros</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Beauty_and_drama_2.jpg">strona zdjęcia</a></td></tr><tr><td>23. Port rybacki na Krecie</td><td>Moonik</td><td><a href="https://creativecommons.org/licenses/by-sa/3.0/deed.pl">CC BY-SA 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Heraklion_old_harbour_in_Crete,_Greece_002.jpg">strona zdjęcia</a></td></tr><tr><td>24. Kot przy twierdzy na Rodos</td><td>Jon Gudorf Photography</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0/deed.pl">CC BY-SA 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Confident_cat_at_Rhodes_Fortress,_Greece.jpg">strona zdjęcia</a></td></tr><tr><td>25. Szczyty Olimpu</td><td>kallerna</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Olympus_National_Park_30.jpg">strona zdjęcia</a></td></tr></tbody></table></section><section id="zrodla-pl"><h2>Źródła oznak AI</h2><ul><li><a href="https://www.mozillafoundation.org/pl/blog/ai-photo-how-to-tell/">Fundacja Mozilla, X. Harding: „Czy sztuczna inteligencja wygenerowała to zdjęcie? Oto jak to rozpoznać”, 13.09.2023</a></li><li><a href="https://nask.pl/media/2026/01/Halo_Tu-cyberbezpieczny-senior-Nie-zadzierAI-ze-mna.pdf">NASK: poradnik „#Halo! Tu cyberbezpieczny Senior! Nie zadzierAI ze mną”, styczeń 2026</a></li><li><a href="https://arxiv.org/abs/2406.08651">N. Kamali, K. Nakamura, A. Chatzimparmpas, J. Hullman, M. Groh (Northwestern University, zespół Detect Fakes): „How to Distinguish AI-Generated Images from Authentic Photographs”, czerwiec 2024</a></li><li><a href="https://demagog.org.pl/fake_news/czy-to-zdjecie-z-protestu-rolnikow-nie-to-dzielo-ai/">Demagog: „Czy to zdjęcie z protestu rolników? Nie, to dzieło AI”, 22.03.2024</a></li><li><a href="https://demagog.org.pl/analizy_i_raporty/oslepieni-deepfakeami-jak-sprawdzic-czy-to-ai-stworzylo-obraz/">Demagog, A. Majchrzak, A. Szymkiewicz: „Oślepieni deepfake’ami. Jak sprawdzić, czy to AI stworzyło obraz?”, 15.06.2023</a></li><li><a href="https://blog.google/technology/ai/ai-image-verification-gemini-app/">Google: „How we&#x27;re bringing AI image verification to the Gemini app”, 20.11.2025</a></li><li><a href="https://demagog.org.pl/analizy_i_raporty/test-4-narzedzi-do-weryfikacji-obrazow-ai-ktore-jest-najlepsze/">Demagog, A. Majchrzak: „Test 4 narzędzi do weryfikacji obrazów AI”, 11.08.2023</a></li></ul></section></main><main class="d-tresc" data-jez="en" lang="en"><section><p class="d-spis"><a href="#uruchomienie-en">Getting started</a><a href="#przebieg-en">How it runs</a><a href="#artykul-en">Article task</a><a href="#licencje-en">Photo licences</a></p></section><section id="uruchomienie-en"><h2>Getting started</h2>
+<p>You need: a computer connected to a TV or projector (Chrome or Edge), a tablet or laptop with the teacher console, and the students' phones.
+All devices need internet: the teacher console, the TV and the phones connect through two public message servers.</p>
+<ol>
+<li>On a tablet or laptop, open the teacher console: on the class launcher page click “Open teacher console”. The console picks a session code and shows it in the dark bar at the top.
+If the launch console gives the code, it comes in the address as <code>?k=…</code> and the teacher console uses it.</li>
+<li>Choose the session language with the PL/EN switch in the teacher console bar. The TV and the phones change to this language by themselves.</li>
+<li>On the computer by the TV, open the TV screen with the same code: use the “TV” link in the teacher console bar.
+Without a code in the address, the TV asks you to type it. Click the TV screen: this turns on full screen and the timer sounds.</li>
+<li>Students scan the QR code on the TV. Anyone who cannot, types the address shown under the code and then the session code.</li>
+<li>The teacher console bar shows how many phones have joined and whether the TV has sound on. “Sound test” in the timer card plays on the TV.</li>
+</ol>
+<h3>Language</h3>
+<p>The teacher console sets the session language. Students' phones have no switch: they always show the session language.
+The TV has its own PL/EN switch. The quiz content (topics, signs, sentences about the photos, general signs)
+is in both languages; authors, licences and source names are not translated.</p>
+<h3>Address parameters</h3>
+<ul>
+<li><code>?k=x7k2m9</code>: session code (6 characters). The TV, teacher console and phones with the same code share one channel.</li>
+<li><code>?jez=en</code> or <code>?jez=pl</code>: session language in the teacher console; on the TV and phone, the language before the session state arrives.</li>
+<li><code>?test</code>: test run. A separate channel and a “TEST MODE” bar, so a test is not mixed up with a real class.</li>
+<li><code>?baza=…</code>: the root of the class set (on the TV and in the teacher console), for example the computer's address on the Wi-Fi
+network or a GitHub Pages site. The QR code then leads to <code>&lt;baza&gt;/quiz-ai/index.html?k=…</code>. Without it: the address set when building
+(https://firmaszydlowski.github.io/zajecia-interaktywne). Phones cannot open a file:// address, so it never goes into the QR code:
+the TV shows “Set the address for phones in the console” instead.</li>
+<li><code>?dropbox=…</code>: upload link for the results file (teacher console). Without a link the upload button is hidden.</li>
+</ul>
+<h3>New session</h3>
+<p>After a test run or before the next group: teacher console, Results tab, “New session”. The console picks a new code, and the TV and phones switch to it by themselves.
+The votes from the previous session stay in the archive on that device.</p></section><section id="przebieg-en"><h2>How it runs</h2>
+<p>The teacher moves through everything in the teacher console with the “Next” button. The TV shows what the console has chosen. The console also shows
+what to say and the answer, which the room cannot see.</p>
+<ol>
+<li><b>Intro.</b> Rules, QR code, session code. Students do not give their names: votes are anonymous.</li>
+<li><b>Pairs of images</b>, from the easiest. Each pair has steps:
+<ul>
+<li>voting: both images in identical frames; students choose on their phone which one AI made; everyone votes once and cannot change it; you start the timer in the teacher console;</li>
+<li>vote results: the percentage of votes for A and for B;</li>
+<li>reveal: the AI image, which is the correct answer, gets a thick yellow frame with a ✓ and the word “Correct”, the real photo is dimmed; what percentage got it right; each student sees on their phone whether they were right;</li>
+<li>how to tell: a large AI image with red marks and numbered signs; when the text does not fit, it goes to the next page;
+the last page is the real photo, one sentence about it, the author and the licence.</li>
+</ul>
+You don't need to do all pairs: “Skip pair” goes to the next one, and you can open a skipped pair later from the list of numbers.</li>
+<li><b>Hardest pairs.</b> The pairs where the most people were wrong, and the whole group's result. Each student sees their own score on their phone.</li>
+<li><b>Signs of AI.</b> General signs of an AI image (two pages on the TV), full descriptions with sources on the phones. No single sign is proof on its own.</li>
+<li><b>Article.</b> The task below.</li>
+<li><b>Saving results.</b> Teacher console, Results tab: “Save the results file” downloads a PNG image with the pair ranking, the group result, sources and licences,
+in the session language. Next to it is the same text to copy. The upload button appears when there is an upload link.</li>
+</ol></section><section id="artykul-en"><h2>Article task</h2>
+<p>Students write an article “How not to be fooled by an AI photo”, for example for the school newspaper or the school website. The article must include:</p>
+<ol>
+<li>one pair from the quiz: both images and an explanation of which one is AI and how to tell;</li>
+<li>three signs of an AI image, in their own words, with an example;</li>
+<li>the group's result: what percentage they got right and which pair was the hardest;</li>
+<li>sources and licences: the author and licence of the real photo, the tool that made the AI image.</li>
+</ol>
+<p>They have the materials on their phones (pairs with sources). The group's results are in the file from the teacher console. Set the time with the timer in the console.</p></section><section id="licencje-en"><h2>Photo licences when you publish the article</h2>
+<p>The real photos come from Wikimedia Commons and use Creative Commons licences. When you publish an article with such a photo, give:</p>
+<ul>
+<li>the author of the photo (as named on the file page),</li>
+<li>the name of the licence with a link to it,</li>
+<li>a link to the photo page,</li>
+<li>information about changes: in the quiz the photos are cropped to the same proportions, so add “cropped”.</li>
+</ul>
+<p>Example credit: <i>Photo: Kocio, CC BY 3.0, Wikimedia Commons, cropped.</i></p>
+<p>Licences with “SA” (for example CC BY-SA 4.0): a changed version of the photo, for example a cropped one, must be published under the same licence.
+CC0: a credit is not required, but it is good to give one. Label AI images as made by AI, with the tool name: Nano Banana Pro (Google), through fal.ai.</p>
+<p class="d-uwaga">Before you publish, check the licence on the photo page (link in the table): what it says there is what counts.</p><table class="d-tabela"><thead><tr><th>Pair</th><th>Author of the real photo</th><th>Licence</th><th>Source</th></tr></thead><tbody><tr><td>1. Boardwalk in Kampinos Forest</td><td>Kocio</td><td><a href="https://creativecommons.org/licenses/by/3.0/deed.en">CC BY 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Kampinoski_Park_Narodowy_-_Wok%C3%B3%C5%82_Opalenia_education_path.jpg">photo page</a></td></tr><tr><td>2. Beach with rubbish</td><td>Piotrus</td><td><a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Corfu_beach_60.JPG">photo page</a></td></tr><tr><td>3. Firefighting plane over the sea</td><td>Tsui</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Polemiki_Aeroporia_Canadair_CL-415_2054_Naxos-2025-06-18_0826crop.jpg">photo page</a></td></tr><tr><td>4. Smoke from a fire over a city</td><td>George E. Koronaios</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:View_of_the_smoke_from_the_wildfires_in_Attica_from_Philopappos_Hill_on_August_18,_2021.jpg">photo page</a></td></tr><tr><td>5. Lizard on a beach</td><td>Piotr T. Czekala</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Cretan_wall_Lizard_(Podarcis_cretensis).jpg">photo page</a></td></tr><tr><td>6. Sea turtle</td><td>Dionysisa303</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Loggerhead_Turtle_Caretta_Caretta.jpg">photo page</a></td></tr><tr><td>7. Flooded street after heavy rain</td><td>Fotis A.</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Larisa_-_Nikolopoulou_Street_after_Storm_Daniel_(2023).jpg">photo page</a></td></tr><tr><td>8. Pelican on a lake</td><td>Wkkasimag</td><td><a href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Lake_Kerkini_Dalmatian_Pelican_1.jpg">photo page</a></td></tr><tr><td>9. Bee on a flower</td><td>Anna N Chapman</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Glebionis_coronaria_with_1Honey-Bee.jpg">photo page</a></td></tr><tr><td>10. The Vistula river in a drought</td><td>Bernard NoK</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Wis%C5%82a_w_Warszawie_-_niski_stan_wody.jpg">photo page</a></td></tr><tr><td>11. Olive grove</td><td>Bouke ten Cate</td><td><a href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Naxos_Olive_Groves.jpg">photo page</a></td></tr><tr><td>12. Dried-up lake</td><td>Nikolai Bulykin</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:%D0%90%D0%B8%D0%BE%D1%81_%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%BE%D1%81,_%D0%B2%D1%8B%D1%81%D0%BE%D1%85%D1%88%D0%B5%D0%B5_%D0%B4%D0%BD%D0%BE_%D0%BE%D0%B7%D0%B5%D1%80%D0%B0_%D0%9A%D0%BE%D1%80%D0%BE%D0%BD%D0%B8%D1%8F.jpg">photo page</a></td></tr><tr><td>13. Poppies by the road</td><td>Alexandros Georgiou</td><td><a href="https://creativecommons.org/licenses/by/3.0/deed.en">CC BY 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:%CE%A0%CE%B1%CF%80%CE%B1%CF%81%CE%BF%CF%8D%CE%BD%CE%B5%CF%82_-_panoramio.jpg">photo page</a></td></tr><tr><td>14. Moose in Kampinos</td><td>Wojsyl</td><td><a href="https://creativecommons.org/licenses/by-sa/2.5/deed.en">CC BY-SA 2.5</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Poland_Kampinos_Alces_alces_1.jpg">photo page</a></td></tr><tr><td>15. Flamingos in a river delta</td><td>Zsolyomi</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Flamingos_in_Nestos_Delta.jpg">photo page</a></td></tr><tr><td>16. Vineyard on Santorini</td><td>Treephoto</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Old_vines_at_Domaine_Sigalas_in_Santorini,_Greece.jpg">photo page</a></td></tr><tr><td>17. Monastery in Meteora</td><td>Bernard Gagnon</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Roussanou_Monastery,_Meteora.jpg">photo page</a></td></tr><tr><td>18. Storks on a nest</td><td>Charles J. Sharp</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:White_storks_(Ciconia_ciconia)_on_nest_Biebrzanski.jpg">photo page</a></td></tr><tr><td>19. Cicada on an olive tree</td><td>Sputniktilt</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Cicadidae_2017_Koroni_02.jpg">photo page</a></td></tr><tr><td>20. Swallowtail butterfly</td><td>Stylianos-Marinos Charalampidis</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Papilio_Machaon_01.jpg">photo page</a></td></tr><tr><td>21. Street with tavernas in Athens</td><td>Jakub Hałun</td><td><a href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Restaurants_on_Mnisikleous_Street_in_Athens,_20240601_0917_0009.jpg">photo page</a></td></tr><tr><td>22. Burnt forest</td><td>Stathis floros</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Beauty_and_drama_2.jpg">photo page</a></td></tr><tr><td>23. Fishing harbour in Crete</td><td>Moonik</td><td><a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Heraklion_old_harbour_in_Crete,_Greece_002.jpg">photo page</a></td></tr><tr><td>24. Cat by a fortress on Rhodes</td><td>Jon Gudorf Photography</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0/deed.en">CC BY-SA 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Confident_cat_at_Rhodes_Fortress,_Greece.jpg">photo page</a></td></tr><tr><td>25. Peaks of Mount Olympus</td><td>kallerna</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Olympus_National_Park_30.jpg">photo page</a></td></tr></tbody></table></section><section id="zrodla-en"><h2>Sources of the AI signs</h2><ul><li><a href="https://www.mozillafoundation.org/pl/blog/ai-photo-how-to-tell/">Fundacja Mozilla, X. Harding: „Czy sztuczna inteligencja wygenerowała to zdjęcie? Oto jak to rozpoznać”, 13.09.2023</a></li><li><a href="https://nask.pl/media/2026/01/Halo_Tu-cyberbezpieczny-senior-Nie-zadzierAI-ze-mna.pdf">NASK: poradnik „#Halo! Tu cyberbezpieczny Senior! Nie zadzierAI ze mną”, styczeń 2026</a></li><li><a href="https://arxiv.org/abs/2406.08651">N. Kamali, K. Nakamura, A. Chatzimparmpas, J. Hullman, M. Groh (Northwestern University, zespół Detect Fakes): „How to Distinguish AI-Generated Images from Authentic Photographs”, czerwiec 2024</a></li><li><a href="https://demagog.org.pl/fake_news/czy-to-zdjecie-z-protestu-rolnikow-nie-to-dzielo-ai/">Demagog: „Czy to zdjęcie z protestu rolników? Nie, to dzieło AI”, 22.03.2024</a></li><li><a href="https://demagog.org.pl/analizy_i_raporty/oslepieni-deepfakeami-jak-sprawdzic-czy-to-ai-stworzylo-obraz/">Demagog, A. Majchrzak, A. Szymkiewicz: „Oślepieni deepfake’ami. Jak sprawdzić, czy to AI stworzyło obraz?”, 15.06.2023</a></li><li><a href="https://blog.google/technology/ai/ai-image-verification-gemini-app/">Google: „How we&#x27;re bringing AI image verification to the Gemini app”, 20.11.2025</a></li><li><a href="https://demagog.org.pl/analizy_i_raporty/test-4-narzedzi-do-weryfikacji-obrazow-ai-ktore-jest-najlepsze/">Demagog, A. Majchrzak: „Test 4 narzędzi do weryfikacji obrazów AI”, 11.08.2023</a></li></ul></section></main>
+<script>
+const wersje = document.querySelectorAll("[data-jez]");
+function pokaz(jez) {
+  wersje.forEach((w) => { w.hidden = w.dataset.jez !== jez; });
+  document.querySelectorAll(".jez button").forEach((b) => b.setAttribute("aria-pressed", String(b.value === jez)));
+  document.documentElement.lang = jez;
+}
+document.querySelectorAll(".jez button").forEach((b) => b.addEventListener("click", () => {
+  pokaz(b.value);
+  history.replaceState(null, "", b.value === "en" ? "?jez=en" : location.pathname);
+}));
+pokaz(new URLSearchParams(location.search).get("jez") === "en" ? "en" : "pl");
+</script>
+</body>
+</html>
